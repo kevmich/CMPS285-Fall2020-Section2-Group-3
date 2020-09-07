@@ -1,9 +1,12 @@
+using Business;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Repository;
+
 
 namespace KitchenVideoSystem
 {
@@ -21,6 +24,10 @@ namespace KitchenVideoSystem
         {
 
             services.AddControllersWithViews();
+
+            //Dependency Injection
+            services.AddTransient<IOrderRepository, OrderRepository>();
+
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
