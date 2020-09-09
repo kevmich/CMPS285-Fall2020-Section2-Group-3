@@ -13,8 +13,10 @@ namespace Repository
     {
         public Order[] GetOrders()
         {
+            // This is where you use Dapper
             var order1 = new Order { OrderNumber = 1, OrderContents = 2, TimeOrdered = 1599522677};
-            
+
+
             Order[] retVal = { order1 };
             return retVal;
         }
