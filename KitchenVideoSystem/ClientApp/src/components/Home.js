@@ -7,24 +7,24 @@ export class Home extends Component {
         this.state = { orders: []};
     }
 
-    componentDidMount() {
-        this.populateOrderData();
-    }
 
 
   render () {
+      console.log(this.state.orders[0])
     return (
       <div>
             <h1>Hello, world!</h1>
+            <h2>{this.state.orders.timeOrdered}</h2>
+            
       </div>
       );
       
     }
 
 
-    async populateOrderData() {
+    async componentDidMount() {
         const response = await fetch('order');
         const data = await response.json();
-        this.setState({ orders: data});
+        this.setState({ orders: data[0]});
     }
 }
