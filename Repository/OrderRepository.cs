@@ -14,11 +14,18 @@ namespace Repository
         public Order[] GetOrders()
         {
             // This is where you use Dapper
-            var order1 = new Order { OrderNumber = 1, OrderContents = 2, TimeOrdered = 1599522677};
+            int[] TimeOrderedArr = new int[] { 32, 34, 224 };
+
+            var order1 = new Order { OrderNumber = 1, OrderContents = 2, TimeOrdered = TimeOrderedArr};
 
 
             Order[] retVal = { order1 };
             return retVal;
+        }
+
+        public T GetStuff<T>(T item)
+        {
+            return item;
         }
     } 
 }

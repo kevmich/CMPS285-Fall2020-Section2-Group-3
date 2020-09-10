@@ -26,6 +26,7 @@ namespace KitchenVideoSystem.Controllers
         }
 
         [HttpGet]
+
         public IEnumerable<Order> Get()
         {
             var exampleOrder = _orderRepository.GetOrders();
