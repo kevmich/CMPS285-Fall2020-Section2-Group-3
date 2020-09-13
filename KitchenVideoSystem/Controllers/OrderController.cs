@@ -31,8 +31,19 @@ namespace KitchenVideoSystem.Controllers
         {
             var exampleOrder = _orderRepository.GetOrders();
 
-            //return new List<Order>();
+            // This is an example of pushing *something* to the database
+            int exampleOrder2 = _orderRepository.PutOrders();
+            
             return exampleOrder;
         }
-}
+
+        // Trying to make a method to push data to the database
+        //[HttpGet, Route("SendOrder")]
+        //public int Put()
+        //{
+        //    int exampleOrder = _orderRepository.PutOrders();
+        //    return exampleOrder;
+            
+        //}
+    }
 }
