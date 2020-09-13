@@ -17,7 +17,7 @@ export class Home extends Component {
             <h1>Hello, world!</h1>
             <h2>{this.state.orders.timeOrdered}</h2>
             <ul>
-                {this.state.orders.map(orders => <li>{orders.timeOrdered}</li>)}
+                {this.state.orders.map(orders => <li>{orders.dateAdded}</li>)}
             </ul>
             
       </div>

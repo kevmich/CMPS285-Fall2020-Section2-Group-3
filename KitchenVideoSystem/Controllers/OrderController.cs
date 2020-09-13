@@ -32,7 +32,7 @@ namespace KitchenVideoSystem.Controllers
             var exampleOrder = _orderRepository.GetOrders();
 
             // This is an example of pushing *something* to the database
-            int exampleOrder2 = _orderRepository.PutOrders();
+            //int exampleOrder2 = _orderRepository.PutOrders();
             
             return exampleOrder;
         }
