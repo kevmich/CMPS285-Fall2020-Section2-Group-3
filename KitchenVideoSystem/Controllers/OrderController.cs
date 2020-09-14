@@ -29,19 +29,16 @@ namespace KitchenVideoSystem.Controllers
 
         public IEnumerable<Order> Get()
         {
-            var exampleOrder = _orderRepository.GetOrders();
-
-            // This is an example of pushing *something* to the database
-            //int exampleOrder2 = _orderRepository.PutOrders();
-            
+            var exampleOrder = _orderRepository.GetOrders();         
             return exampleOrder;
         }
 
-        // Trying to make a method to push data to the database
-        //[HttpGet, Route("SendOrder")]
-        //public int Put()
+        //[HttpGet]
+
+        //public int Put(String name)
         //{
-        //    int exampleOrder = _orderRepository.PutOrders();
+        //    name = "help";
+        //    var exampleOrder = _orderRepository.PutOrders(name);
         //    return exampleOrder;
             
         //}
