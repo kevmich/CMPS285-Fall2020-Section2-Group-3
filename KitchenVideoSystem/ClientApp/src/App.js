@@ -14,11 +14,11 @@ export default class App extends Component {
 
   render () {
     return (
-      <Layout>
+      <div>
         <Route exact path='/' component={Home} />
         <Route exact path='/login' component={Login} />
         <Route exact path= '/CashierScreen' component={CashierScreen} />
-      </Layout>
+      </div>
     );
   }
 }
