@@ -11,13 +11,16 @@ namespace Repository
     //Server=SQLEXPRESS;Database=KitchenVideoSystemDb;Integrated Security=true;
     public interface IOrderRepository
     {
-        Order[] GetOrders();
+        Order[] GetAllOrders();
+
+        Order GetOrder(int id);
+
         int PutOrders(String name);
 
     }
     public class OrderRepository : IOrderRepository
     {
-        public Order[] GetOrders()
+        public Order[] GetAllOrders()
         {
             var connectionString = @"Server=.\SQLEXPRESS;Database=KitchenVideoSystemDb;Integrated Security=true;";
             
@@ -26,6 +29,18 @@ namespace Repository
                 var sql = "SELECT * FROM Orders";
                 var orders = connection.Query<Order>(sql).ToArray();
                 return orders;
+            }
+
+        }
+        public Order GetOrder(int id)
+        {
+            var connectionString = @"Server=.\SQLEXPRESS;Database=KitchenVideoSystemDb;Integrated Security=true;";
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                var sql = "SELECT * FROM Orders";
+                var orders = connection.Query<Order>(sql).ToArray();
+                return null;
             }
 
         }
