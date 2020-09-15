@@ -38,8 +38,8 @@ namespace KitchenVideoSystem.Controllers
         }
 
         // Trying to make a method to push data to the database
-        [HttpPost, Route("SendOrder/{name}")]
-        public int Put([FromBody] String name)
+        [HttpGet, Route("SendOrder/{name}")]
+        public int Put([FromRoute] String name)
         {
             int exampleOrder = _orderRepository.PutOrders(name);
             return exampleOrder;
