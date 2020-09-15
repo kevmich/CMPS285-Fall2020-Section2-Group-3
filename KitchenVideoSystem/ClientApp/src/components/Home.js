@@ -19,7 +19,8 @@ export class Home extends Component {
             <ul>
                 {this.state.orders.map(orders => <li>{orders.dateAdded}</li>)}
             </ul>
-            
+
+
       </div>
       );
       

@@ -15,8 +15,9 @@ export default class CashierScreen extends Component {
                     <button class="Button"> Pretzel </button>
                     <button class="Button"> French Fries </button>
                 </div>
+
                 <div class="MenuItems">
-                    <h1 class="food"> Drinks </h1>
+                    <h1 class="Drinks"> Drinks </h1>
                     <button class="Button"> Sprite </button>
                     <button class="Button"> Coca-Cola </button>
                     <button class="Button"> Fanta Orange </button>

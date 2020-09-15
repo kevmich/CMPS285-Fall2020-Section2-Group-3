@@ -9,8 +9,16 @@
 body {
     font-family: 'Roboto', sans-serif;
     font-size: 48px;
+    background-color: #f9f9fa;
 }
 
+.MenuItems {
+    border: 2px solid #e2e2e2;
+    width: 600px;
+    margin: 4px
+}
+
+.CurrentOrder 
 
 .Button {
     color: black;
@@ -22,6 +30,7 @@ body {
     font-size: 50px;
     border-radius: 10px;
     text-align: left;
+    border: 5px solid black;
 }
 
 .MenuItems {

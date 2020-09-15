@@ -3,7 +3,8 @@ import { Route } from 'react-router';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import  Login  from './components/Login';
-import  CashierScreen  from './components/CashierScreen';
+import CashierScreen from './components/CashierScreen';
+import KitchenScreen from './components/KitchenScreen';
 
 
 import './custom.css'
@@ -17,7 +18,8 @@ export default class App extends Component {
       <div>
         <Route exact path='/' component={Home} />
         <Route exact path='/login' component={Login} />
-        <Route exact path= '/CashierScreen' component={CashierScreen} />
+        <Route exact path='/CashierScreen' component={CashierScreen} />
+        <Route exact path='/KitchenScreen' component={KitchenScreen} />
       </div>
     );
   }
