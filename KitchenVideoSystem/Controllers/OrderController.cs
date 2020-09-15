@@ -25,7 +25,7 @@ namespace KitchenVideoSystem.Controllers
             _orderRepository = orderRepository;
         }
 
-        [HttpGet, Route("api/GetOrders")]
+        [HttpGet, Route("api/GetAllOrders")]
 
         public IEnumerable<Order> GetAllOrders()
         {
@@ -35,7 +35,7 @@ namespace KitchenVideoSystem.Controllers
 
         [HttpGet, Route("api/getorder/{id}")]
 
-        public Order GetOrder(int id)
+        public Order GetOrder([FromRoute] int id)
         {
             var exampleOrder = _orderRepository.GetOrder(id);
 
@@ -44,7 +44,7 @@ namespace KitchenVideoSystem.Controllers
 
         // Trying to make a method to push data to the database
         [HttpGet, Route("api/SendOrder/{name}")]
-        public int PutOrder([FromRoute] String name)
+        public int PutOrders([FromRoute] String name)
         {
             int exampleOrder = _orderRepository.PutOrders(name);
             return exampleOrder;
