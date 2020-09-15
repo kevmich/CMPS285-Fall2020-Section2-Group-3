@@ -25,7 +25,7 @@ namespace KitchenVideoSystem.Controllers
             _orderRepository = orderRepository;
         }
 
-        [HttpGet, Route("GetOrders")]
+        [HttpGet, Route("api/GetOrders")]
 
         public IEnumerable<Order> Get()
         {
