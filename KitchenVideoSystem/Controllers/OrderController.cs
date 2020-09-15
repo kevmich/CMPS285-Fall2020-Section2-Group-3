@@ -11,7 +11,7 @@ using Repository;
 
 namespace KitchenVideoSystem.Controllers
 {
-    [Route("[controller]")]
+    //[Route("[controller]")]
 
     [ApiController]
     public class OrderController : ControllerBase
@@ -25,7 +25,7 @@ namespace KitchenVideoSystem.Controllers
             _orderRepository = orderRepository;
         }
 
-        [HttpGet]
+        [HttpGet, Route("GetOrders")]
 
         public IEnumerable<Order> Get()
         {
@@ -38,12 +38,12 @@ namespace KitchenVideoSystem.Controllers
         }
 
         // Trying to make a method to push data to the database
-        //[HttpGet, Route("SendOrder")]
-        //public int Put()
-        //{
-        //    int exampleOrder = _orderRepository.PutOrders();
-        //    return exampleOrder;
+        [HttpPost, Route("SendOrder/{name}")]
+        public int Put([FromBody] String name)
+        {
+            int exampleOrder = _orderRepository.PutOrders(name);
+            return exampleOrder;
             
-        //}
+        }
     }
 }
