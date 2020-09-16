@@ -11,29 +11,58 @@ export default class CashierScreen extends Component {
                     <button class="Button"> Hamburger </button>
                     <button class="Button"> Cheeseburger </button>
                     <button class="Button"> Chicken Nuggets </button>
-                    <button class="Button"> Hot dog </button>
+                    <button class="Button"> Corn Dog </button>
+                    <button class="Button"> Hot Dog </button>
                     <button class="Button"> Pretzel </button>
-                    <button class="Button"> French Fries </button>
                 </div>
 
+
                 <div class="MenuItems">
-                    <table>
+                    <table id="DrinkTable">
                         <tr>
                             <th> Drinks </th>
-                            <th> S </th>
-                            <th> M </th>
-                            <th> L </th>
+                            <th class="DrinkSizeLabel"> S </th>
+                            <th class="DrinkSizeLabel"> M </th>
+                            <th class="DrinkSizeLabel"> L </th>
                         </tr>
                         <tr>
                             <td class="Drinks"> Sprite </td>
+                            <td>< button class="DButton"> </ button></td>
+                            <td>< button class="DButton"> </ button></td>
+                            <td>< button class="DButton"> </ button></td>
                         </tr>
                         <tr>
                             <td class="Drinks"> Coca-Cola </td>
-                            <td class="Drinks"> Fanta Orange </td>
-                            <td class="Drinks"> Dr Pepper </td>
-                            <td class="Drinks"> Lemonade </td>
-                            <td class="Drinks"> Water </td>
+                            <td>< button class="DButton"> </ button></td>
+                            <td>< button class="DButton"> </ button></td>
+                            <td>< button class="DButton"> </ button></td>
                         </tr>
+                        <tr>
+                            <td class="Drinks"> Fanta Orange </td>
+                            <td>< button class="DButton"> </ button></td>
+                            <td>< button class="DButton"> </ button></td>
+                            <td>< button class="DButton"> </ button></td>
+                        </tr>
+                        <tr>
+                            <td class="Drinks"> Dr Pepper </td>
+                            <td>< button class="DButton"> </ button></td>
+                            <td>< button class="DButton"> </ button></td>
+                            <td>< button class="DButton"> </ button></td>
+                        </tr>
+                        <tr>
+                            <td class="Drinks"> Lemonade </td>
+                            <td>< button class="DButton"> </ button></td>
+                            <td>< button class="DButton"> </ button></td>
+                            <td>< button class="DButton"> </ button></td>
+                        </tr>
+                        <tr>
+                            <td class="Drinks"> Water </td>
+                            <td>< button class="DButton"> </ button></td>
+                            <td>< button class="DButton"> </ button></td>
+                            <td>< button class="DButton"> </ button></td>
+                        </tr>
+                      
+                        
                         
                         
                 </table>
