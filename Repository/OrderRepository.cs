@@ -34,7 +34,7 @@ namespace Repository
         }
         public Order GetOrder(int id)
         {
-            var connectionString = @"Server=.MSI\SQLEXPRESS;Database=KitchenVideoSystemDb;Integrated Security=true;";
+            var connectionString = @"Server=.\SQLEXPRESS;Database=KitchenVideoSystemDb;Integrated Security=true;";
 
             using (var connection = new SqlConnection(connectionString))
             {
@@ -49,7 +49,7 @@ namespace Repository
         // Pushing data to database
         public int PutOrders(String name)
         {
-            var connectionString = @"Server=.MSI\SQLEXPRESS;Database=KitchenVideoSystemDb;Integrated Security=true;";
+            var connectionString = @"Server=.\SQLEXPRESS;Database=KitchenVideoSystemDb;Integrated Security=true;";
 
             using (var connection = new SqlConnection(connectionString))
             {
