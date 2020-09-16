@@ -25,21 +25,26 @@ namespace KitchenVideoSystem.Controllers
             _orderRepository = orderRepository;
         }
 
-        [HttpGet, Route("api/GetOrders")]
+        [HttpGet, Route("api/GetAllOrders")]
 
-        public IEnumerable<Order> Get()
+        public IEnumerable<Order> GetAllOrders()
         {
-            var exampleOrder = _orderRepository.GetOrders();
+            var exampleOrder = _orderRepository.GetAllOrders();          
+            return exampleOrder;
+        }
 
-            // This is an example of pushing *something* to the database
-            //int exampleOrder2 = _orderRepository.PutOrders();
-            
+        [HttpGet, Route("api/getorder/{id}")]
+
+        public Order GetOrder([FromRoute] int id)
+        {
+            var exampleOrder = _orderRepository.GetOrder(id);
+
             return exampleOrder;
         }
 
         // Trying to make a method to push data to the database
-        [HttpPost, Route("SendOrder/{name}")]
-        public int Put([FromBody] String name)
+        [HttpGet, Route("api/SendOrder/{name}")]
+        public int PutOrders([FromRoute] String name)
         {
             int exampleOrder = _orderRepository.PutOrders(name);
             return exampleOrder;
