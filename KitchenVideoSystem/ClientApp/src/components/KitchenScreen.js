@@ -5,7 +5,9 @@ export default class KitchenScreen extends Component {
     render() {
         return (
             <div>
-                <h1> this is a test </h1>
+                <div>
+                    <h1 class= "Kitchen"> this is a test </h1>
+                </div>
             </div>
         );
     }

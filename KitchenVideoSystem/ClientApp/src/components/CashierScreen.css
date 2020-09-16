@@ -12,13 +12,16 @@ body {
     background-color: #f9f9fa;
 }
 
-.MenuItems {
+.FoodItems {
     border: 2px solid #e2e2e2;
     width: 600px;
-    margin: 4px
+    margin: 4px;
+    float: left;
 }
 
-.CurrentOrder 
+.MenuItems {
+    float: left;
+}
 
 .Button {
     color: black;
@@ -33,9 +36,7 @@ body {
     border: 5px solid black;
 }
 
-.MenuItems {
-    float: left;
-}
+
 
 .Box{
     box-sizing: border-box;
