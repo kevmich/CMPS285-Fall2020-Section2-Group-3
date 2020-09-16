@@ -62,5 +62,6 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Orders.sql" />
+    <Build Include="dbo\Tables\OrderItems.sql" />
   </ItemGroup>
 </Project>
