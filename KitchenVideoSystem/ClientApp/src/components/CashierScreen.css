@@ -8,36 +8,41 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    font-size: 48px;
+    font-size: 50px;
     background-color: #f9f9fa;
 }
 
-.MenuItems {
+.FoodItems, .MenuItems {
     border: 2px solid #e2e2e2;
-    width: 600px;
-    margin: 4px
-}
-
-.CurrentOrder 
-
-.Button {
-    color: black;
-    background-color: white;
-    display: flex;
-    margin: 20px;
-    padding: 14px 28px;
-    Width: 10em;
-    font-size: 50px;
-    border-radius: 10px;
-    text-align: left;
-    border: 5px solid black;
-}
-
-.MenuItems {
+    padding: 10px;
+    margin: 10px;
+    width: 500px;
     float: left;
 }
 
-.Box{
+.Button {
+    color: black;
+    background-color: #EFEFEF;
+    display: flex;
+    padding-bottom: 0px;
+    Width: 10em;
+    font-size: 48px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.DButton {
+    padding: 20px;
+    vertical-align: middle;
+    border-radius:5px;
+}
+
+#DrinkTable {
+        vertical-align: middle;
+
+}
+
+.Box {
     box-sizing: border-box;
     width: 300px;
     height: 500px;
@@ -47,8 +52,12 @@ body {
 .CurrentOrder {
     border: 10px solid black;
     width: 600px;
-    height: 800px;
+    height: 96vh;
     float: right;
     margin: 10px;
 
+}
+
+.DrinkSizeLabel {
+    text-align: center;
 }
