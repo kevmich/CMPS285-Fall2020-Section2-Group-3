@@ -11,6 +11,7 @@ using Repository;
 
 namespace KitchenVideoSystem.Controllers
 {
+    [Route("api")]
     [ApiController]
     public class OrderController : ControllerBase
     {
@@ -23,15 +24,15 @@ namespace KitchenVideoSystem.Controllers
             _orderRepository = orderRepository;
         }
 
-        [HttpGet, Route("api/GetAllOrders")]
+        [HttpGet, Route("GetAllOrders")]
 
         public IEnumerable<Order> GetAllOrders()
         {
-            var exampleOrder = _orderRepository.GetAllOrders();          
+            var exampleOrder = _orderRepository.GetAllOrders();
             return exampleOrder;
         }
 
-        [HttpGet, Route("api/getorder/{id}")]
+        [HttpGet, Route("getorder/{id}")]
 
         public Order GetOrder([FromRoute] int id)
         {
@@ -40,14 +41,14 @@ namespace KitchenVideoSystem.Controllers
             return exampleOrder;
         }
 
-        [HttpPost, Route("api/sendorder")]
+        [HttpPost, Route("sendorder")]
         public void AddOrder([FromBody] Order order)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
                 _orderRepository.AddOrder(order);
         }
 
-        [HttpPut, Route("api/changeorder/{id}")]
+        [HttpPut, Route("changeorder/{id}")]
         public void ChangeOrder(int id, [FromBody] Order order)
         {
             order.Id = id;
@@ -55,7 +56,7 @@ namespace KitchenVideoSystem.Controllers
                 _orderRepository.UpdateOrder(order);
         }
 
-        [HttpDelete, Route("api/removeorder/{id}")]
+        [HttpDelete, Route("removeorder/{id}")]
         public void RemoveOrder(int id)
         {
             _orderRepository.DeleteOrder(id);
