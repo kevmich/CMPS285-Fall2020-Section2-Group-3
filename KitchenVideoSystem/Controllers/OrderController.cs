@@ -11,8 +11,6 @@ using Repository;
 
 namespace KitchenVideoSystem.Controllers
 {
-    //[Route("[controller]")]
-
     [ApiController]
     public class OrderController : ControllerBase
     {
@@ -42,13 +40,26 @@ namespace KitchenVideoSystem.Controllers
             return exampleOrder;
         }
 
-        // Trying to make a method to push data to the database
-        [HttpGet, Route("api/SendOrder/{name}")]
-        public int PutOrders([FromRoute] String name)
+        [HttpPost, Route("api/sendorder")]
+        public void AddOrder([FromBody] Order order)
         {
-            int exampleOrder = _orderRepository.PutOrders(name);
-            return exampleOrder;
-            
+            if(ModelState.IsValid)
+                _orderRepository.AddOrder(order);
         }
+
+        [HttpPut, Route("api/changeorder/{id}")]
+        public void ChangeOrder(int id, [FromBody] Order order)
+        {
+            order.Id = id;
+            if (ModelState.IsValid)
+                _orderRepository.UpdateOrder(order);
+        }
+
+        [HttpDelete, Route("api/removeorder/{id}")]
+        public void RemoveOrder(int id)
+        {
+            _orderRepository.DeleteOrder(id);
+        }
+
     }
 }
