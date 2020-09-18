@@ -31,7 +31,7 @@ namespace Repository
             using (var connection = new SqlConnection(connectionString))
             {
                 //Date needs to be live
-                var sql = "INSERT INTO Orders(Name, DateAdded) VALUES (@Name, '2020 - 10 - 10 00:00:00.000')";
+                var sql = "INSERT INTO Orders(OrderNumber, OrderItemId, DateStarted, Size, IsComplete) VALUES (@OrderNumber, @OrderItemId, @DateStarted, @Size, @IsComplete)";
                 connection.Execute(sql, order);
             }
 

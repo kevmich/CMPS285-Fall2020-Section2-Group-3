@@ -1,7 +1,9 @@
 ﻿CREATE TABLE [dbo].[OrderItems] (
-    [Id]   INT          NOT NULL,
+    [Id]   INT          IDENTITY (1, 1) NOT NULL,
     [Name] VARCHAR (50) NOT NULL,
-    [Type] VARCHAR (20) NOT NULL,
-    CHECK ([Type]='drink' OR [Type]='food')
+    [Type] INT          NOT NULL,
+    CONSTRAINT [PK_OrderItems] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
+
+
 
