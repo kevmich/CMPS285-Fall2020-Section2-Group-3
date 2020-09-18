@@ -49,7 +49,7 @@ namespace KitchenVideoSystem.Controllers
         }
 
         [HttpPut, Route("changeorder/{id}")]
-        public void ChangeOrder(int id, [FromBody] Order order)
+        public void ChangeOrder([FromRoute] int id, [FromBody] Order order)
         {
             order.Id = id;
             if (ModelState.IsValid)
