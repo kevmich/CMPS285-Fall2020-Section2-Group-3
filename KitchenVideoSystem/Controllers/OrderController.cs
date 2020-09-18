@@ -11,7 +11,7 @@ using Repository;
 
 namespace KitchenVideoSystem.Controllers
 {
-    [Route("api")]
+    [Route("api/orders")]
     [ApiController]
     public class OrderController : ControllerBase
     {
@@ -57,7 +57,7 @@ namespace KitchenVideoSystem.Controllers
         }
 
         [HttpDelete, Route("removeorder/{id}")]
-        public void RemoveOrder(int id)
+        public void RemoveOrder([FromRoute] int id)
         {
             _orderRepository.DeleteOrder(id);
         }
