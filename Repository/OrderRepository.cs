@@ -68,7 +68,7 @@ namespace Repository
 
             using (var connection = new SqlConnection(connectionString))
             {
-                var sql = "DELETE FROM Products WHERE Id = " + id;
+                var sql = "DELETE FROM Employees WHERE Id = " + id;
                 connection.Execute(sql);
             }
         }
@@ -79,7 +79,7 @@ namespace Repository
 
             using (var connection = new SqlConnection(connectionString))
             {
-                var sql = "UPDATE Products SET Name = @Name WHERE Id = @Id";
+                var sql = "UPDATE Employees SET Name = @Name WHERE Id = @Id";
                 connection.Query(sql, order);
             }
         }
