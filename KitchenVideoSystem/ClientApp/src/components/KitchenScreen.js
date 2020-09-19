@@ -1,4 +1,6 @@
 ﻿import React, { Component } from 'react';
+import './KitchenScreen.css'
+
 
 export default class KitchenScreen extends Component {
 
@@ -6,7 +8,20 @@ export default class KitchenScreen extends Component {
         return (
             <div>
                 <div>
-                    <h1 class= "Kitchen"> this is a test </h1>
+                    <div class="OrderDiv" id="Completed">
+                        <ul>
+                            <li>1 Cheeseburger</li>
+                            <li>2 Hamburger</li>
+                            <li>300 Hot Dog</li>
+                        </ul>
+                    </div>
+                    <div class="OrderDiv">
+                        <ul>
+                            <li>1 Cheeseburger</li>
+
+                        </ul>
+                    </div>
+                   
                 </div>
             </div>
         );
