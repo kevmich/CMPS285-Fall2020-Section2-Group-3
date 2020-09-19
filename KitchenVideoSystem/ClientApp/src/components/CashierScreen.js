@@ -1,14 +1,40 @@
 ﻿import React, { Component } from 'react';
+import axios from 'axios';
 import './CashierScreen.css'
 
 export default class CashierScreen extends Component {
+
+    constructor(props) {
+        super(props);
+        this.onClick = this.onClick.bind(this);
+        this.state = {
+            OrderNumber: "9cdc7364-90d8-4a1f-a7ae-bb3e85681ec0",
+        };
+    }
+
+    onClick() {
+        axios({
+            method: 'post',
+            url: '/api/orders/sendorder',
+            data: {
+                "OrderNumber": this.state.OrderNumber,
+                "OrderItemId": 1,
+                "DateStarted": "1999-01-06T17:16:40",
+                "Size": 0,
+                "IsComplete": false
+            }
+        });
+
+    }
+    
+
     render() {
         return (
             <div>
 
                 <div class="FoodItems">
                     <b class="food"> Food </b>
-                    <button class="Button"> Hamburger </button>
+                    <button onClick={this.onClick} class="Button"> Hamburger </button>
                     <button class="Button"> Cheeseburger </button>
                     <button class="Button"> Chicken Nuggets </button>
                     <button class="Button"> Corn Dog </button>
@@ -61,17 +87,19 @@ export default class CashierScreen extends Component {
                             <td>< button class="DButton"> </ button></td>
                             <td>< button class="DButton"> </ button></td>
                         </tr>
-                      
-                        
-                        
-                        
-                </table>
+
+
+
+
+                    </table>
                 </div>
                 <div class="CurrentOrder MenuItems">
                     <p>CURRENT ORDER</p>
                 </div>
-
             </div>
         );
     }
+
+  
+
 }

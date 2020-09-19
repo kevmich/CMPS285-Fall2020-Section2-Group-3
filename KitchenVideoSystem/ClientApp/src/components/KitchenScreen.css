@@ -1,7 +1,7 @@
 ﻿body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: bold;
-    background-color: #000000;
+/*    font-family: -apple-system, BlinkMacSystemFont, 'Roboto', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bold;*/
+    /*background-color: #000000;*/
 }
 
 .OrderDiv {
@@ -13,6 +13,10 @@
     border-radius: 10px;
     font-size: 0.5em;
     float: left;
+    background-color: #eee;
+    border-color: #bbb;
+    border-style: solid;
+    border-width: 3px;
 }
 
 ul {
