@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { NavLink } from 'reactstrap';
 
 
 export class Home extends Component {
@@ -14,7 +16,9 @@ export class Home extends Component {
   render () {
     return (
       <div>
-            <h1>Hello, world!</h1>
+            <NavLink tag={Link} to="/cashierscreen">Cashier</NavLink>
+            <br></br>
+            <NavLink tag={Link} to="/kitchenscreen">Kitchen</NavLink>
             <h2>{this.state.orders.timeOrdered}</h2>
             <ul>
                 {this.state.orders.map(orders => <li>{orders.dateAdded}</li>)}
