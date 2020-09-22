@@ -23,7 +23,6 @@ namespace Repository
         void DeleteOrder(int id);
 
         void UpdateOrder(Order order);
-
     }
     public class OrderRepository : IOrderRepository
     {
@@ -37,7 +36,6 @@ namespace Repository
                     + "VALUES (@OrderNumber, @OrderItemId, @DateStarted, @Size, @IsComplete)";
                 connection.Execute(sql, order);
             }
-
         }
 
         public Order[] GetAllOrders()
@@ -50,8 +48,8 @@ namespace Repository
                 var orders = connection.Query<Order>(sql).ToArray();
                 return orders;
             }
-
         }
+
         public Order GetOrder(int id)
         {
             var connectionString = @"Server=.\SQLEXPRESS;Database=KitchenVideoSystemDb;Integrated Security=true;";
@@ -62,7 +60,6 @@ namespace Repository
                 var order = connection.QuerySingle<Order>(sql);
                 return order;
             }
-
         }
 
         public Order[] GetUnfinishedOrders()
@@ -71,7 +68,7 @@ namespace Repository
 
             using (var connection = new SqlConnection(connectionString))
             {
-                var sql = "SELECT * FROM Orders WHERE DateFinished=null";
+                var sql = "SELECT * FROM Orders WHERE DateFinished IS NULL";
                 var orders = connection.Query<Order>(sql).ToArray();
                 return orders;
             }
@@ -98,8 +95,6 @@ namespace Repository
                 connection.Query(sql, order);
             }
         }
-
     }
-
 } 
 
