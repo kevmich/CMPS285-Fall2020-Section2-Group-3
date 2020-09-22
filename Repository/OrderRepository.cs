@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace Repository
 
         Order GetOrder(int id);
 
+        Order[] GetUnfinishedOrders();
+
         void DeleteOrder(int id);
 
         void UpdateOrder(Order order);
@@ -28,10 +31,13 @@ namespace Repository
         {
             var connectionString = @"Server=.\SQLEXPRESS;Database=KitchenVideoSystemDb;Integrated Security=true;";
 
+            Guid guid = Guid.NewGuid();
+            string orderGuid = guid.ToString();
+
             using (var connection = new SqlConnection(connectionString))
             {
-                //Date needs to be live
-                var sql = "INSERT INTO Orders(OrderNumber, OrderItemId, DateStarted, Size, IsComplete) VALUES (@OrderNumber, @OrderItemId, @DateStarted, @Size, @IsComplete)";
+                var sql = "INSERT INTO Orders(OrderNumber, OrderItemId, DateStarted, Size, IsComplete)" 
+                    + "VALUES (@OrderNumber, " + orderGuid + ", @DateStarted, @Size, @IsComplete)";
                 connection.Execute(sql, order);
             }
 
@@ -60,6 +66,21 @@ namespace Repository
                 return order;
             }
 
+        }
+
+        public Order[] GetUnfinishedOrders()
+        {
+            var connectionString = @"Server=.\SQLEXPRESS;Database=KitchenVideoSystemDb;Integrated Security=true;";
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                var sql = "SELECT * FROM Orders";
+                var orders = connection.Query<Order>(sql).ToArray();
+                for(int i = 0; i < orders.Length; i++)
+                    if (orders[i].DateFinished != null)
+                        orders[i] = null;
+                return orders;
+            }
         }
 
         public void DeleteOrder(int id)

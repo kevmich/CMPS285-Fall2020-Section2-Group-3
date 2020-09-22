@@ -15,8 +15,6 @@ namespace KitchenVideoSystem.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
-
-
         private IOrderRepository _orderRepository;
 
         public OrderController(IOrderRepository orderRepository)
@@ -25,7 +23,6 @@ namespace KitchenVideoSystem.Controllers
         }
 
         [HttpGet, Route("GetAllOrders")]
-
         public IEnumerable<Order> GetAllOrders()
         {
             var exampleOrder = _orderRepository.GetAllOrders();
@@ -33,11 +30,16 @@ namespace KitchenVideoSystem.Controllers
         }
 
         [HttpGet, Route("getorder/{id}")]
-
         public Order GetOrder([FromRoute] int id)
         {
             var exampleOrder = _orderRepository.GetOrder(id);
+            return exampleOrder;
+        }
 
+        [HttpGet, Route("getunfinishedoreders")]
+        public IEnumerable<Order> GetUnfinishedOrders()
+        {
+            var exampleOrder = _orderRepository.GetUnfinishedOrders();
             return exampleOrder;
         }
 
@@ -61,6 +63,5 @@ namespace KitchenVideoSystem.Controllers
         {
             _orderRepository.DeleteOrder(id);
         }
-
     }
 }
