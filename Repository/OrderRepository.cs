@@ -30,14 +30,10 @@ namespace Repository
         public void AddOrder(Order order)
         {
             var connectionString = @"Server=.\SQLEXPRESS;Database=KitchenVideoSystemDb;Integrated Security=true;";
-
-            Guid guid = Guid.NewGuid();
-            string orderGuid = guid.ToString();
-
             using (var connection = new SqlConnection(connectionString))
             {
                 var sql = "INSERT INTO Orders(OrderNumber, OrderItemId, DateStarted, Size, IsComplete)" 
-                    + "VALUES (@OrderNumber, " + orderGuid + ", @DateStarted, @Size, @IsComplete)";
+                    + "VALUES (@OrderNumber, @OrderItemId, @DateStarted, @Size, @IsComplete)";
                 connection.Execute(sql, order);
             }
 
@@ -74,11 +70,8 @@ namespace Repository
 
             using (var connection = new SqlConnection(connectionString))
             {
-                var sql = "SELECT * FROM Orders";
+                var sql = "SELECT * FROM Orders WHERE DateFinished IS NULL";
                 var orders = connection.Query<Order>(sql).ToArray();
-                for(int i = 0; i < orders.Length; i++)
-                    if (orders[i].DateFinished != null)
-                        orders[i] = null;
                 return orders;
             }
         }
