@@ -23,19 +23,20 @@ namespace Repository
         void DeleteOrder(int id);
 
         void UpdateOrder(Order order);
+
     }
     public class OrderRepository : IOrderRepository
     {
         public void AddOrder(Order order)
         {
             var connectionString = @"Server=.\SQLEXPRESS;Database=KitchenVideoSystemDb;Integrated Security=true;";
-
             using (var connection = new SqlConnection(connectionString))
             {
                 var sql = "INSERT INTO Orders(OrderNumber, OrderItemId, DateStarted, Size, IsComplete)" 
                     + "VALUES (@OrderNumber, @OrderItemId, @DateStarted, @Size, @IsComplete)";
                 connection.Execute(sql, order);
             }
+
         }
 
         public Order[] GetAllOrders()
@@ -48,8 +49,8 @@ namespace Repository
                 var orders = connection.Query<Order>(sql).ToArray();
                 return orders;
             }
-        }
 
+        }
         public Order GetOrder(int id)
         {
             var connectionString = @"Server=.\SQLEXPRESS;Database=KitchenVideoSystemDb;Integrated Security=true;";
@@ -60,6 +61,7 @@ namespace Repository
                 var order = connection.QuerySingle<Order>(sql);
                 return order;
             }
+
         }
 
         public Order[] GetUnfinishedOrders()
@@ -95,6 +97,8 @@ namespace Repository
                 connection.Query(sql, order);
             }
         }
+
     }
+
 } 
 

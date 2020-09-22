@@ -13,7 +13,6 @@ export default class KitchenScreen extends Component {
     componentDidMount(){
         axios.get('/api/orders/GetAllOrders')
             .then((response) => {
-                console.log(response.data[2].id);
                 console.log(response.data);
                 this.setState({ Number: response.data})
               
