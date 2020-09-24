@@ -1,6 +1,11 @@
 ﻿import React, { Component } from 'react';
 import axios from 'axios';
 import './CashierScreen.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHamburger } from '@fortawesome/free-solid-svg-icons'
+import cheeseburgerIcon from '../content/cheeseburger-solid.svg';
+const hamburgerIcon = <FontAwesomeIcon icon={faHamburger} />
+
 
 export default class CashierScreen extends Component {
 
@@ -31,11 +36,10 @@ export default class CashierScreen extends Component {
     render() {
         return (
             <div>
-
                 <div class="FoodItems">
                     <b class="food"> Food </b>
-                    <button onClick={this.onClick} class="Button"> Hamburger </button>
-                    <button class="Button"> Cheeseburger </button>
+                    <button onClick={this.onClick} class="Button">{hamburgerIcon}&nbsp;Hamburger</button>
+                    <button class="Button"><img src={cheeseburgerIcon} height="47px"/>&nbsp;Cheeseburger </button>
                     <button class="Button"> Chicken Nuggets </button>
                     <button class="Button"> Corn Dog </button>
                     <button class="Button"> Hot Dog </button>
