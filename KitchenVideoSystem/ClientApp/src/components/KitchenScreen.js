@@ -46,11 +46,11 @@ export default class KitchenScreen extends Component {
                    
                 </div>
                 {this.state.Number.map((Number) => (
-                <p> Number: {Number.id} </p>
+                    <p> Number: {Number.orderItemId} </p>
                 ))}
                     
             </div>
-
+            
             
         );
     }
