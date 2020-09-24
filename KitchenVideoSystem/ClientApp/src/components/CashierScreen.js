@@ -17,15 +17,15 @@ export default class CashierScreen extends Component {
         };
     }
 
-    onClick() {
+    onClick(id, size) {
         axios({
             method: 'post',
             url: '/api/orders/sendorder',
             data: {
                 "OrderNumber": this.state.OrderNumber,
-                "OrderItemId": 1,
+                "OrderItemId": id,
                 "DateStarted": "1999-01-06T17:16:40",
-                "Size": 0,
+                "Size": size,
                 "IsComplete": false
             }
         });
@@ -38,8 +38,8 @@ export default class CashierScreen extends Component {
             <div>
                 <div class="FoodItems">
                     <b class="food"> Food </b>
-                    <button onClick={this.onClick} class="Button">{hamburgerIcon}&nbsp;Hamburger</button>
-                    <button class="Button"><img src={cheeseburgerIcon} height="47px"/>&nbsp;Cheeseburger </button>
+                    <button onClick={this.onClick(1, 0)} class="Button">{hamburgerIcon}&nbsp;Hamburger</button>
+                    <button onClick={this.onClick(2, 0)} class="Button"><img src={cheeseburgerIcon} height="47px"/>&nbsp;Cheeseburger </button>
                     <button class="Button"> Chicken Nuggets </button>
                     <button class="Button"> Corn Dog </button>
                     <button class="Button"> Hot Dog </button>
