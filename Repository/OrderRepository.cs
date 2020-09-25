@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Repository
@@ -17,6 +18,8 @@ namespace Repository
         Order[] GetAllOrders();
 
         Order GetOrder(int id);
+
+        void FinishOrder(Guid guid);
 
         Order[] GetUnfinishedOrders();
 
@@ -62,6 +65,20 @@ namespace Repository
                 return order;
             }
 
+        }
+
+        public void FinishOrder(Guid guid)
+        {
+            var connectionString = @"Server=.\SQLEXPRESS;Database=KitchenVideoSystemDb;Integrated Security=true;";
+            using (var connection = new SqlConnection(connectionString))
+            {
+                DateTimeOffset dateOffset1 = new DateTimeOffset();
+                dateOffset1 = DateTimeOffset.UtcNow;
+                //var sql = $"UPDATE Orders SET DateFinished = {dateOffset1} WHERE OrderNumber = {guid}";
+                // Need to fix quotes
+                var sql = "UPDATE Orders SET DateFinished = " + "'" + dateOffset1 + "'" + " WHERE OrderNumber = " + "'" + guid + "'";
+                var order = connection.Execute(sql);
+            }
         }
 
         public Order[] GetUnfinishedOrders()
