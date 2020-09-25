@@ -42,6 +42,12 @@ namespace KitchenVideoSystem.Controllers
                 _orderRepository.FinishOrder(guid);
         }
 
+        [HttpGet, Route("completeOrder/{guid}")]
+        public void CompleteOrder([FromRoute] Guid guid)
+        {
+            _orderRepository.CompleteOrder(guid);
+        }
+
         [HttpGet, Route("getunfinishedorders")]
         public IEnumerable<Order> GetUnfinishedOrders()
         {

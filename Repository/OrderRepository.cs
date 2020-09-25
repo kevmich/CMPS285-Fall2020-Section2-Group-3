@@ -21,6 +21,8 @@ namespace Repository
 
         void FinishOrder(Guid guid);
 
+        void CompleteOrder(Guid guid);
+
         Order[] GetUnfinishedOrders();
 
         void DeleteOrder(int id);
@@ -78,6 +80,17 @@ namespace Repository
                 // Need to fix quotes
                 var sql = "UPDATE Orders SET DateFinished = " + "'" + dateOffset1 + "'" + " WHERE OrderNumber = " + "'" + guid + "'";
                 var order = connection.Execute(sql);
+            }
+        }
+
+        public void CompleteOrder(Guid guid)
+        {
+            var connectionString = @"Server=.\SQLEXPRESS;Database=KitchenVideoSystemDb;Integrated Security=true;";
+            using (var connection = new SqlConnection(connectionString))
+            {
+                //var sql = $"UPDATE Orders SET IsComplete = True WHERE OrderNumber = {guid}";
+                var sql = "UPDATE Orders SET IsComplete = 1 WHERE OrderNumber = " + "'" + guid + "'";
+                connection.Execute(sql);
             }
         }
 
