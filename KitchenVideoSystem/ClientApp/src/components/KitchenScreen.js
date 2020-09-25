@@ -6,15 +6,15 @@ import axios from 'axios';
 export default class KitchenScreen extends Component {
 
     state = {
-        Number: []
+        Orders: []
     };
     
 
     componentDidMount(){
-        axios.get('/api/orders/GetAllOrders')
+        axios.get('/api/orders/getunfinishedorders')
             .then((response) => {
                 console.log(response.data);
-                this.setState({ Number: response.data})
+                this.setState({ Orders: response.data})
               
 
         });
@@ -28,23 +28,7 @@ export default class KitchenScreen extends Component {
         return (
             <div>
                
-                <div>
-                    <div class ="OrderDiv" id="Completed">
-                        <ul>
-                            <li>1 Cheeseburger</li>
-                            <li>2 Hamburger</li>
-                            <li>300 Hot Dog</li>
-                        </ul>
-                    </div>
-                    <div class="OrderDiv">
-                        <ul>
-                            <li>1 Cheeseburger</li>
-
-                        </ul>
-                    </div>
-                   
-                </div>
-                {this.state.Number.map((Number) => (
+                {this.state.Orders.map((Number) => (
                     <p> Number: {Number.orderItemId} </p>
                 ))}
                     
