@@ -36,14 +36,14 @@ namespace KitchenVideoSystem.Controllers
             return exampleOrder;
         }
 
-        [HttpGet, Route("finishOrder/{guid}")]
-        public void FinishOrder([FromRoute] Guid guid)
+        [HttpPost, Route("finishOrder")]
+        public void FinishOrder([FromBody] Guid guid)
         {
                 _orderRepository.FinishOrder(guid);
         }
 
-        [HttpGet, Route("completeOrder/{guid}")]
-        public void CompleteOrder([FromRoute] Guid guid)
+        [HttpPost, Route("completeOrder")]
+        public void CompleteOrder([FromBody] Guid guid)
         {
             _orderRepository.CompleteOrder(guid);
         }
