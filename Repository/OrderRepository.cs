@@ -17,7 +17,7 @@ namespace Repository
 
         Order[] GetAllOrders();
 
-        Order GetOrder(int id);
+        Order[] GetOrder(Guid guid);
 
         void FinishOrder(Guid guid);
 
@@ -56,14 +56,14 @@ namespace Repository
             }
 
         }
-        public Order GetOrder(int id)
+        public Order[] GetOrder(Guid guid)
         {
             var connectionString = @"Server=.\SQLEXPRESS;Database=KitchenVideoSystemDb;Integrated Security=true;";
 
             using (var connection = new SqlConnection(connectionString))
             {
-                var sql = $"SELECT * FROM Orders WHERE Id = {id}";
-                var order = connection.QuerySingle<Order>(sql);
+                var sql = $"SELECT * FROM Orders WHERE OrderNumber = '{guid}'";
+                var order = connection.Query<Order>(sql).ToArray();
                 return order;
             }
 
