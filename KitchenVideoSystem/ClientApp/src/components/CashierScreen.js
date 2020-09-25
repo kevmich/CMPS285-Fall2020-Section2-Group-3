@@ -20,10 +20,19 @@ export default class CashierScreen extends Component {
         this.CompleteOrder = this.CompleteOrder.bind(this);
         this.state = {
             OrderNumber: uuidv4(),
-            currentDateTime: date.toISOString()
+            currentDateTime: date.toISOString(),
+            Orders: []
         };
     }
 
+    componentDidMount() {
+        axios.get('/api/orders/getunfinishedorders')
+            .then((response) => {
+                console.log(response.data);
+                this.setState({ Orders: response.data })
+
+            });
+    }
 
     onClick(id, size) {
         axios({
@@ -117,7 +126,11 @@ export default class CashierScreen extends Component {
                 </div>
                 <div class="CurrentOrder MenuItems">
                     <p>CURRENT ORDER</p>
-
+                    <ul>
+                        {this.state.Orders.map((Order) => (
+                            <li>{Order.orderItemId}</li>
+                        ))}
+                    </ul>
                     <button onClick={this.CompleteOrder} class = "FButton" > Complete Order </button>   
                 </div>
             </div>
