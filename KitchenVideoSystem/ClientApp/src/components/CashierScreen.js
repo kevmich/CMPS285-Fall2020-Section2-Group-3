@@ -9,18 +9,22 @@ import cheeseburgerIcon from '../content/cheeseburger-solid.svg';
 const hamburgerIcon = <FontAwesomeIcon icon={faHamburger} />
 const hotdogIcon = <FontAwesomeIcon icon={faHotdog} />
 
+var date = new Date();
+
+
 export default class CashierScreen extends Component {
 
     constructor(props) {
         super(props);
-        this.onClick = this.onClick.bind(this);
+        //this.onClick = this.onClick.bind(this);
         this.state = {
-            OrderNumber: uuidv4()
+            OrderNumber: uuidv4(),
+            currentDateTime: date.toISOString()
         };
     }
-    componentDidMount() {
-        console.log(uuidv4());
-    }
+    //componentDidMount() {
+    //    console.log(uuidv4());
+    //}
 
 
 
@@ -31,11 +35,12 @@ export default class CashierScreen extends Component {
             data: {
                 "OrderNumber": this.state.OrderNumber,
                 "OrderItemId": id,
-                "DateStarted": "1999-01-06T17:16:40",
+                "DateStarted": this.state.currentDateTime,
                 "Size": size,
                 "IsComplete": false
             }
         });
+        console.log("AHHH")
 
     }
     
@@ -43,6 +48,11 @@ export default class CashierScreen extends Component {
     render() {
         return (
             <div>
+                <p>
+
+                    {this.state.currentDateTime}
+
+                </p>
                 <div class="FoodItems">
                     <b class="food"> Food </b>
                     <button onClick={this.onClick(1, 0)} class="Button">{hamburgerIcon}&nbsp;Hamburger</button>
