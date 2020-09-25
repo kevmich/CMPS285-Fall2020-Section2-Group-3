@@ -42,10 +42,10 @@ export default class CashierScreen extends Component {
 
     CompleteOrder() {
         axios({
-            headers: { 'Content-Type': 'application/json' },
             method: 'post',
+            headers: { 'Content-Type': 'application/json' },
             url: '/api/orders/CompleteOrder',
-            data: this.state.OrderNumber
+            data: "\"" + this.state.OrderNumber + "\""
         });
         console.log("f!!!");
     }
