@@ -62,7 +62,7 @@ namespace Repository
 
             using (var connection = new SqlConnection(connectionString))
             {
-                var sql = $"SELECT * FROM Orders WHERE OrderNumber = '{guid}'";
+                var sql = $"SELECT * FROM Orders WHERE OrderNumber = '{guid}' ORDER BY DateStarted";
                 var order = connection.Query<Order>(sql).ToArray();
                 return order;
             }

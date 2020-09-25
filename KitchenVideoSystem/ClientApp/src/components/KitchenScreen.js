@@ -15,7 +15,6 @@ export default class KitchenScreen extends Component {
             .then((response) => {
                 console.log(response.data);
                 this.setState({ Orders: response.data})
-              
 
         });
     }
@@ -28,9 +27,10 @@ export default class KitchenScreen extends Component {
         return (
             <div>
                
-                {this.state.Orders.map((Number) => (
-                    <p> Number: {Number.orderItemId} </p>
+                {this.state.Orders.map((Order) => (
+                    <p> Number: {Order.orderItemId} Date: {Order.dateStarted}</p>
                 ))}
+
                     
             </div>
             
