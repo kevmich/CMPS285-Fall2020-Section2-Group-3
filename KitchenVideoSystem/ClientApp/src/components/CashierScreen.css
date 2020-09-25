@@ -38,6 +38,13 @@ body {
     border-radius:5px;
 }
 
+.FButton {
+    text-align: center;
+    width: 560px;
+    margin-top: 715px;
+    border-radius: 10px;
+}
+
 #DrinkTable {
         vertical-align: middle;
 

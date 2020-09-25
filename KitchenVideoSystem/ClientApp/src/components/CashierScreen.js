@@ -17,15 +17,12 @@ export default class CashierScreen extends Component {
     constructor(props) {
         super(props);
         //this.onClick = this.onClick.bind(this);
+        this.CompleteOrder = this.CompleteOrder.bind(this);
         this.state = {
             OrderNumber: uuidv4(),
             currentDateTime: date.toISOString()
         };
     }
-    //componentDidMount() {
-    //    console.log(uuidv4());
-    //}
-
 
 
     onClick(id, size) {
@@ -40,19 +37,23 @@ export default class CashierScreen extends Component {
                 "IsComplete": false
             }
         });
-        console.log("AHHH")
+        console.log("TESTING!!!");
+    }
 
+    CompleteOrder() {
+        axios({
+            headers: { 'Content-Type': 'application/json' },
+            method: 'post',
+            url: '/api/orders/CompleteOrder',
+            data: this.state.OrderNumber
+        });
+        console.log("f!!!");
     }
     
 
     render() {
         return (
             <div>
-                <p>
-
-                    {this.state.currentDateTime}
-
-                </p>
                 <div class="FoodItems">
                     <b class="food"> Food </b>
                     <button onClick={() => this.onClick(1, 0)} class="Button">{hamburgerIcon}&nbsp;Hamburger</button>
@@ -116,6 +117,8 @@ export default class CashierScreen extends Component {
                 </div>
                 <div class="CurrentOrder MenuItems">
                     <p>CURRENT ORDER</p>
+
+                    <button onClick={this.CompleteOrder} class = "FButton" > Complete Order </button>   
                 </div>
             </div>
         );
