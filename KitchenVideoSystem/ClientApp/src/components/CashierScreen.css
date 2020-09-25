@@ -39,9 +39,10 @@ body {
 }
 
 .FButton {
+    position: absolute;
     text-align: center;
     width: 560px;
-    margin-top: 715px;
+    bottom: 50px;
     border-radius: 10px;
 }
 
