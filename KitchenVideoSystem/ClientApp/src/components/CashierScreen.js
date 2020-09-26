@@ -84,7 +84,7 @@ export default class CashierScreen extends Component {
                     <button onClick={() => this.onClick(6, 0)} class="Button"><img src={pretzelIcon} height="47px"/>&nbsp;Pretzel </button>
                 </div>
 
-
+                <div id="container">
                 <div class="MenuItems">
                     <table id="DrinkTable">
                         <tr>
@@ -135,13 +135,17 @@ export default class CashierScreen extends Component {
 
                     </table>
                 </div>
-                <div class="CurrentOrder">
+                    <div id="CurrentOrder">
+                        <div id="CurrentOrderList">
                     <p>CURRENT ORDER</p>
                         {this.state.Orders.map((Order) => (
                             <p>{Order.orderItemId}</p>
                         ))}
+                        </div>
+
                     <button onClick={this.CompleteOrder} class= "CompleteButton" > Complete Order </button>   
-                </div>
+                        </div>
+                    </div>
             </div>
         );
     }

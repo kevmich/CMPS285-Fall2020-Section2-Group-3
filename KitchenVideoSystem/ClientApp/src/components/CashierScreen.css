@@ -41,7 +41,7 @@ body {
 .CompleteButton {
     position: absolute;
     text-align: center;
-    width: 560px;
+    width: inherit;
     bottom: 5%;
     border-radius: 10px;
 }
@@ -51,14 +51,15 @@ body {
 
 }
 
-.CurrentOrder {
+#CurrentOrder {
     border-radius: 15px;
     padding: 10px;
     border: 10px solid black;
-    width: 600px;
     height: 96vh;
-    display: inline-block;
+    display: flex;
     margin: 10px;
+      overflow: auto;
+
 }
 
 .DrinkSizeLabel {
@@ -71,4 +72,12 @@ body {
 
 .FoodItems button * {
     margin-top: 10px;
+}
+
+#container {
+    white-space: nowrap
+}
+
+#CurrentOrderList {
+    
 }
