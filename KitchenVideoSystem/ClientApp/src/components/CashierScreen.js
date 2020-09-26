@@ -46,9 +46,8 @@ export default class CashierScreen extends Component {
                 "Size": size,
                 "IsComplete": false,
             }
-        });
-        setTimeout(() => { this.updateCurrent(); }, 200);
-        console.log("TESTING!!!");
+        }).then(response => this.updateCurrent());
+        console.log("OrderItem Click!!!");
     }
 
     CompleteOrder() {
@@ -57,13 +56,12 @@ export default class CashierScreen extends Component {
             headers: { 'Content-Type': 'application/json' },
             url: '/api/orders/CompleteOrder',
             data: "\"" + this.state.OrderNumber + "\""
-        });
+        }).then(response => this.updateCurrent());
         this.setState({
             OrderNumber: uuidv4()
         });
         console.log(uuidv4());
-        setTimeout(() => { this.updateCurrent(); }, 200);
-        console.log("f!!!");
+        console.log("Complete Order Click!!!");
     }
     
 
