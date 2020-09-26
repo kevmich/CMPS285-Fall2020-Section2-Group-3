@@ -70,3 +70,7 @@ body {
 .DrinkSizeLabel {
     text-align: center;
 }
+
+#largeDrinkId {
+    padding-left: -10px;
+}

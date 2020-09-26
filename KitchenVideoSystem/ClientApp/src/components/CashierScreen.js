@@ -89,9 +89,9 @@ export default class CashierScreen extends Component {
                     <table id="DrinkTable">
                         <tr>
                             <th> Drinks </th>
-                            <th class="DrinkSizeLabel"><img src={smalldrinkIcon} height="68px"/>&nbsp; </th>
-                            <th class="DrinkSizeLabel"><img src={mediumdrinkIcon} height="68px" />&nbsp; </th>
-                            <th class="DrinkSizeLabel"><img src={largedrinkIcon} height="68px" />&nbsp; </th>
+                            <th class="DrinkSizeLabel"><img src={mediumdrinkIcon} width="20px" />&nbsp; </th>
+                            <th class="DrinkSizeLabel"><img src={mediumdrinkIcon} width="30px" />&nbsp; </th>
+                            <th class="DrinkSizeLabel" id="largeDrinkId"><img src={mediumdrinkIcon} width="40px" />&nbsp; </th>
                         </tr>
                         <tr>
                             <td class="Drinks"> Sprite </td>
