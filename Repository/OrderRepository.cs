@@ -89,7 +89,7 @@ namespace Repository
             {
                 DateTimeOffset dateOffset1 = new DateTimeOffset();
                 dateOffset1 = DateTimeOffset.UtcNow;
-                var sql = $"UPDATE Orders SET DateFinished = '{dateOffset1}'";
+                var sql = $"UPDATE Orders SET DateFinished = '{dateOffset1}' WHERE IsComplete = 1";
                 var order = connection.Execute(sql);
             }
         }
