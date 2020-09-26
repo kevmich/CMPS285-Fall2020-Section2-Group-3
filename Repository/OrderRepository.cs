@@ -21,6 +21,8 @@ namespace Repository
 
         void FinishOrder(Guid guid);
 
+        void FinishAllOrders();
+
         void CompleteOrder(Guid guid);
 
         Order[] GetUnfinishedOrders();
@@ -77,6 +79,17 @@ namespace Repository
                 DateTimeOffset dateOffset1 = new DateTimeOffset();
                 dateOffset1 = DateTimeOffset.UtcNow;
                 var sql = $"UPDATE Orders SET DateFinished = '{dateOffset1}' WHERE OrderNumber = '{guid}'";
+                var order = connection.Execute(sql);
+            }
+        }
+        public void FinishAllOrders()
+        {
+            var connectionString = @"Server=.\SQLEXPRESS;Database=KitchenVideoSystemDb;Integrated Security=true;";
+            using (var connection = new SqlConnection(connectionString))
+            {
+                DateTimeOffset dateOffset1 = new DateTimeOffset();
+                dateOffset1 = DateTimeOffset.UtcNow;
+                var sql = $"UPDATE Orders SET DateFinished = '{dateOffset1}'";
                 var order = connection.Execute(sql);
             }
         }
