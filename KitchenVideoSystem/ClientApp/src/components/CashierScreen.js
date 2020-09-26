@@ -9,26 +9,23 @@ import cheeseburgerIcon from '../content/cheeseburger-solid.svg';
 import nuggies from '../content/nuggets.svg';
 import corndogIcon from '../content/corn-dog.svg';
 import pretzelIcon from '../content/pretzel.svg';
-import smalldrinkIcon from '../content/drink-small.svg';
 import mediumdrinkIcon from '../content/drink-medium.svg';
-import largedrinkIcon from '../content/drink-large.svg';
 const hamburgerIcon = <FontAwesomeIcon icon={faHamburger} />
 const hotdogIcon = <FontAwesomeIcon icon={faHotdog} />
 
-var date = new Date();
 
 
 export default class CashierScreen extends Component {
 
     constructor(props) {
         super(props);
-        //this.onClick = this.onClick.bind(this);
         this.CompleteOrder = this.CompleteOrder.bind(this);
         this.updateCurrent = this.updateCurrent.bind(this);
         this.state = {
             OrderNumber: uuidv4(),
-            currentDateTime: date.toISOString(),
-            Orders: []
+            Orders: [],
+            time: new Date()
+
         };
     }
 
@@ -41,14 +38,17 @@ export default class CashierScreen extends Component {
             });
     }
 
+
+
     onClick(id, size) {
+        this.setState({ time: new Date() });
         axios({
             method: 'post',
             url: '/api/orders/sendorder',
             data: {
                 "OrderNumber": this.state.OrderNumber,
                 "OrderItemId": id,
-                "DateStarted": this.state.currentDateTime,
+                "DateStarted": this.state.time,
                 "Size": size,
                 "IsComplete": false,
             }
@@ -137,7 +137,7 @@ export default class CashierScreen extends Component {
                 </div>
                     <div id="CurrentOrder">
                         <div id="CurrentOrderList">
-                    <p>CURRENT ORDER</p>
+                            <p> CURRENT ORDER</p>
                         {this.state.Orders.map((Order) => (
                             <p>{Order.orderItemId}</p>
                         ))}
