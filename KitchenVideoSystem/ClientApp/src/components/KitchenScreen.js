@@ -40,7 +40,7 @@ export default class KitchenScreen extends Component {
             <div>
                
                 {this.state.Orders.map((Order) => (
-                    <p id="testingOrders"> ID: {Order.orderItemId}  | GUID: {Order.orderNumber} | COMPLETE: {String(Order.isComplete)} </p>
+                    <p id="testingOrders"> ID: {Order.orderItemId}  | GUID: {Order.orderNumber} | DATE: {Order.dateStarted} | COMPLETE: {String(Order.isComplete)} </p>
                 ))}
 
                 <button id="FinishOrders" onClick={this.finishAllOrders}> Finish All Orders </button>   
