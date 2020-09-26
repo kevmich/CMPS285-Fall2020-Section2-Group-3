@@ -76,9 +76,7 @@ namespace Repository
             {
                 DateTimeOffset dateOffset1 = new DateTimeOffset();
                 dateOffset1 = DateTimeOffset.UtcNow;
-                //var sql = $"UPDATE Orders SET DateFinished = {dateOffset1} WHERE OrderNumber = {guid}";
-                // Need to fix quotes
-                var sql = "UPDATE Orders SET DateFinished = " + "'" + dateOffset1 + "'" + " WHERE OrderNumber = " + "'" + guid + "'";
+                var sql = $"UPDATE Orders SET DateFinished = '{dateOffset1}' WHERE OrderNumber = '{guid}'";
                 var order = connection.Execute(sql);
             }
         }
@@ -88,8 +86,7 @@ namespace Repository
             var connectionString = @"Server=.\SQLEXPRESS;Database=KitchenVideoSystemDb;Integrated Security=true;";
             using (var connection = new SqlConnection(connectionString))
             {
-                //var sql = $"UPDATE Orders SET IsComplete = True WHERE OrderNumber = {guid}";
-                var sql = "UPDATE Orders SET IsComplete = 1 WHERE OrderNumber = " + "'" + guid + "'";
+                var sql = $"UPDATE Orders SET IsComplete = 1 WHERE OrderNumber = '{guid}'";
                 connection.Execute(sql);
             }
         }
