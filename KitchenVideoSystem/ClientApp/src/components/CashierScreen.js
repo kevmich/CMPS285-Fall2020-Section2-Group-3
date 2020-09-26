@@ -27,7 +27,7 @@ export default class CashierScreen extends Component {
     }
 
     updateCurrent() {
-        axios.get('/api/orders/getunfinishedorders')
+        axios.get('/api/orders/GetOrder/' + this.state.OrderNumber)
             .then((response) => {
                 console.log(response.data);
                 this.setState({ Orders: response.data })
