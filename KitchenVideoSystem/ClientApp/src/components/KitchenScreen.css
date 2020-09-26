@@ -32,3 +32,15 @@ li {
     border-width: 10px;
     border-style: solid;
 }
+
+#FinishOrders {
+    height: 80px;
+    position: fixed;
+    bottom: 0%;
+    width: 100%;
+    background-color: lawngreen;
+}
+
+#testingOrders {
+    font-size: 20px;
+}

@@ -42,6 +42,12 @@ namespace KitchenVideoSystem.Controllers
                 _orderRepository.FinishOrder(guid);
         }
 
+        [HttpGet, Route("finishallorders")]
+        public void FinishAllOrders()
+        {
+            _orderRepository.FinishAllOrders();
+        }
+
         [HttpPost, Route("completeOrder")]
         public void CompleteOrder([FromBody] Guid guid)
         {

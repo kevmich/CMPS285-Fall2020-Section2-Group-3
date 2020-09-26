@@ -4,22 +4,34 @@ import axios from 'axios';
 
 
 export default class KitchenScreen extends Component {
-
-    state = {
-        Orders: []
-    };
+    constructor(props) {
+        super(props);
+        this.updateScreen = this.updateScreen.bind(this);
+        this.state = {
+            Orders: []
+        };
+    }
     
-
-    componentDidMount(){
+    componentDidMount() {
+        this.updateScreen();
+        this.interval = setInterval(() => this.updateScreen(), 1000);
+    }
+    updateScreen(){
         axios.get('/api/orders/getunfinishedorders')
             .then((response) => {
                 console.log(response.data);
                 this.setState({ Orders: response.data})
 
-        });
+            });
+    }
+    finishAllOrders() {
+        axios.get('/api/orders/finishallorders')
+
     }
 
-
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
 
 
     render() {
@@ -28,10 +40,11 @@ export default class KitchenScreen extends Component {
             <div>
                
                 {this.state.Orders.map((Order) => (
-                    <p> Number: {Order.orderItemId} Date: {Order.dateStarted}</p>
+                    <p id="testingOrders"> ID: {Order.orderItemId}  | GUID: {Order.orderNumber} | COMPLETE: {String(Order.isComplete)} </p>
                 ))}
 
-                    
+                <button id="FinishOrders" onClick={this.finishAllOrders}> Finish All Orders </button>   
+
             </div>
             
             
