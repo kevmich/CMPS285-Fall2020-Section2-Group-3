@@ -38,11 +38,11 @@ body {
     border-radius:5px;
 }
 
-.FButton {
+.CompleteButton {
     position: absolute;
     text-align: center;
     width: 560px;
-    bottom: 50px;
+    bottom: 5%;
     border-radius: 10px;
 }
 
@@ -51,20 +51,14 @@ body {
 
 }
 
-.Box {
-    box-sizing: border-box;
-    width: 300px;
-    height: 500px;
-    padding: 30px;
-    border: 10px solid black;
-}
 .CurrentOrder {
+    border-radius: 15px;
+    padding: 10px;
     border: 10px solid black;
     width: 600px;
     height: 96vh;
-    float: right;
+    display: inline-block;
     margin: 10px;
-
 }
 
 .DrinkSizeLabel {
@@ -73,4 +67,8 @@ body {
 
 #largeDrinkId {
     padding-left: -10px;
+}
+
+.FoodItems button * {
+    margin-top: 10px;
 }

@@ -135,12 +135,12 @@ export default class CashierScreen extends Component {
 
                     </table>
                 </div>
-                <div class="CurrentOrder MenuItems">
+                <div class="CurrentOrder">
                     <p>CURRENT ORDER</p>
                         {this.state.Orders.map((Order) => (
                             <p>{Order.orderItemId}</p>
                         ))}
-                    <button onClick={this.CompleteOrder} class = "FButton" > Complete Order </button>   
+                    <button onClick={this.CompleteOrder} class= "CompleteButton" > Complete Order </button>   
                 </div>
             </div>
         );
