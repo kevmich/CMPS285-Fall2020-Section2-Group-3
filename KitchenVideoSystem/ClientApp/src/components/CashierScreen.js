@@ -6,6 +6,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHamburger } from '@fortawesome/free-solid-svg-icons'
 import { faHotdog } from '@fortawesome/free-solid-svg-icons'
 import cheeseburgerIcon from '../content/cheeseburger-solid.svg';
+import nuggies from '../content/nuggets.svg';
+import corndogIcon from '../content/corn-dog.svg';
+import pretzelIcon from '../content/pretzel.svg';
+import smalldrinkIcon from '../content/drink-small.svg';
+import mediumdrinkIcon from '../content/drink-medium.svg';
+import largedrinkIcon from '../content/drink-large.svg';
 const hamburgerIcon = <FontAwesomeIcon icon={faHamburger} />
 const hotdogIcon = <FontAwesomeIcon icon={faHotdog} />
 
@@ -72,10 +78,10 @@ export default class CashierScreen extends Component {
                     <b class="food"> Food </b>
                     <button onClick={() => this.onClick(1, 0)} class="Button">{hamburgerIcon}&nbsp;Hamburger</button>
                     <button onClick={() => this.onClick(2, 0)} class="Button"><img src={cheeseburgerIcon} height="47px"/>&nbsp;Cheeseburger </button>
-                    <button onClick={() => this.onClick(3, 0)} class="Button"> Chicken Nuggets </button>
-                    <button onClick={() => this.onClick(4, 0)} class="Button"> Corn Dog </button>
+                    <button onClick={() => this.onClick(3, 0)} class="Button"><img src={nuggies} height="47px"/>&nbsp;Chicken Nuggets </button>
+                    <button onClick={() => this.onClick(4, 0)} class="Button"><img src={corndogIcon} height="47px"/>&nbsp;Corn Dog </button>
                     <button onClick={() => this.onClick(5, 0)} class="Button"> {hotdogIcon}&nbsp;Hot Dog </button>
-                    <button onClick={() => this.onClick(6, 0)} class="Button"> Pretzel </button>
+                    <button onClick={() => this.onClick(6, 0)} class="Button"><img src={pretzelIcon} height="47px"/>&nbsp;Pretzel </button>
                 </div>
 
 
@@ -83,9 +89,9 @@ export default class CashierScreen extends Component {
                     <table id="DrinkTable">
                         <tr>
                             <th> Drinks </th>
-                            <th class="DrinkSizeLabel"> S </th>
-                            <th class="DrinkSizeLabel"> M </th>
-                            <th class="DrinkSizeLabel"> L </th>
+                            <th class="DrinkSizeLabel"><img src={smalldrinkIcon} height="68px"/>&nbsp; </th>
+                            <th class="DrinkSizeLabel"><img src={mediumdrinkIcon} height="68px" />&nbsp; </th>
+                            <th class="DrinkSizeLabel"><img src={largedrinkIcon} height="68px" />&nbsp; </th>
                         </tr>
                         <tr>
                             <td class="Drinks"> Sprite </td>
