@@ -29,8 +29,8 @@ namespace KitchenVideoSystem.Controllers
             return exampleOrder;
         }
 
-        [HttpPost, Route("getorder")]
-        public Order[] GetOrder([FromBody] Guid guid)
+        [HttpGet, Route("getorder/{guid}")]
+        public Order[] GetOrder([FromRoute] Guid guid)
         {
             var exampleOrder = _orderRepository.GetOrder(guid);
             return exampleOrder;
