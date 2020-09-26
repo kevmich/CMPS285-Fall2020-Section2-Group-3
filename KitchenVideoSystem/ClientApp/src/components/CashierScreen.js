@@ -58,6 +58,10 @@ export default class CashierScreen extends Component {
             url: '/api/orders/CompleteOrder',
             data: "\"" + this.state.OrderNumber + "\""
         });
+        this.setState({
+            OrderNumber: uuidv4()
+        });
+        console.log(uuidv4());
         setTimeout(() => { this.updateCurrent(); }, 200);
         console.log("f!!!");
     }
