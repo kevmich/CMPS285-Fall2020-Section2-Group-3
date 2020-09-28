@@ -39,7 +39,7 @@ export default class KitchenScreen extends Component {
             <div>
                
                 {this.state.Orders.map((Order) => (
-                    <p id={Order.isComplete ? "completeOrders" : "incompleteOrders"}> ID: {Order.orderItemId} <br></br> GUID: {Order.orderNumber} <br></br> DATE: {Order.dateStarted} <br></br> COMPLETE: {String(Order.isComplete)} </p>
+                    <p id={Order.isComplete ? "completeOrders" : "incompleteOrders"}> {Order.name} <br/> </p>
                 ))}
 
                 <br/>
