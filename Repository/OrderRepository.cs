@@ -17,7 +17,7 @@ namespace Repository
 
         Order[] GetAllOrders();
 
-        Order[] GetOrder(Guid guid);
+        OrderView[] GetOrder(Guid guid);
 
         void FinishOrder(Guid guid);
 
@@ -58,14 +58,14 @@ namespace Repository
             }
 
         }
-        public Order[] GetOrder(Guid guid)
+        public OrderView[] GetOrder(Guid guid)
         {
             var connectionString = @"Server=.\SQLEXPRESS;Database=KitchenVideoSystemDb;Integrated Security=true;";
 
             using (var connection = new SqlConnection(connectionString))
             {
-                var sql = $"SELECT * FROM Orders WHERE OrderNumber = '{guid}' ORDER BY DateStarted";
-                var order = connection.Query<Order>(sql).ToArray();
+                var sql = $"SELECT OrderItems.Name, Orders.OrderNumber, Orders.Size FROM Orders INNER JOIN OrderItems ON Orders.OrderItemId = OrderItems.Id WHERE OrderNumber = '{guid}' ORDER BY DateStarted";
+                var order = connection.Query<OrderView>(sql).ToArray();
                 return order;
             }
 
