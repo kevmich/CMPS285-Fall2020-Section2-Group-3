@@ -33,25 +33,16 @@ export default class KitchenScreen extends Component {
         clearInterval(this.interval);
     }
 
-    /*pId(index) {
-        var [] p = this.state.Orders;
-        if (this.state.Orders.get(index).isComplete) {
-            p = "completeOrders";
-        }
-        else {
-            p = "incompleteOrders";
-        }
-        return p;
-    }*/
-
     render() {
     
         return (
             <div>
                
                 {this.state.Orders.map((Order) => (
-                    <p id="completeOrders"> ID: {Order.orderItemId}  | GUID: {Order.orderNumber} | DATE: {Order.dateStarted} | COMPLETE: {String(Order.isComplete)} </p>
+                    <p id={Order.isComplete ? "completeOrders" : "incompleteOrders"}> ID: {Order.orderItemId} <br></br> GUID: {Order.orderNumber} <br></br> DATE: {Order.dateStarted} <br></br> COMPLETE: {String(Order.isComplete)} </p>
                 ))}
+
+                <br/>
 
                 <button id="FinishOrders" onClick={this.finishAllOrders}> Finish All Orders </button>   
 
