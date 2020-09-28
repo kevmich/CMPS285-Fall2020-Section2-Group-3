@@ -46,7 +46,7 @@ export default class CashierScreen extends Component {
             case 3:
                 return 'L. ';
             default:
-                return null;
+                return;
         }
     }
 
@@ -85,7 +85,7 @@ export default class CashierScreen extends Component {
         return (
             <div>
                 <div class="FoodItems">
-                    <b class="food"> Food </b>
+                    <b> Food </b>
                     <button onClick={() => this.onClick(1, 0)} class="Button">{hamburgerIcon}&nbsp;Hamburger</button>
                     <button onClick={() => this.onClick(2, 0)} class="Button"><img src={cheeseburgerIcon} height="47px"/>&nbsp;Cheeseburger </button>
                     <button onClick={() => this.onClick(3, 0)} class="Button"><img src={nuggiesIcon} height="47px"/>&nbsp;Chicken Nuggets </button>
@@ -147,7 +147,7 @@ export default class CashierScreen extends Component {
                 </div>
                     <div id="CurrentOrder">
                         <div id="CurrentOrderList">
-                            <p> CURRENT ORDER</p>
+                            <b>CURRENT ORDER</b>
                             {this.state.Orders.map((Order) => (
                                 <p>{this.sizeSwitch(Order.size)} {Order.name}</p>
                         ))}

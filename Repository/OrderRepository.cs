@@ -25,7 +25,7 @@ namespace Repository
 
         void CompleteOrder(Guid guid);
 
-        Order[] GetUnfinishedOrders();
+        OrderViewKitchen[] GetUnfinishedOrders();
 
         void DeleteOrder(int id);
 
@@ -104,14 +104,14 @@ namespace Repository
             }
         }
 
-        public Order[] GetUnfinishedOrders()
+        public OrderViewKitchen[] GetUnfinishedOrders()
         {
             var connectionString = @"Server=.\SQLEXPRESS;Database=KitchenVideoSystemDb;Integrated Security=true;";
 
             using (var connection = new SqlConnection(connectionString))
             {
-                var sql = "SELECT * FROM Orders WHERE DateFinished IS NULL";
-                var orders = connection.Query<Order>(sql).ToArray();
+                var sql = $"SELECT OrderItems.Name, Orders.Size, Orders.OrderNumber, Orders.IsComplete FROM Orders INNER JOIN OrderItems ON Orders.OrderItemId = OrderItems.Id WHERE DateFinished IS NULL ORDER BY DateStarted";
+                var orders = connection.Query<OrderViewKitchen>(sql).ToArray();
                 return orders;
             }
         }

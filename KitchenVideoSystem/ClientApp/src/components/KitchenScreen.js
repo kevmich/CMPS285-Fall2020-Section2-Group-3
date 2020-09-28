@@ -33,18 +33,31 @@ export default class KitchenScreen extends Component {
         clearInterval(this.interval);
     }
 
+    sizeSwitch(param) {
+        switch (param) {
+            case 1:
+                return 'S. ';
+            case 2:
+                return 'M. ';
+            case 3:
+                return 'L. ';
+            default:
+                return;
+        }
+    }
+
     render() {
     
         return (
             <div>
                
                 {this.state.Orders.map((Order) => (
-                    <p id={Order.isComplete ? "completeOrders" : "incompleteOrders"}> ID: {Order.orderItemId} <br></br> GUID: {Order.orderNumber} <br></br> DATE: {Order.dateStarted} <br></br> COMPLETE: {String(Order.isComplete)} </p>
+                    <p id={Order.isComplete ? "completeOrders" : "incompleteOrders"}>{this.sizeSwitch(Order.size)}{Order.name} <br/> </p>
                 ))}
 
                 <br/>
 
-                <button id="FinishOrders" onClick={this.finishAllOrders}> Finish All Orders </button>   
+                <button id="FinishOrders" onClick={this.finishAllOrders}> Serve Complete Orders </button>   
 
             </div>
             
