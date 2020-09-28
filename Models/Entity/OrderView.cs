@@ -7,7 +7,6 @@ namespace Models
     public class OrderView
     {
         public String Name { get; set; }
-        public Guid OrderNumber { get; set; }
         public int Size { get; set; }
     }
 }

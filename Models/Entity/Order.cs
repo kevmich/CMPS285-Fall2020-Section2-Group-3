@@ -12,9 +12,6 @@ namespace Models
         public DateTimeOffset DateFinished { get; set; }
         public int Size { get; set; }
         public Boolean IsComplete { get; set; }
-        //public int[] TimeOrdered { get; set; }
-        //public int OrderNumber { get; set; }
-        //public int OrderContents { get; set; }
 
     }
 }
