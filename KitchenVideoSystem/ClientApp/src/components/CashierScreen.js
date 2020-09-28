@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHamburger } from '@fortawesome/free-solid-svg-icons'
 import { faHotdog } from '@fortawesome/free-solid-svg-icons'
 import cheeseburgerIcon from '../content/cheeseburger-solid.svg';
-import nuggies from '../content/nuggets.svg';
+import nuggiesIcon from '../content/nuggets.svg';
 import corndogIcon from '../content/corn-dog.svg';
 import pretzelIcon from '../content/pretzel.svg';
 import mediumdrinkIcon from '../content/drink-medium.svg';
@@ -16,7 +16,6 @@ const hotdogIcon = <FontAwesomeIcon icon={faHotdog} />
 
 
 export default class CashierScreen extends Component {
-
     constructor(props) {
         super(props);
         this.CompleteOrder = this.CompleteOrder.bind(this);
@@ -38,7 +37,18 @@ export default class CashierScreen extends Component {
             });
     }
 
-
+    sizeSwitch(param) {
+        switch (param) {
+            case 1:
+                return 'S. ';
+            case 2:
+                return 'M. ';
+            case 3:
+                return 'L. ';
+            default:
+                return null;
+        }
+    }
 
     onClick(id, size) {
         this.setState({ time: new Date() });
@@ -78,7 +88,7 @@ export default class CashierScreen extends Component {
                     <b class="food"> Food </b>
                     <button onClick={() => this.onClick(1, 0)} class="Button">{hamburgerIcon}&nbsp;Hamburger</button>
                     <button onClick={() => this.onClick(2, 0)} class="Button"><img src={cheeseburgerIcon} height="47px"/>&nbsp;Cheeseburger </button>
-                    <button onClick={() => this.onClick(3, 0)} class="Button"><img src={nuggies} height="47px"/>&nbsp;Chicken Nuggets </button>
+                    <button onClick={() => this.onClick(3, 0)} class="Button"><img src={nuggiesIcon} height="47px"/>&nbsp;Chicken Nuggets </button>
                     <button onClick={() => this.onClick(4, 0)} class="Button"><img src={corndogIcon} height="47px"/>&nbsp;Corn Dog </button>
                     <button onClick={() => this.onClick(5, 0)} class="Button"> {hotdogIcon}&nbsp;Hot Dog </button>
                     <button onClick={() => this.onClick(6, 0)} class="Button"><img src={pretzelIcon} height="47px"/>&nbsp;Pretzel </button>
@@ -89,9 +99,9 @@ export default class CashierScreen extends Component {
                     <table id="DrinkTable">
                         <tr>
                             <th> Drinks </th>
-                            <th class="DrinkSizeLabel"><img src={mediumdrinkIcon} width="20px" />&nbsp; </th>
-                            <th class="DrinkSizeLabel"><img src={mediumdrinkIcon} width="30px" />&nbsp; </th>
-                            <th class="DrinkSizeLabel" id="largeDrinkId"><img src={mediumdrinkIcon} width="40px" />&nbsp; </th>
+                            <th class="DrinkSizeLabel"><img src={mediumdrinkIcon} width="20px" /> </th>
+                            <th class="DrinkSizeLabel"><img src={mediumdrinkIcon} width="30px" /> </th>
+                            <th class="DrinkSizeLabel" id="largeDrinkId"><img src={mediumdrinkIcon} width="40px" /> </th>
                         </tr>
                         <tr>
                             <td class="Drinks"> Sprite </td>
@@ -125,9 +135,9 @@ export default class CashierScreen extends Component {
                         </tr>
                         <tr>
                             <td class="Drinks"> Water </td>
-                            <td>< button onClick={() => this.onClick(11, 1)} class="DButton"> </ button></td>
-                            <td>< button onClick={() => this.onClick(11, 2)} class="DButton"> </ button></td>
-                            <td>< button onClick={() => this.onClick(11, 3)} class="DButton"> </ button></td>
+                            <td>< button onClick={() => this.onClick(12, 1)} class="DButton"> </ button></td>
+                            <td>< button onClick={() => this.onClick(12, 2)} class="DButton"> </ button></td>
+                            <td>< button onClick={() => this.onClick(12, 3)} class="DButton"> </ button></td>
                         </tr>
 
 
@@ -138,8 +148,8 @@ export default class CashierScreen extends Component {
                     <div id="CurrentOrder">
                         <div id="CurrentOrderList">
                             <p> CURRENT ORDER</p>
-                        {this.state.Orders.map((Order) => (
-                            <p>{Order.orderItemId}</p>
+                            {this.state.Orders.map((Order) => (
+                                <p>{this.sizeSwitch(Order.size)} {Order.name}</p>
                         ))}
                         </div>
 
