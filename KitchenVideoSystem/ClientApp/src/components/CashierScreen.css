@@ -9,7 +9,7 @@
 body {
     font-family: 'Roboto', sans-serif;
     font-size: 50px;
-    background-color: #f9f9fa;
+    background-color: #f8f8f8;
 }
 
 .FoodItems, .MenuItems {
@@ -22,20 +22,32 @@ body {
 }
 
 .Button {
+    border: 2px solid #000;
     color: black;
-    background-color: #EFEFEF;
+    background-color: #e2e4f0;
     display: flex;
-    padding-bottom: 0px;
+    margin-bottom: 15px;
     Width: 10em;
     font-size: 48px;
     border-radius: 10px;
     text-align: left;
 }
 
+.Button:active {
+    background-color: black;
+    color: white;
+}
+
 .DButton {
     padding: 20px;
     vertical-align: middle;
-    border-radius:5px;
+    border-radius: 5px;
+    background-color: #e2e4f0
+}
+
+.DButton:active {
+    background-color: black;
+    color: white;
 }
 
 .CompleteButton {
@@ -44,6 +56,13 @@ body {
     width: inherit;
     bottom: 5%;
     border-radius: 10px;
+    background-color: #3f51b6;
+    color: white;
+}
+
+.CompleteButton:active {
+    background-color: white;
+    color: black;
 }
 
 #DrinkTable {
