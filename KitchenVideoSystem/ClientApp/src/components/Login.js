@@ -5,7 +5,15 @@ export default class Login extends Component {
     render() {
         return (
             <div>
-                <h1> Login </h1>
+                <label for><b>Username</b></label>
+                <input type="username" placeholder="Enter Username" />
+                <br/>
+
+                <label><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" />
+                <br/>
+
+                <button onClick="submit()">Submit</button>
             </div>
         );
     }
