@@ -46,7 +46,7 @@ export default class CashierScreen extends Component {
             case 3:
                 return 'L. ';
             default:
-                return null;
+                return;
         }
     }
 
