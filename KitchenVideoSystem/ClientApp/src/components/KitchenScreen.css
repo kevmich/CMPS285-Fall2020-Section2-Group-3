@@ -41,6 +41,16 @@ li {
     background-color: lawngreen;
 }
 
-#testingOrders {
+#completeOrders {
     font-size: 20px;
+    border-color: green;
+    border-width: 30px;
+    background-color: chartreuse;
+}
+
+#incompleteOrders {
+    font-size: 20px;
+    border-color: red;
+    border-width: 30px;
+    background-color: tomato;
 }
