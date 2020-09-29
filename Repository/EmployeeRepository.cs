@@ -27,8 +27,8 @@ namespace Repository
 
             using (var connection = new SqlConnection(connectionString))
             {
-                var sql = "INSERT INTO Employees(EmployeeId, FirstName, LastName, Password, Role)"
-                    + "VALUES (@EmployeeId, @FirstName, @LastName, @Password, @Role)";
+                var sql = "INSERT INTO Employees(EmployeeId, FirstName, LastName, Role)"
+                    + "VALUES (@EmployeeId, @FirstName, @LastName, @Role)";
                 connection.Execute(sql, employee);
             }
         }
