@@ -27,6 +27,13 @@ li {
     margin-left: -1em;
 }
 
+#kitchenClock {
+    background-color: #3f51b6;
+    position: fixed;
+    right: 0px;
+    color: white;
+}
+
 #Completed {
     border-color: chartreuse;
     border-width: 10px;

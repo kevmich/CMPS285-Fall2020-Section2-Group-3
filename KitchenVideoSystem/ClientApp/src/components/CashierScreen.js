@@ -10,6 +10,7 @@ import nuggiesIcon from '../content/nuggets.svg';
 import corndogIcon from '../content/corn-dog.svg';
 import pretzelIcon from '../content/pretzel.svg';
 import mediumdrinkIcon from '../content/drink-medium.svg';
+import Clock from 'react-digital-clock'
 const hamburgerIcon = <FontAwesomeIcon icon={faHamburger} />
 const hotdogIcon = <FontAwesomeIcon icon={faHotdog} />
 
@@ -84,6 +85,10 @@ export default class CashierScreen extends Component {
     render() {
         return (
             <div>
+                <div id="cashierClock">
+                    <Clock />
+                </div>
+
                 <div class="FoodItems">
                     <b> Food </b>
                     <button onClick={() => this.onClick(1, 0)} class="Button">{hamburgerIcon}&nbsp;Hamburger</button>

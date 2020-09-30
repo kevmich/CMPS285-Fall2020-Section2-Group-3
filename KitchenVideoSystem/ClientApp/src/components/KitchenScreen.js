@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 import './KitchenScreen.css'
 import axios from 'axios';
+import Clock from 'react-digital-clock'
 
 export default class KitchenScreen extends Component {
     constructor(props) {
@@ -46,18 +47,41 @@ export default class KitchenScreen extends Component {
         }
     }
 
+    currentTime() {
+        var date = new Date();
+        var h = date.setHours();
+        var m = date.setMinutes();
+        var s = date.setSeconds();
+        h = this.updateTime(h);
+        m = this.updateTime(m);
+        s = this.updateTime(s);
+        return h + " : " + m + " : " + s;
+    }
+
+    updateTime(k) {
+        if (k < 10)
+            return "0" + k;
+        else
+            return k;
+    }
+
     render() {
     
         return (
             <div>
-               
-                {this.state.Orders.map((Order) => (
-                    <p id={Order.isComplete ? "completeOrders" : "incompleteOrders"}>{this.sizeSwitch(Order.size)}{Order.name} <br/> </p>
-                ))}
 
-                <br/>
+                <div id="kitchenClock">
+                    <Clock />
+                </div>
 
-                <button id="FinishOrders" onClick={this.finishAllOrders}> Serve Complete Orders </button>   
+                <div>
+                    <br />
+                    {this.state.Orders.map((Order) => (
+                        <p id={Order.isComplete ? "completeOrders" : "incompleteOrders"}>{this.sizeSwitch(Order.size)}{Order.name} <br/> </p>
+                    ))}
+                    <br/>
+                    <button id="FinishOrders" onClick={this.finishAllOrders}> Serve Complete Orders </button>
+                </div>
 
             </div>
             
