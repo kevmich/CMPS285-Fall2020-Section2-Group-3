@@ -47,24 +47,6 @@ export default class KitchenScreen extends Component {
         }
     }
 
-    currentTime() {
-        var date = new Date();
-        var h = date.setHours();
-        var m = date.setMinutes();
-        var s = date.setSeconds();
-        h = this.updateTime(h);
-        m = this.updateTime(m);
-        s = this.updateTime(s);
-        return h + " : " + m + " : " + s;
-    }
-
-    updateTime(k) {
-        if (k < 10)
-            return "0" + k;
-        else
-            return k;
-    }
-
     render() {
     
         return (
