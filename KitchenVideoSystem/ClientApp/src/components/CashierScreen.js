@@ -53,6 +53,41 @@ export default class CashierScreen extends Component {
         }
     }
 
+
+    iconSwitch(param, param2) {
+        switch (param) {
+            case 1:
+                return <img src={hamburgerIcon} class="CurrentIcon" height="47px"/>
+            case 2:
+                return <img src={cheeseburgerIcon} class="CurrentIcon" height="47px" />;
+            case 3:
+                return <img src={nuggiesIcon} class="CurrentIcon" height="47px" />;
+            case 4:
+                return <img src={corndogIcon} class="CurrentIcon" height = "47px" />;
+            case 5:
+                return <img src={hotdogIcon} class="CurrentIcon" height="47px" />;
+            case 6:
+                return <img src={pretzelIcon} class="CurrentIcon" height="47px" />;
+            case 7:
+                this.iconSwitchDrink(param2);
+            default:
+                return;
+        }
+    }
+
+    iconSwitchDrink(param) {
+        switch (param) {
+            case 1:
+                return <img src={smalldrinkIcon} class="CurrentIcon" width="40px"  />;
+            case 2:
+                return <img src={mediumdrinkIcon} class="CurrentIcon" width="40px" />;
+            case 3:
+                return <img src={largedrinkIcon} class="CurrentIcon" width="40px" />;
+            default:
+                return;
+        }
+    }
+
     onClick(id, size) {
         this.setState({ time: new Date() });
         axios({
@@ -112,9 +147,9 @@ export default class CashierScreen extends Component {
                         </tr>
                         <tr>
                             <td class="Drinks"> Sprite </td>
-                                <td>< button onClick={() => this.onClick(7, 1)} class="DButton"><img src={smalldrinkIcon} width="40px" /></ button></td>
-                                <td>< button onClick={() => this.onClick(7, 2)} class="DButton"><img src={mediumdrinkIcon} width="40px" /></ button></td>
-                                <td>< button onClick={() => this.onClick(7, 3)} class="DButton"><img src={largedrinkIcon} width="40px" /></ button></td>
+                            <td>< button onClick={() => this.onClick(7, 1)} class="DButton"><img src={smalldrinkIcon} width="40px" /></ button></td>
+                            <td>< button onClick={() => this.onClick(7, 2)} class="DButton"><img src={mediumdrinkIcon} width="40px" /></ button></td>
+                            <td>< button onClick={() => this.onClick(7, 3)} class="DButton"><img src={largedrinkIcon} width="40px" /></ button></td>
                         </tr>
                         <tr>
                             <td class="Drinks"> Coca-Cola </td>
@@ -156,8 +191,8 @@ export default class CashierScreen extends Component {
                         <div id="CurrentOrderList">
                             <b>CURRENT ORDER</b>
                             {this.state.Orders.map((Order) => (
-                                <p>{this.sizeSwitch(Order.size)} {Order.name}</p>
-                        ))}
+                                <p>{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)} {Order.name}</p>
+                                    ))}
                         </div>
 
                     <button onClick={this.CompleteOrder} class= "CompleteButton" > Complete Order </button>   
