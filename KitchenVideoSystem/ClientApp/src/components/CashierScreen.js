@@ -3,8 +3,7 @@ import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import './CashierScreen.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHamburger } from '@fortawesome/free-solid-svg-icons'
-import { faHotdog } from '@fortawesome/free-solid-svg-icons'
+import hamburgerIcon from '../content/hamburger-solid.svg';
 import cheeseburgerIcon from '../content/cheeseburger-solid.svg';
 import nuggiesIcon from '../content/nuggets.svg';
 import corndogIcon from '../content/corn-dog.svg';
@@ -12,9 +11,8 @@ import pretzelIcon from '../content/pretzel.svg';
 import smalldrinkIcon from '../content/drink-small.svg';
 import mediumdrinkIcon from '../content/drink-medium.svg';
 import largedrinkIcon from '../content/drink-large.svg';
+import hotdogIcon from '../content/hotdog-solid.svg'
 import Clock from 'react-digital-clock'
-const hamburgerIcon = <FontAwesomeIcon icon={faHamburger} />
-const hotdogIcon = <FontAwesomeIcon icon={faHotdog} />
 
 
 
@@ -140,17 +138,20 @@ export default class CashierScreen extends Component {
     render() {
         return (
             <div>
+                <i class="fas fa-hamburger"></i>
+
+
                 <div id="cashierClock">
                     <Clock />
                 </div>
 
                 <div class="FoodItems">
                     <b> Food </b>
-                    <button onClick={() => this.onClick(1, 0)} class="Button">{hamburgerIcon}&nbsp;Hamburger</button>
+                    <button onClick={() => this.onClick(1, 0)} class="Button"><img src={hamburgerIcon} height="47px"/>&nbsp;Hamburger</button>
                     <button onClick={() => this.onClick(2, 0)} class="Button"><img src={cheeseburgerIcon} height="47px"/>&nbsp;Cheeseburger </button>
                     <button onClick={() => this.onClick(3, 0)} class="Button"><img src={nuggiesIcon} height="47px"/>&nbsp;Chicken Nuggets </button>
                     <button onClick={() => this.onClick(4, 0)} class="Button"><img src={corndogIcon} height="47px"/>&nbsp;Corn Dog </button>
-                    <button onClick={() => this.onClick(5, 0)} class="Button"> {hotdogIcon}&nbsp;Hot Dog </button>
+                    <button onClick={() => this.onClick(5, 0)} class="Button"><img src={hotdogIcon} height="47px"/>&nbsp;Hot Dog </button>
                     <button onClick={() => this.onClick(6, 0)} class="Button"><img src={pretzelIcon} height="47px"/>&nbsp;Pretzel </button>
                 </div>
 
