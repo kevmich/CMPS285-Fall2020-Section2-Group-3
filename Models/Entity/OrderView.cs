@@ -8,5 +8,6 @@ namespace Models
     {
         public String Name { get; set; }
         public int Size { get; set; }
+        public int OrderItemId { get; set; }
     }
 }
