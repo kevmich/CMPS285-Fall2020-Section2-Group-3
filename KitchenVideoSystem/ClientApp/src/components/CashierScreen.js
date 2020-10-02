@@ -23,12 +23,18 @@ export default class CashierScreen extends Component {
         super(props);
         this.CompleteOrder = this.CompleteOrder.bind(this);
         this.updateCurrent = this.updateCurrent.bind(this);
+        this.setUnfinishedGuid = this.setUnfinishedGuid.bind(this);
         this.state = {
             OrderNumber: uuidv4(),
             Orders: [],
             time: new Date()
 
         };
+    }
+    componentDidMount() {
+        this.setUnfinishedGuid();
+        setTimeout(() => {this.updateCurrent(); }, 2000);
+        
     }
 
     updateCurrent() {
@@ -37,6 +43,18 @@ export default class CashierScreen extends Component {
                 console.log(response.data);
                 this.setState({ Orders: response.data })
 
+            });
+    }
+
+    setUnfinishedGuid() {
+        axios.get('/api/orders/GetUnfinishedGuid/')
+            .then((response) => {
+                if (response.data == "00000000-0000-0000-0000-000000000000") {
+                    return;
+                } else {
+                    this.setState({ OrderNumber: response.data })
+                }
+                
             });
     }
 
@@ -79,8 +97,8 @@ export default class CashierScreen extends Component {
         this.setState({
             OrderNumber: uuidv4()
         });
-        console.log(uuidv4());
         console.log("Complete Order Click!!!");
+        this.setUnfinishedGuid();
     }
     
 

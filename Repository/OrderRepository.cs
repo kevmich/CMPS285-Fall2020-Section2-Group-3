@@ -77,9 +77,18 @@ namespace Repository
             var connectionString = @"Server=.\SQLEXPRESS;Database=KitchenVideoSystemDb;Integrated Security=true;";
             using (var connection = new SqlConnection(connectionString))
             {
-                var sql = $"SELECT OrderNumber FROM Orders WHERE IsComplete = 0";
-                var order = connection.QuerySingle<Guid>(sql);
-                return order;
+                var sql = $"SELECT TOP 1 OrderNumber FROM Orders WHERE IsComplete = 0";
+                try
+                {
+                    var order = connection.QuerySingle<Guid>(sql);
+                    return order;
+                }
+                catch
+                {
+                    return Guid.Empty;
+                }
+
+                
             }
         }
         public void FinishOrder(Guid guid)
