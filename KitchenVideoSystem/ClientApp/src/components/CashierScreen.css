@@ -121,7 +121,6 @@ body {
 }
 
 #CurrentOrderList {
-    background-color: powderblue;
     overflow: auto;
     height: 800px;
 }
