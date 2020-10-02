@@ -18,6 +18,7 @@ namespace Repository
         Order[] GetAllOrders();
 
         OrderView[] GetOrder(Guid guid);
+        public Guid GetUnfinishedGuid();
 
         void FinishOrder(Guid guid);
 
@@ -71,6 +72,16 @@ namespace Repository
 
         }
 
+        public Guid GetUnfinishedGuid()
+        {
+            var connectionString = @"Server=.\SQLEXPRESS;Database=KitchenVideoSystemDb;Integrated Security=true;";
+            using (var connection = new SqlConnection(connectionString))
+            {
+                var sql = $"SELECT OrderNumber FROM Orders WHERE IsComplete = 0";
+                var order = connection.QuerySingle<Guid>(sql);
+                return order;
+            }
+        }
         public void FinishOrder(Guid guid)
         {
             var connectionString = @"Server=.\SQLEXPRESS;Database=KitchenVideoSystemDb;Integrated Security=true;";
