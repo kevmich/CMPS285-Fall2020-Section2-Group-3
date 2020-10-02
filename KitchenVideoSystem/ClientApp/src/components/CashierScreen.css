@@ -22,6 +22,10 @@ body {
     color: black;
 }
 
+.FoodItems {
+    width: 500px;
+}
+
 .Button {
     border: 0px solid #000;
     color: black;
