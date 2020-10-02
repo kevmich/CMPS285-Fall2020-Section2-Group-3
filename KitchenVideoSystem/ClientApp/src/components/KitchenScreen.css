@@ -11,7 +11,6 @@
     padding-right: 10px;
     margin: 5px;
     border-radius: 10px;
-    font-size: 0.5em;
     float: left;
     background-color: #eee;
     border-color: #bbb;
@@ -49,17 +48,18 @@ li {
     bottom: 0%;
     width: 100%;
     background-color: lawngreen;
+    text-align: right
 }
 
 #completeOrders {
-    font-size: 20px;
+    font-size: 60px;
     border-color: green;
     border-width: 30px;
     background-color: chartreuse;
 }
 
 #incompleteOrders {
-    font-size: 20px;
+    font-size: 60px;
     border-color: red;
     border-width: 30px;
     background-color: tomato;

@@ -56,13 +56,13 @@ export default class KitchenScreen extends Component {
                     <Clock />
                 </div>
 
-                <div>
+                <div id="KitchenScreenList">
                     <br />
                     {this.state.Orders.map((Order) => (
                         <p id={Order.isComplete ? "completeOrders" : "incompleteOrders"}>{this.sizeSwitch(Order.size)}{Order.name} <br/> </p>
                     ))}
                     <br/>
-                    <button id="FinishOrders" onClick={this.finishAllOrders}> Serve Complete Orders </button>
+                    <button id="FinishOrders" onClick={this.finishAllOrders}> Serve Orders </button>
                 </div>
 
             </div>
