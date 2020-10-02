@@ -9,7 +9,7 @@
 body {
     font-family: 'Roboto', sans-serif;
     font-size: 50px;
-    background-color: #f8f8f8;
+    background-color: lightblue;
 }
 
 .FoodItems, .MenuItems {
@@ -17,8 +17,9 @@ body {
     border-radius: 15px;
     padding: 10px;
     margin: 10px;
-    width: 500px;
+    width: 600px;
     float: left;
+    background-color: darkcyan;
 }
 
 .Button {
@@ -42,7 +43,12 @@ body {
     padding: 20px;
     vertical-align: middle;
     border-radius: 5px;
-    background-color: #e2e4f0
+    background-color: #e2e4f0;
+    width: 80px;
+    height: 80px;
+}
+.DButton img {
+    margin-bottom: 100px
 }
 
 .DButton:active {
@@ -70,11 +76,17 @@ body {
     position: fixed;
     bottom: 0px;
     color: white;
+    border-top-right-radius: 10px;
+    padding-right: 10px;
 }
 
 #DrinkTable {
     vertical-align: middle;
 
+}
+
+.Drinks {
+    text-align: right;
 }
 
 #CurrentOrder {
@@ -85,7 +97,7 @@ body {
     display: flex;
     margin: 10px;
     overflow: auto;
-
+    background-color: darkcyan;
 }
 
 .DrinkSizeLabel {
@@ -106,4 +118,12 @@ body {
 
 #CurrentOrderList {
     
+}
+
+input[type="button"] {
+    outline: none;
+}
+
+*:focus {
+    outline: 0 !important;
 }

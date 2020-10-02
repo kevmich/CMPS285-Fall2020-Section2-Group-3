@@ -30,8 +30,11 @@ li {
 #kitchenClock {
     background-color: #3f51b6;
     position: fixed;
-    right: 0px;
+    bottom: 0px;
     color: white;
+    border-top-right-radius: 10px;
+    padding-right: 10px;
+    z-index: 99;
 }
 
 #Completed {
@@ -41,7 +44,7 @@ li {
 }
 
 #FinishOrders {
-    height: 80px;
+    height: 75px;
     position: fixed;
     bottom: 0%;
     width: 100%;
