@@ -131,3 +131,8 @@ input[type="button"] {
 *:focus {
     outline: 0 !important;
 }
+
+.CurrentIcon {
+    position: relative;
+    top: -7px;
+}
