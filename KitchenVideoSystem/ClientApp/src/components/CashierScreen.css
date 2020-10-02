@@ -9,23 +9,23 @@
 body {
     font-family: 'Roboto', sans-serif;
     font-size: 50px;
-    background-color: lightblue;
+    background-color: #c4e1ff;
 }
 
 .FoodItems, .MenuItems {
-    border: 2px solid #e2e2e2;
     border-radius: 15px;
     padding: 10px;
     margin: 10px;
     width: 600px;
     float: left;
-    background-color: darkcyan;
+    background-color: #aed5ff;
+    color: black;
 }
 
 .Button {
-    border: 2px solid #000;
+    border: 0px solid #000;
     color: black;
-    background-color: #e2e4f0;
+    background-color: #9ab3f5;
     display: flex;
     margin-bottom: 15px;
     Width: 10em;
@@ -43,7 +43,7 @@ body {
     padding: 20px;
     vertical-align: middle;
     border-radius: 5px;
-    background-color: #e2e4f0;
+    background-color: #9ab3f5;
     width: 80px;
     height: 80px;
 }
@@ -92,12 +92,12 @@ body {
 #CurrentOrder {
     border-radius: 15px;
     padding: 10px;
-    border: 10px solid black;
+    border: 10px solid #232636;
     height: 96vh;
     display: flex;
     margin: 10px;
     overflow: auto;
-    background-color: darkcyan;
+    background-color: #aed5ff;
 }
 
 .DrinkSizeLabel {
