@@ -48,6 +48,9 @@ export default class CashierScreen extends Component {
         axios.get('/api/orders/GetUnfinishedGuid/')
             .then((response) => {
                 if (response.data == "00000000-0000-0000-0000-000000000000") {
+                    this.setState({
+                        OrderNumber: uuidv4()
+                    })
                 } else {
                     this.setState({ OrderNumber: response.data })
                 }
@@ -136,6 +139,7 @@ export default class CashierScreen extends Component {
     render() {
         return (
             <div>
+                <p>{this.state.OrderNumber}</p>
                 <div id="cashierClock">
                     <Clock />
                 </div>

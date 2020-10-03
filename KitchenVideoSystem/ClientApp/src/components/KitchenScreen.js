@@ -2,8 +2,14 @@
 import './KitchenScreen.css'
 import axios from 'axios';
 import Clock from 'react-digital-clock'
+import { size } from 'lodash';
+var _ = require('lodash');
+
+
+
 
 export default class KitchenScreen extends Component {
+
     constructor(props) {
         super(props);
         this.updateScreen = this.updateScreen.bind(this);
@@ -46,9 +52,39 @@ export default class KitchenScreen extends Component {
                 return;
         }
     }
+//                        { ordersArray = (_.groupBy(this.state.Orders, 'orderNumber')) }
+//{ console.log(this.state.Orders) }
+    //
+
+
+    renderObject() {
+        
+        return Object.entries(_.groupBy(this.state.Orders, 'orderNumber')).map(([key, value], i) => {
+            return (
+                <div id="GroupOrder" key={key}>
+
+
+                    {value.map((Order) => (
+                        <div>{Order.name} </div>
+                    ))}
+                    
+
+                </div>
+                
+            )
+        })
+    }
+
+
+//                        {
+//    this.state.Orders.map((Order) => (
+//        <p id={Order.isComplete ? "completeOrders" : "incompleteOrders"}>{this.sizeSwitch(Order.size)}{Order.name} <br /> </p>
+//    ))
+//}
+
 
     render() {
-    
+        const Testing = _.groupBy(this.state.Orders, 'orderNumber');
         return (
             <div>
 
@@ -58,9 +94,11 @@ export default class KitchenScreen extends Component {
 
                 <div id="KitchenScreenList">
                     <br />
-                    {this.state.Orders.map((Order) => (
-                        <p id={Order.isComplete ? "completeOrders" : "incompleteOrders"}>{this.sizeSwitch(Order.size)}{Order.name} <br/> </p>
-                    ))}
+
+
+                    <p>{this.renderObject()}</p>
+  
+
                     <br/>
                     <button id="FinishOrders" onClick={this.finishAllOrders}> Serve Orders </button>
                 </div>
