@@ -12,6 +12,32 @@ body {
     background-color: #c4e1ff;
 }
 
+::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+}
+
+::-webkit-scrollbar-button {
+    width: 0px;
+    height: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #9ab3f5;
+    border: 1px solid #802113;
+    border-radius: 50px;
+}
+
+::-webkit-scrollbar-track {
+    background: black;
+    border: 0px none #ffffff;
+    border-radius: 53px;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
 .FoodItems, .MenuItems {
     border-radius: 15px;
     padding: 10px;
