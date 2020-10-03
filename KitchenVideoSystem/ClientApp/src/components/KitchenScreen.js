@@ -49,6 +49,15 @@ export default class KitchenScreen extends Component {
         }
     }
 
+    serveOrder(guid) {
+        axios({
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            url: '/api/orders/FinishOrder',
+            data: "\"" + guid + "\""
+        })
+        console.log("AHH: " + guid)
+    }
     //{ ordersArray = (_.groupBy(this.state.Orders, 'orderNumber')) }
     //{ console.log(this.state.Orders) }
 
@@ -56,7 +65,8 @@ export default class KitchenScreen extends Component {
         
         return Object.entries(_.groupBy(this.state.Orders, 'orderNumber')).map(([key, value], i) => {
             return (
-                <div class="GroupOrder" id={value[0].isComplete ? "completeOrders" : "incompleteOrders"} key={key}>
+                <div class="GroupOrder" id={value[0].isComplete ? "completeOrders" : "incompleteOrders"} key={key} onClick={() => this.serveOrder( key )}>
+                    {console.log({ key })}
                     {value.map((Order) => (
                         <p>{this.sizeSwitch(Order.size)}{Order.name} <br /> </p>
                     ))}
