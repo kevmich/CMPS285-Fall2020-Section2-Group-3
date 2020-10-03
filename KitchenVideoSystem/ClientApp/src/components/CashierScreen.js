@@ -138,9 +138,6 @@ export default class CashierScreen extends Component {
     render() {
         return (
             <div>
-                <i class="fas fa-hamburger"></i>
-
-
                 <div id="cashierClock">
                     <Clock />
                 </div>
