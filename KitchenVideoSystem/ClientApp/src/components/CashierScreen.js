@@ -48,7 +48,6 @@ export default class CashierScreen extends Component {
         axios.get('/api/orders/GetUnfinishedGuid/')
             .then((response) => {
                 if (response.data == "00000000-0000-0000-0000-000000000000") {
-                    return;
                 } else {
                     this.setState({ OrderNumber: response.data })
                 }
@@ -68,7 +67,6 @@ export default class CashierScreen extends Component {
                 return;
         }
     }
-
 
     iconSwitch(param, param2) {
         switch (param) {
