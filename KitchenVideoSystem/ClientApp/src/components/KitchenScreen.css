@@ -65,7 +65,16 @@ li {
     background-color: tomato;
 }
 
-#GroupOrder {
-    background-color: red;
+.GroupOrder {
+    width: 400px;
+    background-color: #aed5ff;
+    padding: 5px;
+    border-radius: 10px;
     margin-bottom: 10px;
+    margin: 5px;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    display: inline-flex;
+    border-color: black;
+    border: solid 5px;
 }

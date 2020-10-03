@@ -61,7 +61,7 @@ export default class KitchenScreen extends Component {
         
         return Object.entries(_.groupBy(this.state.Orders, 'orderNumber')).map(([key, value], i) => {
             return (
-                <div id="GroupOrder" key={key}>
+                <div class="GroupOrder" key={key}>
 
 
                     {value.map((Order) => (
@@ -84,16 +84,13 @@ export default class KitchenScreen extends Component {
 
 
     render() {
-        const Testing = _.groupBy(this.state.Orders, 'orderNumber');
         return (
             <div>
 
-                <div id="kitchenClock">
-                    <Clock />
-                </div>
+
 
                 <div id="KitchenScreenList">
-                    <br />
+
 
 
                     <p>{this.renderObject()}</p>
@@ -102,7 +99,9 @@ export default class KitchenScreen extends Component {
                     <br/>
                     <button id="FinishOrders" onClick={this.finishAllOrders}> Serve Orders </button>
                 </div>
-
+                <div id="kitchenClock">
+                    <Clock />
+                </div>
             </div>
             
             
