@@ -132,14 +132,12 @@ export default class CashierScreen extends Component {
             OrderNumber: uuidv4()
         });
         console.log("Complete Order Click!!!");
-        this.setUnfinishedGuid();
     }
     
 
     render() {
         return (
             <div>
-                <p>{this.state.OrderNumber}</p>
                 <div id="cashierClock">
                     <Clock />
                 </div>
