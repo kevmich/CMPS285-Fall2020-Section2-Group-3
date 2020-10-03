@@ -52,21 +52,15 @@ li {
 }
 
 #completeOrders {
-    font-size: 60px;
-    border-color: green;
-    border-width: 30px;
-    background-color: chartreuse;
+    border-color: chartreuse;
 }
 
 #incompleteOrders {
-    font-size: 60px;
-    border-color: red;
-    border-width: 30px;
-    background-color: tomato;
+    border-color: tomato;
 }
 
 .GroupOrder {
-    width: 400px;
+    width: 450px;
     background-color: #aed5ff;
     padding: 5px;
     border-radius: 10px;
@@ -76,5 +70,5 @@ li {
     flex-direction: column;
     display: inline-flex;
     border-color: black;
-    border: solid 5px;
+    border: solid 10px;
 }

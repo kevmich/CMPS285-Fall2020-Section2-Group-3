@@ -2,11 +2,7 @@
 import './KitchenScreen.css'
 import axios from 'axios';
 import Clock from 'react-digital-clock'
-import { size } from 'lodash';
 var _ = require('lodash');
-
-
-
 
 export default class KitchenScreen extends Component {
 
@@ -52,59 +48,40 @@ export default class KitchenScreen extends Component {
                 return;
         }
     }
-//                        { ordersArray = (_.groupBy(this.state.Orders, 'orderNumber')) }
-//{ console.log(this.state.Orders) }
-    //
 
+    //{ ordersArray = (_.groupBy(this.state.Orders, 'orderNumber')) }
+    //{ console.log(this.state.Orders) }
 
     renderObject() {
         
         return Object.entries(_.groupBy(this.state.Orders, 'orderNumber')).map(([key, value], i) => {
             return (
-                <div class="GroupOrder" key={key}>
-
-
+                <div class="GroupOrder" id={value[0].isComplete ? "completeOrders" : "incompleteOrders"} key={key}>
                     {value.map((Order) => (
-                        <div>{Order.name} </div>
+                        <p>{this.sizeSwitch(Order.size)}{Order.name} <br /> </p>
                     ))}
-                    
-
                 </div>
-                
             )
         })
     }
-
-
-//                        {
-//    this.state.Orders.map((Order) => (
-//        <p id={Order.isComplete ? "completeOrders" : "incompleteOrders"}>{this.sizeSwitch(Order.size)}{Order.name} <br /> </p>
-//    ))
-//}
+    //                        {
+    //    this.state.Orders.map((Order) => (
+    //        <p id={Order.isComplete ? "completeOrders" : "incompleteOrders"}>{this.sizeSwitch(Order.size)}{Order.name} <br /> </p>
+    //    ))
+    //}
 
 
     render() {
         return (
             <div>
-
-
-
                 <div id="KitchenScreenList">
-
-
-
                     <p>{this.renderObject()}</p>
-  
-
-                    <br/>
                     <button id="FinishOrders" onClick={this.finishAllOrders}> Serve Orders </button>
                 </div>
                 <div id="kitchenClock">
                     <Clock />
                 </div>
             </div>
-            
-            
         );
     }
 }
