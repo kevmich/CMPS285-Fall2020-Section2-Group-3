@@ -9,6 +9,7 @@ export default class KitchenScreen extends Component {
     constructor(props) {
         super(props);
         this.updateScreen = this.updateScreen.bind(this);
+        this.serveOrder = this.serveOrder.bind(this);
         this.state = {
             Orders: []
         };
