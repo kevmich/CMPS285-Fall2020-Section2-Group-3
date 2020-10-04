@@ -149,7 +149,7 @@ body {
 
 #CurrentOrderList {
     overflow: auto;
-    height: 800px;
+    height: 1000px;
 }
 
 input[type="button"] {

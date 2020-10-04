@@ -103,7 +103,8 @@ export default class KitchenScreen extends Component {
                 data: "\"" + guid + "\""
             })
         }
-        
+        this.updateScreen();
+
     }
     //{ ordersArray = (_.groupBy(this.state.Orders, 'orderNumber')) }
     //{ console.log(this.state.Orders) }
@@ -133,6 +134,9 @@ export default class KitchenScreen extends Component {
                 <div id="KitchenScreenList">
                     <p>{this.renderObject()}</p>
                 </div>
+                <br />
+                <br />
+                <br />
                 <div id="kitchenClock">
                     <Clock />
                 </div>

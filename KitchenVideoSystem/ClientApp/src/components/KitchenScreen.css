@@ -53,10 +53,12 @@ li {
 
 #completeOrders {
     border-color: chartreuse;
+    background-color: #ebfff7;
 }
 
 #incompleteOrders {
     border-color: tomato;
+    background-color: #ffefeb;
 }
 
 .GroupOrder {
