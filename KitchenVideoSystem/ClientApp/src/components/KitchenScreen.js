@@ -131,7 +131,6 @@ export default class KitchenScreen extends Component {
             <div>
                 <div id="KitchenScreenList">
                     <p>{this.renderObject()}</p>
-                    <button id="FinishOrders" onClick={this.finishAllOrders}> Serve Orders </button>
                 </div>
                 <div id="kitchenClock">
                     <Clock />

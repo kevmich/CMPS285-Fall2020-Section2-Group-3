@@ -130,7 +130,7 @@ namespace Repository
 
             using (var connection = new SqlConnection(connectionString))
             {
-                var sql = $"SELECT OrderItems.Name, Orders.Size, Orders.OrderNumber, Orders.IsComplete FROM Orders INNER JOIN OrderItems ON Orders.OrderItemId = OrderItems.Id WHERE DateFinished IS NULL ORDER BY DateStarted";
+                var sql = $"SELECT OrderItems.Name, Orders.Size, Orders.OrderNumber, Orders.IsComplete, Orders.OrderItemId FROM Orders INNER JOIN OrderItems ON Orders.OrderItemId = OrderItems.Id WHERE DateFinished IS NULL ORDER BY DateStarted";
                 var orders = connection.Query<OrderViewKitchen>(sql).ToArray();
                 return orders;
             }

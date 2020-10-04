@@ -11,5 +11,7 @@ namespace Models
         public int Size { get; set; }
         public Guid OrderNumber { get; set; }
         public Boolean IsComplete { get; set; }
+        public int OrderItemId { get; set; }
+
     }
 }
