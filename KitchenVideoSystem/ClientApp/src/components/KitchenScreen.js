@@ -27,6 +27,7 @@ export default class KitchenScreen extends Component {
     componentDidMount() {
         this.updateScreen();
         this.interval = setInterval(() => this.updateScreen(), 1000);
+        document.title = "Kitchen Screen";
     }
 
     updateScreen(){

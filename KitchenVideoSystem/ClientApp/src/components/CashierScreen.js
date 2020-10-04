@@ -31,7 +31,9 @@ export default class CashierScreen extends Component {
     }
     componentDidMount() {
         this.setUnfinishedGuid();
-        setTimeout(() => {this.updateCurrent(); }, 2000);
+        setTimeout(() => { this.updateCurrent(); }, 2000);
+        document.title = "Cashier Screen";
+
         
     }
 
@@ -138,6 +140,7 @@ export default class CashierScreen extends Component {
     render() {
         return (
             <div>
+                <title>Scratch - A simple note taking app</title>
                 <div id="cashierClock">
                     <Clock />
                 </div>

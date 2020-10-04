@@ -4,7 +4,11 @@ import { NavLink } from 'reactstrap';
 
 
 export class Home extends Component {
-  static displayName = Home.name;
+    static displayName = Home.name;
+
+    componentDidMount() {
+        document.title = "Home";
+    }
 
   render () {
     return (
