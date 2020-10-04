@@ -140,7 +140,6 @@ export default class CashierScreen extends Component {
     render() {
         return (
             <div>
-                <title>Scratch - A simple note taking app</title>
                 <div id="cashierClock">
                     <Clock />
                 </div>
