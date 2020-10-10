@@ -118,6 +118,7 @@ export default class CashierScreen extends Component {
                 "DateStarted": this.state.time,
                 "Size": size,
                 "IsComplete": false,
+                "IsDeleted": false,
             }
         }).then(response => this.updateCurrent());
         console.log("OrderItem Click!!!");
