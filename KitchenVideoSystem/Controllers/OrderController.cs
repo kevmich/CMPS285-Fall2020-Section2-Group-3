@@ -83,8 +83,8 @@ namespace KitchenVideoSystem.Controllers
                 _orderRepository.UpdateOrder(order);
         }
 
-        [HttpDelete, Route("removeorder/{id}")]
-        public void RemoveOrder([FromRoute] int id)
+        [HttpGet, Route("deleteorder/{id}")]
+        public void DeleteOrder([FromRoute] int id)
         {
             _orderRepository.DeleteOrder(id);
         }
