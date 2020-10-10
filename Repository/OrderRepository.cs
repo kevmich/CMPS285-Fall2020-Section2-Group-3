@@ -142,7 +142,7 @@ namespace Repository
 
             using (var connection = new SqlConnection(connectionString))
             {
-                var sql = "DELETE FROM Orders WHERE Id = " + id;
+                var sql = $"UPDATE Orders SET IsDeleted = 1 WHERE Id = {id}";
                 connection.Execute(sql);
             }
         }

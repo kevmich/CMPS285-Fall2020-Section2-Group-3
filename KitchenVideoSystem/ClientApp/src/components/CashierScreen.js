@@ -22,10 +22,12 @@ export default class CashierScreen extends Component {
         this.CompleteOrder = this.CompleteOrder.bind(this);
         this.updateCurrent = this.updateCurrent.bind(this);
         this.setUnfinishedGuid = this.setUnfinishedGuid.bind(this);
+        this.UpdateSelected = this.UpdateSelected.bind(this);
         this.state = {
             OrderNumber: uuidv4(),
             Orders: [],
-            time: new Date()
+            time: new Date(),
+            selectedOrder: null,
 
         };
     }
@@ -33,8 +35,6 @@ export default class CashierScreen extends Component {
         this.setUnfinishedGuid();
         setTimeout(() => { this.updateCurrent(); }, 2000);
         document.title = "Cashier Screen";
-
-        
     }
 
     updateCurrent() {
@@ -42,7 +42,6 @@ export default class CashierScreen extends Component {
             .then((response) => {
                 console.log(response.data);
                 this.setState({ Orders: response.data })
-
             });
     }
 
@@ -56,7 +55,6 @@ export default class CashierScreen extends Component {
                 } else {
                     this.setState({ OrderNumber: response.data })
                 }
-                
             });
     }
 
@@ -137,6 +135,12 @@ export default class CashierScreen extends Component {
         console.log("Complete Order Click!!!");
     }
     
+    UpdateSelected(id) {
+        this.setState({
+            selectedOrder: id
+        });
+        this.updateCurrent();
+    }
 
     render() {
         return (
@@ -156,67 +160,62 @@ export default class CashierScreen extends Component {
                 </div>
 
                 <div id="container">
-                <div class="MenuItems">
-                    <table id="DrinkTable">
-                        <tr>
-                            <th> Drinks </th>
-                            <th class="DrinkSizeLabel">S </th>
-                            <th class="DrinkSizeLabel">M </th>
-                            <th class="DrinkSizeLabel" id="largeDrinkId">L </th>
-                        </tr>
-                        <tr>
-                            <td class="Drinks"> Sprite </td>
-                            <td>< button onClick={() => this.onClick(7, 1)} class="DButton"><img src={smalldrinkIcon} width="40px" /></ button></td>
-                            <td>< button onClick={() => this.onClick(7, 2)} class="DButton"><img src={mediumdrinkIcon} width="40px" /></ button></td>
-                            <td>< button onClick={() => this.onClick(7, 3)} class="DButton"><img src={largedrinkIcon} width="40px" /></ button></td>
-                        </tr>
-                        <tr>
-                            <td class="Drinks"> Coca-Cola </td>
-                            <td>< button onClick={() => this.onClick(8, 1)} class="DButton"><img src={smalldrinkIcon} width="40px" /> </ button></td>
-                            <td>< button onClick={() => this.onClick(8, 2)} class="DButton"><img src={mediumdrinkIcon} width="40px" /> </ button></td>
-                            <td>< button onClick={() => this.onClick(8, 3)} class="DButton"><img src={largedrinkIcon} width="40px" /> </ button></td>
-                        </tr>
-                        <tr>
-                            <td class="Drinks"> Fanta Orange </td>
-                            <td>< button onClick={() => this.onClick(9, 1)} class="DButton"><img src={smalldrinkIcon} width="40px" /> </ button></td>
-                            <td>< button onClick={() => this.onClick(9, 2)} class="DButton"><img src={mediumdrinkIcon} width="40px" /> </ button></td>
-                            <td>< button onClick={() => this.onClick(9, 3)} class="DButton"><img src={largedrinkIcon} width="40px" /> </ button></td>
-                        </tr>
-                        <tr>
-                            <td class="Drinks"> Dr Pepper </td>
-                            <td>< button onClick={() => this.onClick(10, 1)} class="DButton"><img src={smalldrinkIcon} width="40px" /> </ button></td>
-                            <td>< button onClick={() => this.onClick(10, 2)} class="DButton"><img src={mediumdrinkIcon} width="40px" /> </ button></td>
-                            <td>< button onClick={() => this.onClick(10, 3)} class="DButton"><img src={largedrinkIcon} width="40px" /> </ button></td>
-                        </tr>
-                        <tr>
-                            <td class="Drinks"> Lemonade </td>
-                            <td>< button onClick={() => this.onClick(11, 1)} class="DButton"><img src={smalldrinkIcon} width="40px" /> </ button></td>
-                            <td>< button onClick={() => this.onClick(11, 2)} class="DButton"><img src={mediumdrinkIcon} width="40px" /> </ button></td>
-                            <td>< button onClick={() => this.onClick(11, 3)} class="DButton"><img src={largedrinkIcon} width="40px" /> </ button></td>
-                        </tr>
-                        <tr>
-                            <td class="Drinks"> Water </td>
-                            <td>< button onClick={() => this.onClick(12, 1)} class="DButton"><img src={smalldrinkIcon} width="40px" /> </ button></td>
-                            <td>< button onClick={() => this.onClick(12, 2)} class="DButton"><img src={mediumdrinkIcon} width="40px" /> </ button></td>
-                            <td>< button onClick={() => this.onClick(12, 3)} class="DButton"><img src={largedrinkIcon} width="40px" /> </ button></td>
-                        </tr>
-
-
-
-
-                    </table>
-                </div>
-                    <div id="CurrentOrder">
-                        <div id="CurrentOrderList">
-                            <b>CURRENT ORDER</b>
-                            {this.state.Orders.map((Order) => (
-                                <p>{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)} {Order.name}</p>
-                                    ))}
-                        </div>
-
-                    <button onClick={this.CompleteOrder} class= "CompleteButton" > Complete Order </button>   
-                        </div>
+                    <div class="MenuItems">
+                        <table id="DrinkTable">
+                            <tr>
+                                <th> Drinks </th>
+                                <th class="DrinkSizeLabel">S </th>
+                                <th class="DrinkSizeLabel">M </th>
+                                <th class="DrinkSizeLabel" id="largeDrinkId">L </th>
+                            </tr>
+                            <tr>
+                                <td class="Drinks"> Sprite </td>
+                                <td>< button onClick={() => this.onClick(7, 1)} class="DButton"><img src={smalldrinkIcon} width="40px" /></ button></td>
+                                <td>< button onClick={() => this.onClick(7, 2)} class="DButton"><img src={mediumdrinkIcon} width="40px" /></ button></td>
+                                <td>< button onClick={() => this.onClick(7, 3)} class="DButton"><img src={largedrinkIcon} width="40px" /></ button></td>
+                            </tr>
+                            <tr>
+                                <td class="Drinks"> Coca-Cola </td>
+                                <td>< button onClick={() => this.onClick(8, 1)} class="DButton"><img src={smalldrinkIcon} width="40px" /> </ button></td>
+                                <td>< button onClick={() => this.onClick(8, 2)} class="DButton"><img src={mediumdrinkIcon} width="40px" /> </ button></td>
+                                <td>< button onClick={() => this.onClick(8, 3)} class="DButton"><img src={largedrinkIcon} width="40px" /> </ button></td>
+                            </tr>
+                            <tr>
+                                <td class="Drinks"> Fanta Orange </td>
+                                <td>< button onClick={() => this.onClick(9, 1)} class="DButton"><img src={smalldrinkIcon} width="40px" /> </ button></td>
+                                <td>< button onClick={() => this.onClick(9, 2)} class="DButton"><img src={mediumdrinkIcon} width="40px" /> </ button></td>
+                                <td>< button onClick={() => this.onClick(9, 3)} class="DButton"><img src={largedrinkIcon} width="40px" /> </ button></td>
+                            </tr>
+                            <tr>
+                                <td class="Drinks"> Dr Pepper </td>
+                                <td>< button onClick={() => this.onClick(10, 1)} class="DButton"><img src={smalldrinkIcon} width="40px" /> </ button></td>
+                                <td>< button onClick={() => this.onClick(10, 2)} class="DButton"><img src={mediumdrinkIcon} width="40px" /> </ button></td>
+                                <td>< button onClick={() => this.onClick(10, 3)} class="DButton"><img src={largedrinkIcon} width="40px" /> </ button></td>
+                            </tr>
+                            <tr>
+                                <td class="Drinks"> Lemonade </td>
+                                <td>< button onClick={() => this.onClick(11, 1)} class="DButton"><img src={smalldrinkIcon} width="40px" /> </ button></td>
+                                <td>< button onClick={() => this.onClick(11, 2)} class="DButton"><img src={mediumdrinkIcon} width="40px" /> </ button></td>
+                                <td>< button onClick={() => this.onClick(11, 3)} class="DButton"><img src={largedrinkIcon} width="40px" /> </ button></td>
+                            </tr>
+                            <tr>
+                                <td class="Drinks"> Water </td>
+                                <td>< button onClick={() => this.onClick(12, 1)} class="DButton"><img src={smalldrinkIcon} width="40px" /> </ button></td>
+                                <td>< button onClick={() => this.onClick(12, 2)} class="DButton"><img src={mediumdrinkIcon} width="40px" /> </ button></td>
+                                <td>< button onClick={() => this.onClick(12, 3)} class="DButton"><img src={largedrinkIcon} width="40px" /> </ button></td>
+                            </tr>
+                        </table>
                     </div>
+                        <div id="CurrentOrder">
+                            <div id="CurrentOrderList">
+                                <b>CURRENT ORDER</b>
+                            {this.state.Orders.map((Order) => (
+                                <p onClick={() => this.UpdateSelected(Order.id)} class={Order.id == this.state.selectedOrder ? "selectedOrder" : null}>{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)} {Order.name}</p>
+                                ))}
+                            </div>
+                            <button onClick={this.CompleteOrder} class= "CompleteButton" > Complete Order </button>
+                        </div>
+                </div>
             </div>
         );
     }
