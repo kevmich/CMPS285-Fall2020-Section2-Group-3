@@ -113,10 +113,16 @@ export default class KitchenScreen extends Component {
         
         return Object.entries(_.groupBy(this.state.Orders, 'orderNumber')).map(([key, value], i) => {
             return (
-                <div class="GroupOrder" id={value[0].isComplete ? "completeOrders" : "incompleteOrders"} key={key} onClick={() => this.serveOrder(key, value[0].isComplete)}>
-                    {value.map((Order) => (
-                        <p>{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)} {Order.name} <br /> </p>
-                    ))}
+                <div class="AllGroupOrder">
+                    <div class="GroupOrder" id={value[0].isComplete ? "completeOrders" : "incompleteOrders"} key={key} onClick={() => this.serveOrder(key, value[0].isComplete)}>
+                        {value.map((Order) => (
+                            <p>{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)} {Order.name} <br /> </p>       
+                        ))}
+
+                    </div>
+                    <div class={value[0].isComplete ? "CompleteText" : "IncompleteText"}>
+                        <p> {value[0].isComplete ? "COMPLETE" : "INCOMPLETE"} </p>
+                    </div>
                 </div>
             )
         })

@@ -74,3 +74,32 @@ li {
     border-color: black;
     border: solid 10px;
 }
+
+.CompleteText {
+    width: 480px;
+    padding-left: 10px;
+    color: black;
+    background-color: lawngreen;
+    font-size: 30px;
+    margin: 5px;
+    margin-top: -30px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.IncompleteText {
+    width: 480px;
+    padding-left: 10px;
+    color: black;
+    background-color: tomato;
+    font-size: 30px;
+    margin: 5px;
+    margin-top: -30px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+.AllGroupOrder {
+    flex-wrap: nowrap;
+    flex-direction: column;
+    display: inline-flex;
+}
