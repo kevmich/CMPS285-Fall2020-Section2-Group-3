@@ -145,7 +145,6 @@ export default class CashierScreen extends Component {
     render() {
         return (
             <div>
-                <p>{this.state.selectedOrder}</p>
                 <div id="cashierClock">
                     <Clock />
                 </div>
@@ -210,8 +209,8 @@ export default class CashierScreen extends Component {
                         <div id="CurrentOrder">
                             <div id="CurrentOrderList">
                                 <b>CURRENT ORDER</b>
-                                {this.state.Orders.map((Order) => (
-                                    <p onClick={() => this.UpdateSelected(Order.id)}>{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)} {Order.name}</p>
+                            {this.state.Orders.map((Order) => (
+                                <p onClick={() => this.UpdateSelected(Order.id)} class={Order.id == this.state.selectedOrder ? "selectedOrder" : null}>{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)} {Order.name}</p>
                                 ))}
                             </div>
                             <button onClick={this.CompleteOrder} class= "CompleteButton" > Complete Order </button>
