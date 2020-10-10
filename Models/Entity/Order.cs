@@ -12,6 +12,7 @@ namespace Models
         public DateTimeOffset DateFinished { get; set; }
         public int Size { get; set; }
         public Boolean IsComplete { get; set; }
+        public Boolean IsDeleted { get; set; }
 
     }
 }

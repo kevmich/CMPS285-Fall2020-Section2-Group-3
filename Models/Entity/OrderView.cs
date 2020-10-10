@@ -6,6 +6,7 @@ namespace Models
 {
     public class OrderView
     {
+        public int Id { get; set; }
         public String Name { get; set; }
         public int Size { get; set; }
         public int OrderItemId { get; set; }

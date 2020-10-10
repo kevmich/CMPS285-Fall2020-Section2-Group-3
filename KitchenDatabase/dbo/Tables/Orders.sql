@@ -6,9 +6,12 @@
     [DateFinished] DATETIMEOFFSET (7) NULL,
     [Size]         INT                NOT NULL,
     [IsComplete]   BIT                NOT NULL,
+    [IsDeleted]    BIT                NULL,
     CONSTRAINT [PK_Orders] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_Orders_OrderItems] FOREIGN KEY ([OrderItemId]) REFERENCES [dbo].[OrderItems] ([Id])
 );
+
+
 
 
 
