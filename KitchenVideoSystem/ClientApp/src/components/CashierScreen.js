@@ -3,6 +3,8 @@ import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import './CashierScreen.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
+
 import hamburgerIcon from '../content/hamburger-solid.svg';
 import cheeseburgerIcon from '../content/cheeseburger-solid.svg';
 import nuggiesIcon from '../content/nuggets.svg';
@@ -14,6 +16,7 @@ import largedrinkIcon from '../content/drink-large.svg';
 import hotdogIcon from '../content/hotdog-solid.svg'
 import Clock from 'react-digital-clock'
 
+const checksquareIcon = <FontAwesomeIcon icon={faCheckSquare} />
 
 
 export default class CashierScreen extends Component {
@@ -222,7 +225,7 @@ export default class CashierScreen extends Component {
                                 <p onClick={() => this.UpdateSelected(Order.id)} class={Order.id == this.state.selectedOrder ? "selectedOrder" : null}>{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)} {Order.name}</p>
                                 ))}
                             </div>
-                            <button onClick={this.CompleteOrder} class= "CompleteButton" > Complete Order </button>
+                        <button onClick={this.CompleteOrder} class="CompleteButton" >{checksquareIcon} COMPLETE</button>
                         </div>
                 </div>
             </div>
