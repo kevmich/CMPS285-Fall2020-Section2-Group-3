@@ -23,6 +23,7 @@ export default class CashierScreen extends Component {
         this.updateCurrent = this.updateCurrent.bind(this);
         this.setUnfinishedGuid = this.setUnfinishedGuid.bind(this);
         this.UpdateSelected = this.UpdateSelected.bind(this);
+        this.DeleteOrder = this.DeleteOrder.bind(this);
         this.state = {
             OrderNumber: uuidv4(),
             Orders: [],
@@ -130,7 +131,8 @@ export default class CashierScreen extends Component {
             data: "\"" + this.state.OrderNumber + "\""
         }).then(response => this.updateCurrent());
         this.setState({
-            OrderNumber: uuidv4()
+            OrderNumber: uuidv4(),
+            selectedOrder: null
         });
         console.log("Complete Order Click!!!");
     }
@@ -142,13 +144,20 @@ export default class CashierScreen extends Component {
         this.updateCurrent();
     }
 
+    DeleteOrder(id) {
+        axios.get('/api/orders/DeleteOrder/' + id)
+            .then((response) => {
+                this.updateCurrent();
+            });
+    }
+
     render() {
         return (
             <div>
+                <button onClick={() => this.DeleteOrder(this.state.selectedOrder)} class="Button">DELET</button>
                 <div id="cashierClock">
                     <Clock />
                 </div>
-
                 <div class="FoodItems">
                     <b> Food </b>
                     <button onClick={() => this.onClick(1, 0)} class="Button"><img src={hamburgerIcon} height="47px"/>&nbsp;Hamburger</button>
