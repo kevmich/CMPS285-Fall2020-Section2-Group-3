@@ -103,3 +103,31 @@ li {
     flex-direction: column;
     display: inline-flex;
 }
+
+.Recall {
+    background-color: #3f51b6;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    color: white;
+    border-top-left-radius: 10px;
+    padding-right: 10px;
+    z-index: 99;
+}
+
+#RecallDiv {
+    width: 480px;
+    background-color: #00e2ff;
+    padding: 5px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin: 5px;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    display: inline-flex;
+    border-color: black;
+    border: solid 10px;
+    position: absolute;
+    bottom: 10vh;
+    right: 0;
+}
