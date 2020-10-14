@@ -117,7 +117,7 @@ li {
 
 #RecallDiv {
     width: 480px;
-    background-color: #00e2ff;
+    background-color: #f1d7ff;
     padding: 5px;
     border-radius: 10px;
     margin-bottom: 10px;
@@ -125,9 +125,23 @@ li {
     flex-wrap: nowrap;
     flex-direction: column;
     display: inline-flex;
-    border-color: black;
-    border: solid 10px;
+    border: solid #683fb6 10px;
     position: absolute;
     bottom: 10vh;
+    right: 0;
+}
+
+.RecallText {
+    width: 480px;
+    padding-left: 10px;
+    color: white;
+    background-color: #683fb6;
+    font-size: 30px;
+    margin: 5px;
+    margin-top: -30px;
+    border-radius: 10px;
+    font-weight: 600;
+    position: absolute;
+    bottom: 7vh;
     right: 0;
 }

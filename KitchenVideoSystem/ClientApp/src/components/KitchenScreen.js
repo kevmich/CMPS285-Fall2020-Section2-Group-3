@@ -151,10 +151,14 @@ export default class KitchenScreen extends Component {
                 <div id="kitchenClock">
                     <Clock />
                 </div>
-                {this.state.visible ? <div id="RecallDiv"> {this.state.RecallOrder.map((Order) => (
+
+                {this.state.visible ? <div><div id="RecallDiv"> {this.state.RecallOrder.map((Order) => (
                     <p>{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)} {Order.name} <br /> </p>
                 ))}
-                </div> : <div></div>}
+                </div><div class="RecallText">
+                        <p>RECALL</p>
+                    </div></div> : <div></div>}
+
                 <button class="Recall" onClick={() => { 
                     axios.get('api/orders/getorder/' + this.state.RecallGuid)
                         .then((response) => {
