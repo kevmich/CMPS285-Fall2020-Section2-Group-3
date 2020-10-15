@@ -157,7 +157,7 @@ export default class CashierScreen extends Component {
     render() {
         return (
             <div>
-                <button onClick={() => this.DeleteOrder(this.state.selectedOrder)} class="Button">DELET</button>
+                <button onClick={() => this.DeleteOrder(this.state.selectedOrder)} class="Button">DELETE</button>
                 <div id="cashierClock">
                     <Clock />
                 </div>

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Models.Domain;
 using Repository;
 
 
@@ -28,6 +29,7 @@ namespace KitchenVideoSystem
             //Dependency Injection
             services.AddTransient<IOrderRepository, OrderRepository>();
 
+            services.Configure<ConnectionStringsOptions>(Configuration.GetSection("ConnectionStrings"));
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
