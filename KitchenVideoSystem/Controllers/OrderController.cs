@@ -22,6 +22,12 @@ namespace KitchenVideoSystem.Controllers
             _orderRepository = orderRepository;
         }
 
+        [HttpGet, Route("getprice/{id}")]
+        public decimal GetPrice([FromRoute] int id)
+        {
+            return _orderRepository.GetPrice(id);
+        }
+
         [HttpGet, Route("GetAllOrders")]
         public IEnumerable<Order> GetAllOrders()
         {
