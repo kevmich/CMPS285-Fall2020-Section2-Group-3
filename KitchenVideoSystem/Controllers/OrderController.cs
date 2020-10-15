@@ -23,7 +23,7 @@ namespace KitchenVideoSystem.Controllers
         }
 
         [HttpGet, Route("getprice/{id}")]
-        public decimal GetTotalPrice([FromRoute] int id)
+        public decimal GetPrice([FromRoute] int id)
         {
             return _orderRepository.GetPrice(id);
         }
