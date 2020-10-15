@@ -3,6 +3,7 @@ using Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -15,9 +16,12 @@ namespace Repository
     {
         void AddOrder(Order order);
 
+        decimal GetPrice(int id);
+
         Order[] GetAllOrders();
 
         OrderView[] GetOrder(Guid guid);
+
         public Guid GetUnfinishedGuid();
 
         void FinishOrder(Guid guid);
@@ -44,7 +48,17 @@ namespace Repository
                     + "VALUES (@OrderNumber, @OrderItemId, @DateStarted, @Size, @IsComplete)";
                 connection.Execute(sql, order);
             }
+        }
 
+        public decimal GetPrice(int id)
+        {
+            var connectionString = @"Server=.\SQLEXPRESS;Database=KitchenVideoSystemDb;Integrated Security=true;";
+            using (var connection = new SqlConnection(connectionString))
+            {
+                var sql = "SELECT Price FROM OrderItems WHERE Id = " + id;
+                var price = connection.QuerySingle<decimal>(sql);
+                return price;
+            }
         }
 
         public Order[] GetAllOrders()
