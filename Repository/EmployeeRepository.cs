@@ -7,6 +7,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using Models.Domain;
+
 
 namespace Repository
 {
