@@ -14,8 +14,10 @@ export class Home extends Component {
     return (
       <div>
             <NavLink tag={Link} to="/cashierscreen">Cashier</NavLink>
-            <br></br>
+            <br />
             <NavLink tag={Link} to="/kitchenscreen">Kitchen</NavLink>
+            <br />
+            <NavLink tag={Link} to="/login">Login</NavLink>
       </div>
       );
       
