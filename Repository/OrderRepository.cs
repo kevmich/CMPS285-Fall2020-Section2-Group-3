@@ -65,8 +65,9 @@ namespace Repository
             var connectionString = @"Server=.\SQLEXPRESS;Database=KitchenVideoSystemDb;Integrated Security=true;";
             using (var connection = new SqlConnection(connectionString))
             {
-                var sql = "SELECT Price FROM OrderItems WHERE Id = " + id;
-                var price = connection.QuerySingle<decimal>(sql);
+                var parameter = new { Id = id };
+                var sql = "SELECT Price FROM OrderItems WHERE Id = @Id";
+                var price = connection.QuerySingle<decimal>(sql, parameter);
                 return price;
             }
         }
@@ -86,8 +87,9 @@ namespace Repository
 
             using (var connection = new SqlConnection(_connectionString))
             {
-                var sql = $"SELECT Orders.Id, OrderItems.Name, Orders.Size, Orders.OrderItemId FROM Orders INNER JOIN OrderItems ON Orders.OrderItemId = OrderItems.Id WHERE OrderNumber = '{guid}' ORDER BY DateStarted";
-                var order = connection.Query<OrderView>(sql).ToArray();
+                var parameter = new { orderNumber = guid };
+                var sql = $"SELECT Orders.Id, OrderItems.Name, Orders.Size, Orders.OrderItemId FROM Orders INNER JOIN OrderItems ON Orders.OrderItemId = OrderItems.Id WHERE OrderNumber = @ordernumber ORDER BY DateStarted";
+                var order = connection.Query<OrderView>(sql, parameter).ToArray();
                 return order;
             }
 
@@ -115,8 +117,10 @@ namespace Repository
             {
                 DateTimeOffset dateOffset1 = new DateTimeOffset();
                 dateOffset1 = DateTimeOffset.UtcNow;
-                var sql = $"UPDATE Orders SET DateFinished = '{dateOffset1}' WHERE OrderNumber = '{guid}'";
-                var order = connection.Execute(sql);
+
+                var parameter = new { dateFinished = dateOffset1, orderNumber = guid };
+                var sql = $"UPDATE Orders SET DateFinished = @dateFinished WHERE OrderNumber = @orderNumber";
+                var order = connection.Execute(sql, parameter);
             }
         }
         public void FinishAllOrders()
@@ -125,8 +129,10 @@ namespace Repository
             {
                 DateTimeOffset dateOffset1 = new DateTimeOffset();
                 dateOffset1 = DateTimeOffset.UtcNow;
-                var sql = $"UPDATE Orders SET DateFinished = '{dateOffset1}' WHERE IsComplete = 1";
-                var order = connection.Execute(sql);
+
+                var parameter = new { dateFinished = dateOffset1 };
+                var sql = $"UPDATE Orders SET DateFinished = @dateFinished WHERE IsComplete = 1";
+                var order = connection.Execute(sql, parameter);
             }
         }
 
@@ -134,8 +140,9 @@ namespace Repository
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var sql = $"UPDATE Orders SET IsComplete = 1 WHERE OrderNumber = '{guid}'";
-                connection.Execute(sql);
+                var parameter = new { orderNumber = guid };
+                var sql = $"UPDATE Orders SET IsComplete = 1 WHERE OrderNumber = @orderNumber";
+                connection.Execute(sql, parameter);
             }
         }
 
@@ -153,8 +160,9 @@ namespace Repository
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var sql = $"UPDATE Orders SET IsDeleted = 1 WHERE Id = {id}";
-                connection.Execute(sql);
+                var parameter = new { Id = id };
+                var sql = $"UPDATE Orders SET IsDeleted = 1 WHERE Id = @Id ";
+                connection.Execute(sql, parameter);
             }
         }
 
@@ -163,7 +171,7 @@ namespace Repository
 
             using (var connection = new SqlConnection(_connectionString))
             {
-                var sql = "UPDATE Orders SET Name = @Name WHERE Id = @Id";
+                var sql = "UPDATE Orders SET Name = @Name WHERE Id = @Id ";
                 connection.Query(sql, order);
             }
         }
