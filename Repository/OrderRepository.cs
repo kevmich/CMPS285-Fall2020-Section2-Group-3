@@ -62,8 +62,7 @@ namespace Repository
 
         public decimal GetPrice(int id)
         {
-            var connectionString = @"Server=.\SQLEXPRESS;Database=KitchenVideoSystemDb;Integrated Security=true;";
-            using (var connection = new SqlConnection(connectionString))
+            using (var connection = new SqlConnection(_connectionString))
             {
                 var parameter = new { Id = id };
                 var sql = "SELECT Price FROM OrderItems WHERE Id = @Id";
