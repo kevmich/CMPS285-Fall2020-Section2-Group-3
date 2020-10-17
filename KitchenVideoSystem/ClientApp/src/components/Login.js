@@ -1,6 +1,9 @@
 ﻿import React, { Component } from "react";
 import "./Login.css";
 import { Redirect } from "react-router-dom";
+import bcrypt from 'bcryptjs'
+
+
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -22,6 +25,20 @@ class Login extends Component {
     };
 
     login = event => {
+
+        // Example of hashing password
+        const password = 'oe3im3io2r3o2'
+        const rounds = 10
+
+        bcrypt.hash(password, rounds, (err, hash) => {
+            if (err) {
+                console.error(err)
+                return
+            }
+            console.log(hash)
+        })
+
+
         let user_id = this.state.loginParams.user_id;
         let user_password = this.state.loginParams.user_password;
         if (user_id === "admin" && user_password === "123") {
