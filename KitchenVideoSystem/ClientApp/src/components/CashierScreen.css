@@ -93,7 +93,7 @@ body {
     text-align: center;
     bottom: 5%;
     border-radius: 10px;
-    background-color: #3f51b6;
+    background-color: #00cc66;
     color: white;
 }
 
@@ -169,4 +169,14 @@ input[type="button"] {
 
 .selectedOrder {
     color: red;
+}
+
+.DeleteButton {
+    position: absolute;
+    text-align: center;
+    bottom: 15%;
+    border-radius: 10px;
+    background-color: tomato;
+    color: white;
+   
 }

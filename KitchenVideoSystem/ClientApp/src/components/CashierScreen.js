@@ -157,7 +157,6 @@ export default class CashierScreen extends Component {
     render() {
         return (
             <div>
-                <button onClick={() => this.DeleteOrder(this.state.selectedOrder)} class="Button">DELETE</button>
                 <div id="cashierClock">
                     <Clock />
                 </div>
@@ -168,9 +167,8 @@ export default class CashierScreen extends Component {
                     <button onClick={() => this.onClick(3, 0)} class="Button"><img src={nuggiesIcon} height="47px"/>&nbsp;Chicken Nuggets </button>
                     <button onClick={() => this.onClick(4, 0)} class="Button"><img src={corndogIcon} height="47px"/>&nbsp;Corn Dog </button>
                     <button onClick={() => this.onClick(5, 0)} class="Button"><img src={hotdogIcon} height="47px"/>&nbsp;Hot Dog </button>
-                    <button onClick={() => this.onClick(6, 0)} class="Button"><img src={pretzelIcon} height="47px"/>&nbsp;Pretzel </button>
-                </div>
-
+                    <button onClick={() => this.onClick(6, 0)} class="Button"><img src={pretzelIcon} height="47px" />&nbsp;Pretzel </button>
+                </div>              
                 <div id="container">
                     <div class="MenuItems">
                         <table id="DrinkTable">
@@ -224,7 +222,8 @@ export default class CashierScreen extends Component {
                             {this.state.Orders.map((Order) => (
                                 <p onClick={() => this.UpdateSelected(Order.id)} class={Order.id == this.state.selectedOrder ? "selectedOrder" : null}>{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)} {Order.name}</p>
                                 ))}
-                            </div>
+                        </div>
+                        <button onClick={() => this.DeleteOrder(this.state.selectedOrder)} class="DeleteButton">DELETE</button>
                         <button onClick={this.CompleteOrder} class="CompleteButton" >{checksquareIcon} COMPLETE</button>
                         </div>
                 </div>
