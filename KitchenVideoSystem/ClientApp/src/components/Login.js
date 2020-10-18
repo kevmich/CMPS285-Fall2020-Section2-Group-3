@@ -2,11 +2,13 @@
 import "./Login.css";
 import { Redirect } from "react-router-dom";
 import bcrypt from 'bcryptjs'
+import axios from 'axios'
 
 
 class Login extends Component {
     constructor(props) {
         super(props);
+        this.login = this.login.bind(this);
         this.state = {
             islogged: false,
             loginParams: {
@@ -28,12 +30,29 @@ class Login extends Component {
 
         let user_id = this.state.loginParams.user_id;
         let user_password = this.state.loginParams.user_password;
-        if (user_id === "admin" && user_password === "123") {
-            localStorage.setItem("token", "T");
+
+        axios({
+            method: 'post',
+            url: '/api/token',
+            data: {
+                "username": user_id,
+                "password": user_password
+            }
+        }).then( (response) => {
+            localStorage.setItem("token", response.data.token)
             this.setState({
                 islogged: true
             });
-        }
+        })
+
+
+
+        //if (user_id === "admin" && user_password === "123") {
+        //    localStorage.setItem("token", "T");
+        //    this.setState({
+        //        islogged: true
+        //    });
+        //}
         event.preventDefault();
     };
     render() {
