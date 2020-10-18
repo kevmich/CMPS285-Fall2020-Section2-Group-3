@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 //using KitchenVideoSystem.ClientApp;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,7 @@ namespace KitchenVideoSystem.Controllers
             return _orderRepository.GetPrice(id);
         }
 
+        [Authorize]
         [HttpGet, Route("GetAllOrders")]
         public IEnumerable<Order> GetAllOrders()
         {
