@@ -71,19 +71,56 @@ body {
     color: white;
 }
 
-.DButton {
+.SmallButton {
     padding: 20px;
     vertical-align: middle;
     border-radius: 5px;
-    background-color: #9ab3f5;
+    background-color: aqua;
     width: 80px;
     height: 80px;
 }
-.DButton img {
-    margin-bottom: 100px
+
+.MediumButton {
+    padding: 20px;
+    vertical-align: middle;
+    border-radius: 5px;
+    background-color: coral;
+    width: 80px;
+    height: 80px;
 }
 
-.DButton:active {
+.LargeButton {
+    padding: 20px;
+    vertical-align: middle;
+    border-radius: 5px;
+    background-color: crimson;
+    width: 80px;
+    height: 80px;
+}
+
+.SmallButton img {
+    margin-bottom: 100px;
+}
+
+.MediumButton img {
+    margin-bottom: 100px;
+}
+
+.LargeButton img {
+    margin-bottom: 100px;
+}
+
+.SmallButton:active {
+    background-color: black;
+    color: white;
+}
+
+.MediumButton:active {
+    background-color: black;
+    color: white;
+}
+
+.LargeButton:active {
     background-color: black;
     color: white;
 }
@@ -131,6 +168,18 @@ body {
     background-color: #aed5ff;
 }
 
+.Small {
+    background-color: aqua;
+}
+
+.Medium {
+    background-color: coral;
+}
+
+.Large {
+    background-color: crimson;
+}
+
 .DrinkSizeLabel {
     text-align: center;
 }
@@ -147,7 +196,6 @@ body {
     white-space: nowrap;
 
 }
-
 
 #CurrentOrderList {
     overflow: auto;
@@ -169,6 +217,10 @@ input[type="button"] {
 
 .selectedOrder {
     color: red;
+}
+
+.deletedOrder {
+    text-decoration: line-through;
 }
 
 .DeleteButton {

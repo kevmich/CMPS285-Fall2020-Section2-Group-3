@@ -172,6 +172,12 @@ export default class CashierScreen extends Component {
                 <div id="container">
                     <div class="MenuItems">
                         <table id="DrinkTable">
+                            <colgroup>
+                                <col />
+                                <col class="Small" />
+                                <col class="Medium" />
+                                <col class="Large" />
+                            </colgroup>
                             <tr>
                                 <th> Drinks </th>
                                 <th class="DrinkSizeLabel">S </th>
@@ -180,39 +186,39 @@ export default class CashierScreen extends Component {
                             </tr>
                             <tr>
                                 <td class="Drinks"> Sprite </td>
-                                <td>< button onClick={() => this.onClick(7, 1)} class="DButton"><img src={smalldrinkIcon} width="40px" /></ button></td>
-                                <td>< button onClick={() => this.onClick(7, 2)} class="DButton"><img src={mediumdrinkIcon} width="40px" /></ button></td>
-                                <td>< button onClick={() => this.onClick(7, 3)} class="DButton"><img src={largedrinkIcon} width="40px" /></ button></td>
+                                <td>< button onClick={() => this.onClick(7, 1)} class="SmallButton"><img src={smalldrinkIcon} width="40px" /></ button></td>
+                                <td>< button onClick={() => this.onClick(7, 2)} class="MediumButton"><img src={mediumdrinkIcon} width="40px" /></ button></td>
+                                <td>< button onClick={() => this.onClick(7, 3)} class="LargeButton"><img src={largedrinkIcon} width="40px" /></ button></td>
                             </tr>
                             <tr>
                                 <td class="Drinks"> Coca-Cola </td>
-                                <td>< button onClick={() => this.onClick(8, 1)} class="DButton"><img src={smalldrinkIcon} width="40px" /> </ button></td>
-                                <td>< button onClick={() => this.onClick(8, 2)} class="DButton"><img src={mediumdrinkIcon} width="40px" /> </ button></td>
-                                <td>< button onClick={() => this.onClick(8, 3)} class="DButton"><img src={largedrinkIcon} width="40px" /> </ button></td>
+                                <td>< button onClick={() => this.onClick(8, 1)} class="SmallButton"><img src={smalldrinkIcon} width="40px" /> </ button></td>
+                                <td>< button onClick={() => this.onClick(8, 2)} class="MediumButton"><img src={mediumdrinkIcon} width="40px" /> </ button></td>
+                                <td>< button onClick={() => this.onClick(8, 3)} class="LargeButton"><img src={largedrinkIcon} width="40px" /> </ button></td>
                             </tr>
                             <tr>
                                 <td class="Drinks"> Fanta Orange </td>
-                                <td>< button onClick={() => this.onClick(9, 1)} class="DButton"><img src={smalldrinkIcon} width="40px" /> </ button></td>
-                                <td>< button onClick={() => this.onClick(9, 2)} class="DButton"><img src={mediumdrinkIcon} width="40px" /> </ button></td>
-                                <td>< button onClick={() => this.onClick(9, 3)} class="DButton"><img src={largedrinkIcon} width="40px" /> </ button></td>
+                                <td>< button onClick={() => this.onClick(9, 1)} class="SmallButton"><img src={smalldrinkIcon} width="40px" /> </ button></td>
+                                <td>< button onClick={() => this.onClick(9, 2)} class="MediumButton"><img src={mediumdrinkIcon} width="40px" /> </ button></td>
+                                <td>< button onClick={() => this.onClick(9, 3)} class="LargeButton"><img src={largedrinkIcon} width="40px" /> </ button></td>
                             </tr>
                             <tr>
                                 <td class="Drinks"> Dr Pepper </td>
-                                <td>< button onClick={() => this.onClick(10, 1)} class="DButton"><img src={smalldrinkIcon} width="40px" /> </ button></td>
-                                <td>< button onClick={() => this.onClick(10, 2)} class="DButton"><img src={mediumdrinkIcon} width="40px" /> </ button></td>
-                                <td>< button onClick={() => this.onClick(10, 3)} class="DButton"><img src={largedrinkIcon} width="40px" /> </ button></td>
+                                <td>< button onClick={() => this.onClick(10, 1)} class="SmallButton"><img src={smalldrinkIcon} width="40px" /> </ button></td>
+                                <td>< button onClick={() => this.onClick(10, 2)} class="MediumButton"><img src={mediumdrinkIcon} width="40px" /> </ button></td>
+                                <td>< button onClick={() => this.onClick(10, 3)} class="LargeButton"><img src={largedrinkIcon} width="40px" /> </ button></td>
                             </tr>
                             <tr>
                                 <td class="Drinks"> Lemonade </td>
-                                <td>< button onClick={() => this.onClick(11, 1)} class="DButton"><img src={smalldrinkIcon} width="40px" /> </ button></td>
-                                <td>< button onClick={() => this.onClick(11, 2)} class="DButton"><img src={mediumdrinkIcon} width="40px" /> </ button></td>
-                                <td>< button onClick={() => this.onClick(11, 3)} class="DButton"><img src={largedrinkIcon} width="40px" /> </ button></td>
+                                <td>< button onClick={() => this.onClick(11, 1)} class="SmallButton"><img src={smalldrinkIcon} width="40px" /> </ button></td>
+                                <td>< button onClick={() => this.onClick(11, 2)} class="MediumButton"><img src={mediumdrinkIcon} width="40px" /> </ button></td>
+                                <td>< button onClick={() => this.onClick(11, 3)} class="LargeButton"><img src={largedrinkIcon} width="40px" /> </ button></td>
                             </tr>
                             <tr>
                                 <td class="Drinks"> Water </td>
-                                <td>< button onClick={() => this.onClick(12, 1)} class="DButton"><img src={smalldrinkIcon} width="40px" /> </ button></td>
-                                <td>< button onClick={() => this.onClick(12, 2)} class="DButton"><img src={mediumdrinkIcon} width="40px" /> </ button></td>
-                                <td>< button onClick={() => this.onClick(12, 3)} class="DButton"><img src={largedrinkIcon} width="40px" /> </ button></td>
+                                <td>< button onClick={() => this.onClick(12, 1)} class="SmallButton"><img src={smalldrinkIcon} width="40px" /> </ button></td>
+                                <td>< button onClick={() => this.onClick(12, 2)} class="MediumButton"><img src={mediumdrinkIcon} width="40px" /> </ button></td>
+                                <td>< button onClick={() => this.onClick(12, 3)} class="LargeButton"><img src={largedrinkIcon} width="40px" /> </ button></td>
                             </tr>
                         </table>
                     </div>
@@ -220,7 +226,9 @@ export default class CashierScreen extends Component {
                             <div id="CurrentOrderList">
                                 <b>CURRENT ORDER</b>
                             {this.state.Orders.map((Order) => (
-                                <p onClick={() => this.UpdateSelected(Order.id)} class={Order.id == this.state.selectedOrder ? "selectedOrder" : Order.isDeleted ? "deletedOrder" : null}>{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)} {Order.name}</p>
+                                <p onClick={() => this.UpdateSelected(Order.id)} class={Order.id == this.state.selectedOrder ? "selectedOrder" : Order.isDeleted ? "deletedOrder" : null}>
+                                    {this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)} {Order.name}
+                                </p>
                                 ))}
                         </div>
                         <button onClick={() => this.DeleteOrder(this.state.selectedOrder)} class="DeleteButton">DELETE</button>
