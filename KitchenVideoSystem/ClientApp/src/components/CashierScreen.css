@@ -54,16 +54,19 @@ body {
     width: 500px;
 }
 
-.DeleteButton {
-    position: absolute;
-    text-align: center;
-    bottom: 15%;
+.Button {
+    border: 0px solid #000;
+    color: black;
+    background-color: #9ab3f5;
+    display: flex;
+    margin-bottom: 15px;
+    Width: 10em;
+    font-size: 48px;
     border-radius: 10px;
-    background-color: tomato;
-    color: white;
+    text-align: left;
 }
 
-.DeleteButton:active {
+.Button:active {
     background-color: black;
     color: white;
 }
@@ -90,7 +93,7 @@ body {
     text-align: center;
     bottom: 5%;
     border-radius: 10px;
-    background-color: #00cc66;
+    background-color: #3f51b6;
     color: white;
 }
 
@@ -145,6 +148,7 @@ body {
 
 }
 
+
 #CurrentOrderList {
     overflow: auto;
     height: 90%;
@@ -165,13 +169,4 @@ input[type="button"] {
 
 .selectedOrder {
     color: red;
-}
-
-.deletedOrder {
-    text-decoration: line-through;
-}
-
-.selectedDeletedOrder {
-    color: red;
-    text-decoration: line-through;
 }
