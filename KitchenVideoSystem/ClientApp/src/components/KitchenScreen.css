@@ -131,6 +131,11 @@ li {
     right: 0;
 }
 
+.kitchenDeletedOrder {
+    background-color: tomato;
+    text-decoration: line-through;
+}
+
 .RecallText {
     width: 480px;
     padding-left: 10px;

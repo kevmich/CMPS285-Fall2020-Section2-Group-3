@@ -38,12 +38,11 @@ export default class KitchenScreen extends Component {
             .then((response) => {
                 console.log(response.data);
                 this.setState({ Orders: response.data})
-
             });
     }
-    finishAllOrders() {
-        axios.get('/api/orders/finishallorders')
 
+    finishAllOrders() {
+        axios.get('/api/orders/finishallorders');
     }
 
     componentWillUnmount() {
@@ -97,7 +96,6 @@ export default class KitchenScreen extends Component {
         }
     }
 
-
     serveOrder(guid, isComplete) {
         if (isComplete) {
             axios({
@@ -120,7 +118,7 @@ export default class KitchenScreen extends Component {
                 <div class="AllGroupOrder" onClick={() => this.serveOrder(key, value[0].isComplete)}>
                     <div class="GroupOrder" id={value[0].isComplete ? "completeOrders" : "incompleteOrders"} key={key}>
                         {value.map((Order) => (
-                            <p>{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)} {Order.name} <br /> </p>       
+                            <p class={Order.isDeleted ? "kitchenDeletedOrder" : null}>{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)}{Order.name}<br /> </p>       
                         ))}
 
                     </div>
@@ -153,7 +151,7 @@ export default class KitchenScreen extends Component {
                 </div>
 
                 {this.state.visible ? <div><div id="RecallDiv"> {this.state.RecallOrder.map((Order) => (
-                    <p>{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)} {Order.name} <br /> </p>
+                    <p>{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)}{Order.name}<br /></p>
                 ))}
                 </div><div class="RecallText">
                         <p>RECALL</p>
