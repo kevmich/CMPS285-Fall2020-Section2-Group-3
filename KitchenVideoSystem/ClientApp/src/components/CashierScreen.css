@@ -40,6 +40,16 @@ body {
     background: transparent;
 }
 
+.CashierBackButton {
+    background-color: #3f51b6;
+    position: fixed;
+    bottom: 75px;
+    color: white;
+    border-top-right-radius: 10px;
+    padding-right: 10px;
+    z-index: 99;
+}
+
 .FoodItems, .MenuItems {
     border-radius: 15px;
     padding: 10px;

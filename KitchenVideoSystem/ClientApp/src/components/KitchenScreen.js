@@ -149,7 +149,7 @@ export default class KitchenScreen extends Component {
                 <div id="kitchenClock">
                     <Clock />
                 </div>
-
+                <button onClick={() => window.location.replace("./")} class="KitchenBackButton">Back</button>
                 {this.state.visible ? <div><div id="RecallDiv"> {this.state.RecallOrder.map((Order) => (
                     <p class={Order.isDeleted ? "RecallDelete" : null}> { this.iconSwitch(Order.orderItemId) }{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)}{Order.name}<br /></p>
                 ))}

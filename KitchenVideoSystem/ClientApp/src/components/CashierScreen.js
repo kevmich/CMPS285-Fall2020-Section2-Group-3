@@ -160,6 +160,7 @@ export default class CashierScreen extends Component {
                 <div id="cashierClock">
                     <Clock />
                 </div>
+                <button onClick={() => window.location.replace("./")} class="CashierBackButton">Back</button>
                 <div class="FoodItems">
                     <b> Food </b>
                     <button onClick={() => this.onClick(1, 0)} class="Button"><img src={hamburgerIcon} height="47px"/>&nbsp;Hamburger</button>
