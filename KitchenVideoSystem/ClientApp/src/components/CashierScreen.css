@@ -223,11 +223,6 @@ input[type="button"] {
     text-decoration: line-through;
 }
 
-.selectedDeletedOrder {
-    color: red;
-    text-decoration: line-through;
-}
-
 .DeleteButton {
     position: absolute;
     text-align: center;
@@ -235,31 +230,5 @@ input[type="button"] {
     border-radius: 10px;
     background-color: tomato;
     color: white;
-}
-
-.DeleteButton:active {
-    position: absolute;
-    text-align: center;
-    bottom: 15%;
-    border-radius: 10px;
-    background-color: white;
-    color: black;
-}
-
-.UnDeleteButton {
-    position: absolute;
-    text-align: center;
-    bottom: 15%;
-    border-radius: 10px;
-    background-color: royalblue;
-    color: white;
-}
-
-.UnDeleteButton:active {
-    position: absolute;
-    text-align: center;
-    bottom: 15%;
-    border-radius: 10px;
-    background-color: white;
-    color: black;
+   
 }
