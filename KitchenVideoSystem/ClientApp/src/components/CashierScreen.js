@@ -154,6 +154,13 @@ export default class CashierScreen extends Component {
             });
     }
 
+    UnDeleteOrder(id) {
+        axios.get('/api/orders/UnDeleteOrder/' + id)
+            .then((response) => {
+                this.updateCurrent();
+            });
+    }
+
     render() {
         return (
             <div>
@@ -226,13 +233,19 @@ export default class CashierScreen extends Component {
                             <div id="CurrentOrderList">
                                 <b>CURRENT ORDER</b>
                             {this.state.Orders.map((Order) => (
-                                <p onClick={() => this.UpdateSelected(Order.id)} class={Order.id == this.state.selectedOrder ? "selectedOrder" : Order.isDeleted ? "deletedOrder" : null}>
+                                <p onClick={() => this.UpdateSelected(Order.id)} class=
+                                    {(Order.id == this.state.selectedOrder && Order.isDeleted) ? "selectedDeletedOrder" : Order.id == this.state.selectedOrder ? "selectedOrder" : Order.isDeleted ? "deletedOrder" : null}>
                                     {this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)} {Order.name}
                                 </p>
                                 ))}
                         </div>
-                        <button onClick={() => this.DeleteOrder(this.state.selectedOrder)} class="DeleteButton">DELETE</button>
-                        <button onClick={this.CompleteOrder} class="CompleteButton" >{checksquareIcon} COMPLETE</button>
+                        {this.state.Orders.map((Order) => (
+                            <button onClick={() => { (Order.id == this.state.selectedOrder && Order.isDeleted) ? this.UnDeleteOrder(this.state.selectedOrder) : this.DeleteOrder(this.state.selectedOrder) }}
+                                class={(Order.id == this.state.selectedOrder && Order.isDeleted) ? "UnDeleteButton" : "DeleteButton"}>
+                                {(Order.id == this.state.selectedOrder && Order.isDeleted) ? "UNDELETE" : "DELETE"}
+                            </button>
+                            ))}
+                        <button onClick={this.CompleteOrder} class="CompleteButton">{checksquareIcon} COMPLETE</button>
                         </div>
                 </div>
             </div>

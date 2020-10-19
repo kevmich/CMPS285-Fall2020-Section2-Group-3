@@ -37,6 +37,8 @@ namespace Repository
 
         void DeleteOrder(int id);
 
+        void UnDeleteOrder(int id);
+
         void UpdateOrder(Order order);
 
     }
@@ -161,6 +163,16 @@ namespace Repository
             {
                 var parameter = new { Id = id };
                 var sql = $"UPDATE Orders SET IsDeleted = 1 WHERE Id = @Id ";
+                connection.Execute(sql, parameter);
+            }
+        }
+
+        public void UnDeleteOrder(int id)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var parameter = new { Id = id };
+                var sql = $"UPDATE Orders SET IsDeleted = 0 WHERE Id = @Id ";
                 connection.Execute(sql, parameter);
             }
         }

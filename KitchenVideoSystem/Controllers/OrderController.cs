@@ -94,5 +94,11 @@ namespace KitchenVideoSystem.Controllers
         {
             _orderRepository.DeleteOrder(id);
         }
+
+        [HttpGet, Route("undeleteorder/{id}")]
+        public void UnDeleteOrder([FromRoute] int id)
+        {
+            _orderRepository.UnDeleteOrder(id);
+        }
     }
 }
