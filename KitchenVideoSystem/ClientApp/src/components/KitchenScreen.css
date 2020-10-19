@@ -136,6 +136,10 @@ li {
     text-decoration: line-through;
 }
 
+.RecallDelete {
+    text-decoration: line-through;
+}
+
 .RecallText {
     width: 480px;
     padding-left: 10px;

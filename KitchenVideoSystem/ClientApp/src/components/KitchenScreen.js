@@ -151,7 +151,7 @@ export default class KitchenScreen extends Component {
                 </div>
 
                 {this.state.visible ? <div><div id="RecallDiv"> {this.state.RecallOrder.map((Order) => (
-                    <p>{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)}{Order.name}<br /></p>
+                    <p class={Order.isDeleted ? "RecallDelete" : null}> { this.iconSwitch(Order.orderItemId) }{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)}{Order.name}<br /></p>
                 ))}
                 </div><div class="RecallText">
                         <p>RECALL</p>
@@ -164,7 +164,6 @@ export default class KitchenScreen extends Component {
                             this.setState({
                                 RecallOrder: response.data
                             })
-
                     });
                     this.setState({ visible: !this.state.visible });
                 }} > Recall </button>
