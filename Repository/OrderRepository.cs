@@ -160,7 +160,7 @@ namespace Repository
             using (var connection = new SqlConnection(_connectionString))
             {
                 var parameter = new { Id = id };
-                var sql = $"UPDATE Orders SET IsDeleted = 1 WHERE Id = @Id ";
+                var sql = $"UPDATE Orders SET IsDeleted = CASE IsDeleted WHEN 1 THEN 0 ELSE 1 END WHERE Id = @Id";
                 connection.Execute(sql, parameter);
             }
         }

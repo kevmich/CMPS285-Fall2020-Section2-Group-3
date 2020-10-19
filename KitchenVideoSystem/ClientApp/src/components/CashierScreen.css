@@ -223,6 +223,11 @@ input[type="button"] {
     text-decoration: line-through;
 }
 
+.selectedDeletedOrder {
+    color: red;
+    text-decoration: line-through;
+}
+
 .DeleteButton {
     position: absolute;
     text-align: center;

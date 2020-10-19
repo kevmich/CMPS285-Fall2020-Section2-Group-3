@@ -226,7 +226,7 @@ export default class CashierScreen extends Component {
                             <div id="CurrentOrderList">
                                 <b>CURRENT ORDER</b>
                             {this.state.Orders.map((Order) => (
-                                <p onClick={() => this.UpdateSelected(Order.id)} class={Order.id == this.state.selectedOrder ? "selectedOrder" : Order.isDeleted ? "deletedOrder" : null}>
+                                <p onClick={() => this.UpdateSelected(Order.id)} class={(Order.id == this.state.selectedOrder && Order.isDeleted) ? "selectedDeletedOrder" : Order.id == this.state.selectedOrder ? "selectedOrder" : Order.isDeleted ? "deletedOrder" : null}>
                                     {this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)} {Order.name}
                                 </p>
                                 ))}
