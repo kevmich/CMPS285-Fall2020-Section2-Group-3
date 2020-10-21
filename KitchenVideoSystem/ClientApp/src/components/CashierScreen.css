@@ -44,6 +44,7 @@ body {
     background-color: #3f51b6;
     position: fixed;
     bottom: 75px;
+    left: 0px;
     color: white;
     border-top-right-radius: 10px;
     padding-right: 10px;

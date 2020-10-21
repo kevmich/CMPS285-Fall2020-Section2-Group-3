@@ -1,4 +1,5 @@
 ﻿import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import './CashierScreen.css'
@@ -160,7 +161,9 @@ export default class CashierScreen extends Component {
                 <div id="cashierClock">
                     <Clock />
                 </div>
-                <button onClick={() => window.location.replace("./")} class="CashierBackButton">Back</button>
+                <Link to="./">
+                    <button class="CashierBackButton">Back</button>
+                </Link>
                 <div class="FoodItems">
                     <b> Food </b>
                     <button onClick={() => this.onClick(1, 0)} class="Button"><img src={hamburgerIcon} height="47px"/>&nbsp;Hamburger</button>

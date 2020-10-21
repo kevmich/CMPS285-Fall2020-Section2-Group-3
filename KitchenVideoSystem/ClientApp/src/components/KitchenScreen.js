@@ -1,4 +1,5 @@
 ﻿import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './KitchenScreen.css'
 import axios from 'axios';
 import hamburgerIcon from '../content/hamburger-solid.svg';
@@ -149,7 +150,9 @@ export default class KitchenScreen extends Component {
                 <div id="kitchenClock">
                     <Clock />
                 </div>
-                <button onClick={() => window.location.replace("./")} class="KitchenBackButton">Back</button>
+                <Link to="./">
+                    <button class="KitchenBackButton">Back</button>
+                </Link>
                 {this.state.visible ? <div><div id="RecallDiv"> {this.state.RecallOrder.map((Order) => (
                     <p class={Order.isDeleted ? "RecallDelete" : null}> { this.iconSwitch(Order.orderItemId) }{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)}{Order.name}<br /></p>
                 ))}
