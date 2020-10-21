@@ -1,7 +1,6 @@
 ﻿import React, { Component } from "react";
 import "./Login.css";
 import { Redirect } from "react-router-dom";
-import bcrypt from 'bcryptjs'
 import axios from 'axios'
 
 

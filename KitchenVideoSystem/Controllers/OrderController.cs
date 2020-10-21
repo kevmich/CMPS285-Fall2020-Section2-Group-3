@@ -37,6 +37,7 @@ namespace KitchenVideoSystem.Controllers
             return exampleOrder;
         }
 
+        [Authorize]
         [HttpGet, Route("getorder/{guid}")]
         public OrderView[] GetOrder([FromRoute] Guid guid)
         {
