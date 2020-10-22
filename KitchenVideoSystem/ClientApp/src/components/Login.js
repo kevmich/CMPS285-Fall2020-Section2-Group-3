@@ -79,7 +79,6 @@ class Login extends Component {
                             <input type="submit" value="Login" />
                         </div>
                     </div>
-                    <p>user_id === "admin" && user_password === "123"</p>
                 </form>
             </div>
         );
