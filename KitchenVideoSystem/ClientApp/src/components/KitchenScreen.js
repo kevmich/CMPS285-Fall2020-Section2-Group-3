@@ -133,23 +133,12 @@ export default class KitchenScreen extends Component {
                 <div class="AllGroupOrder" onClick={() => this.serveOrder(key, value[0].isComplete)}>
                     <div class="GroupOrder" id={value[0].isComplete ? "completeOrders" : "incompleteOrders"} key={key}>
                         {value.filter((x) => {
-                            switch (x.isDeleted) {
-                                case true:
-                                    if (uniqueNames.has(x.name))
-                                        return false;
-                                    else {
-                                        uniqueNames.add(x.name);
-                                        return true;
-                                    }
-                                    break;
-                                case false:
-                                    if (uniqueNamesDeleted.has(x.name))
-                                        return false;
-                                    else {
-                                        uniqueNamesDeleted.add(x.name);
-                                        return true;
-                                    }
-                                    break;
+                            console.log(x.name + x.size + (x.isDeleted ? 1 : 0) + x.orderNumber);
+                            if (uniqueNames.has(x.name + x.size + (x.isDeleted ? 1 : 0) + x.orderNumber))
+                                return false;
+                            else {
+                                uniqueNames.add(x.name + x.size + (x.isDeleted ? 1 : 0) + x.orderNumber);
+                                return true;
                             }
                         })
                             .map((Order) => (
