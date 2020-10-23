@@ -13,7 +13,8 @@ class Login extends Component {
             loginParams: {
                 user_id: "",
                 user_password: ""
-            }
+            },
+            loginFail: false
         };
     }
     handleFormChange = event => {
@@ -42,16 +43,15 @@ class Login extends Component {
             this.setState({
                 islogged: true
             });
+        }).catch( (error) => {
+            if (error.response.status == 401) {
+                this.setState({
+                    loginFail: true
+                });
+                console.log("LOGIN FAIL");
+            }
         })
 
-
-
-        //if (user_id === "admin" && user_password === "123") {
-        //    localStorage.setItem("token", "T");
-        //    this.setState({
-        //        islogged: true
-        //    });
-        //}
         event.preventDefault();
     };
     render() {
@@ -79,7 +79,10 @@ class Login extends Component {
                             <input type="submit" value="Login" />
                         </div>
                     </div>
+                    <p> {this.state.loginFail ? "Incorrect Username or Password." : null } </p>
+
                 </form>
+
             </div>
         );
     }
