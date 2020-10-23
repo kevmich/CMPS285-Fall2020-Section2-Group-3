@@ -37,8 +37,7 @@ export class Home extends Component {
             <NavLink tag={Link} to="/cashierscreen">Cashier</NavLink>
             <br />
             <NavLink tag={Link} to="/kitchenscreen">Kitchen</NavLink>
-            <br />
-            <NavLink tag={Link} to="/login">Login</NavLink>
+            
       </div>
       );
       
