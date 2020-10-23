@@ -65,5 +65,6 @@
     <Build Include="dbo\Tables\OrderItems.sql" />
     <Build Include="dbo\Tables\Employees.sql" />
     <Build Include="dbo\Tables\EmployeeRoles.sql" />
+    <Build Include="dbo\Tables\Users.sql" />
   </ItemGroup>
 </Project>

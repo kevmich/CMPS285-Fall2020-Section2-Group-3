@@ -5,7 +5,6 @@ import { v4 as uuidv4 } from 'uuid';
 import './CashierScreen.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
-
 import hamburgerIcon from '../content/hamburger-solid.svg';
 import cheeseburgerIcon from '../content/cheeseburger-solid.svg';
 import nuggiesIcon from '../content/nuggets.svg';
@@ -17,6 +16,7 @@ import largedrinkIcon from '../content/drink-large.svg';
 import hotdogIcon from '../content/hotdog-solid.svg'
 import Clock from 'react-digital-clock'
 import { uniq } from 'lodash';
+
 
 const checksquareIcon = <FontAwesomeIcon icon={faCheckSquare} />
 
@@ -37,6 +37,7 @@ export default class CashierScreen extends Component {
 
         };
     }
+
     componentDidMount() {
         this.setUnfinishedGuid();
         setTimeout(() => { this.updateCurrent(); }, 2000);
@@ -44,7 +45,11 @@ export default class CashierScreen extends Component {
     }
 
     updateCurrent() {
-        axios.get('/api/orders/GetOrder/' + this.state.OrderNumber)
+        axios.get('/api/orders/GetOrder/' + this.state.OrderNumber, {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        })
             .then((response) => {
                 console.log(response.data);
                 this.setState({ Orders: response.data })

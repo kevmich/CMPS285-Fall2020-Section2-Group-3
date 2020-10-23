@@ -1,26 +1,35 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router';
+import { Route, Switch, Redirect } from 'react-router';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import  Login  from './components/Login';
 import CashierScreen from './components/CashierScreen';
 import KitchenScreen from './components/KitchenScreen';
-
-
-
 import './custom.css'
-
+import ProtectedRoute from "./ProtectedRoute";
 
 export default class App extends Component {
   static displayName = App.name;
 
   render () {
     return (
-      <div>
-        <Route exact path='/' component={Home} />
-        <Route exact path='/login' component={Login} />
-        <Route exact path='/CashierScreen' component={CashierScreen} />
-        <Route exact path='/KitchenScreen' component={KitchenScreen} />
+        <div>
+            <Switch>
+            <ProtectedRoute path='/home'>
+                <Route exact path='/home' component={Home} />
+            </ProtectedRoute>
+
+            <Route exact path='/' component={Login} />
+            <ProtectedRoute path= "/CashierScreen">
+                <Route exact path='/CashierScreen' component={CashierScreen} />
+            </ProtectedRoute>
+            <ProtectedRoute path="/KitchenScreen">
+                <Route exact path='/KitchenScreen' component={KitchenScreen} />
+            </ProtectedRoute>
+
+                <Route render={() => <Redirect to="/" />} />
+                </Switch>
+
       </div>
     );
   }

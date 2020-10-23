@@ -1,13 +1,17 @@
 using Business;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Models.Domain;
 using Repository;
-
+using System.Text;
+using TokenBasedAuth.Models;
+using TokenBasedAuth.Services;
 
 namespace KitchenVideoSystem
 {
@@ -28,6 +32,31 @@ namespace KitchenVideoSystem
 
             //Dependency Injection
             services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IUserService, UserService>();
+            services.Configure<AuthOptions>(Configuration.GetSection("AuthOptions"));
+
+            var authOptions = Configuration.GetSection("AuthOptions").Get<AuthOptions>();
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    RequireExpirationTime = true,
+                    ValidIssuer = authOptions.Issuer,
+                    ValidAudience = authOptions.Audience,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authOptions.SecureKey))
+                };
+            });
+
+            services.AddControllers();
+
 
             services.Configure<ConnectionStringsOptions>(Configuration.GetSection("ConnectionStrings"));
 
@@ -54,6 +83,9 @@ namespace KitchenVideoSystem
             app.UseSpaStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

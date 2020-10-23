@@ -15,7 +15,6 @@ import Clock from 'react-digital-clock'
 var _ = require('lodash');
 
 export default class KitchenScreen extends Component {
-
     constructor(props) {
         super(props);
         this.updateScreen = this.updateScreen.bind(this);
@@ -27,14 +26,14 @@ export default class KitchenScreen extends Component {
             visible: false
         };
     }
-    
+
     componentDidMount() {
         this.updateScreen();
         this.interval = setInterval(() => this.updateScreen(), 1000);
         document.title = "Kitchen Screen";
     }
 
-    updateScreen(){
+    updateScreen() {
         axios.get('/api/orders/getunfinishedorders')
             .then((response) => {
                 console.log(response.data);
@@ -109,8 +108,6 @@ export default class KitchenScreen extends Component {
         }
         this.updateScreen();
     }
-    //{ ordersArray = (_.groupBy(this.state.Orders, 'orderNumber')) }
-    //{ console.log(this.state.Orders) }
 
     CountSame(itemName, itemSize, guid, deleted) {
         var number = 0;
@@ -170,7 +167,7 @@ export default class KitchenScreen extends Component {
         let uniqueRecall = new Set();
 
         return (
-             
+
             <div>
                 <div id="KitchenScreenList">
                     <p>{this.renderObject()}</p>
@@ -199,17 +196,20 @@ export default class KitchenScreen extends Component {
                         <p>RECALL</p>
                     </div></div> : <div></div>}
 
-                <button class="Recall" onClick={() => { 
-                    axios.get('api/orders/getorder/' + this.state.RecallGuid)
-                        .then((response) => {
-                            console.log(response.data);
-                            this.setState({
-                                RecallOrder: response.data
-                            })
+                <button class="Recall" onClick={() => {
+                    axios.get('api/orders/getorder/' + this.state.RecallGuid, {
+                        headers: {
+                            'Authorization': 'Bearer ' + localStorage.getItem('token')
+                        }
+                    }).then((response) => {
+                        console.log(response.data);
+                        this.setState({
+                            RecallOrder: response.data
+                        })
                     });
                     this.setState({ visible: !this.state.visible });
                 }} > Recall </button>
-                
+
             </div>
         );
     }
