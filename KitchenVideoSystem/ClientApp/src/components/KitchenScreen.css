@@ -72,7 +72,7 @@ li {
 }
 
 .GroupOrder {
-    width: 480px;
+    width: 600px;
     background-color: #aed5ff;
     padding: 5px;
     border-radius: 10px;
@@ -86,7 +86,7 @@ li {
 }
 
 .CompleteText {
-    width: 480px;
+    width: auto;
     padding-left: 10px;
     color: black;
     background-color: lawngreen;
@@ -98,7 +98,7 @@ li {
 }
 
 .IncompleteText {
-    width: 480px;
+    width: auto;
     padding-left: 10px;
     color: black;
     background-color: tomato;
@@ -142,7 +142,6 @@ li {
 }
 
 .kitchenDeletedOrder {
-    background-color: tomato;
     text-decoration: line-through;
 }
 

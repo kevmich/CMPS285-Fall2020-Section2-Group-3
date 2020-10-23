@@ -51,6 +51,10 @@ body {
     z-index: 99;
 }
 
+.MenuItems {
+    background-color: #89d9ff !important;
+}
+
 .FoodItems, .MenuItems {
     border-radius: 15px;
     padding: 10px;
@@ -86,7 +90,7 @@ body {
     padding: 20px;
     vertical-align: middle;
     border-radius: 5px;
-    background-color: aqua;
+    background-color: #4ce1ff;
     width: 80px;
     height: 80px;
 }
@@ -95,7 +99,7 @@ body {
     padding: 20px;
     vertical-align: middle;
     border-radius: 5px;
-    background-color: coral;
+    background-color: #4eefff;
     width: 80px;
     height: 80px;
 }
@@ -104,7 +108,7 @@ body {
     padding: 20px;
     vertical-align: middle;
     border-radius: 5px;
-    background-color: crimson;
+    background-color: #51f8f7;
     width: 80px;
     height: 80px;
 }
@@ -180,15 +184,15 @@ body {
 }
 
 .Small {
-    background-color: aqua;
+    background-color: #4ce1ff;
 }
 
 .Medium {
-    background-color: coral;
+    background-color: #4eefff;
 }
 
 .Large {
-    background-color: crimson;
+    background-color: #51f8f7;
 }
 
 .DrinkSizeLabel {
@@ -210,7 +214,7 @@ body {
 
 #CurrentOrderList {
     overflow: auto;
-    height: 90%;
+    height: 80%;
 }
 
 input[type="button"] {

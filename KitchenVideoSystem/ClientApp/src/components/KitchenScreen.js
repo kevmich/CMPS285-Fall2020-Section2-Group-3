@@ -156,7 +156,7 @@ export default class KitchenScreen extends Component {
 
                     </div>
                     <div class={value[0].isComplete ? "CompleteText" : "IncompleteText"}>
-                        <p> {value[0].isComplete ? "COMPLETE" : "‎"} </p>
+                        <p> {value[0].isComplete ? "COMPLETE" : "INCOMPLETE"} </p>
                     </div>
                 </div>
             )
