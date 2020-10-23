@@ -56,7 +56,7 @@ class Login extends Component {
     };
     render() {
         if (localStorage.getItem("token")) {
-            return <Redirect to="/" />;
+            return <Redirect to="/home" />;
         }
         return (
             <div className="container">
