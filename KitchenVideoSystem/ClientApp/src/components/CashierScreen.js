@@ -16,6 +16,7 @@ import mediumdrinkIcon from '../content/drink-medium.svg';
 import largedrinkIcon from '../content/drink-large.svg';
 import hotdogIcon from '../content/hotdog-solid.svg'
 import Clock from 'react-digital-clock'
+import { uniq } from 'lodash';
 
 const checksquareIcon = <FontAwesomeIcon icon={faCheckSquare} />
 
@@ -243,26 +244,35 @@ export default class CashierScreen extends Component {
                     </div>
                         <div id="CurrentOrder">
                             <div id="CurrentOrderList">
-                                <b>CURRENT ORDER</b>
+                            <b>CURRENT ORDER</b>
                             {this.state.Orders.filter((x) => {
-                                switch (x.isDeleted) {
-                                    case true:
-                                        if (uniqueNames.has(x.name))
-                                            return false;
-                                        else {
-                                            uniqueNames.add(x.name);
-                                            return true;
-                                        }
-                                        break;
-                                    case false:
-                                        if (uniqueNamesDeleted.has(x.name))
-                                            return false;
-                                        else {
-                                            uniqueNamesDeleted.add(x.name);
-                                            return true;
-                                        }
-                                        break;
+                                console.log(x.name + x.size + (x.isDeleted ? 1 : 0));
+                                if (uniqueNames.has(x.name + x.size + (x.isDeleted ? 1 : 0)))
+                                    return false;
+                                else {
+                                    uniqueNames.add(x.name + x.size + (x.isDeleted ? 1 : 0));
+                                    return true;
                                 }
+
+                                //switch (x.isDeleted) {
+                                //    case true:
+                                //        if (uniqueNames.has(x.name))
+                                //            return false;
+                                //        else {
+                                //            uniqueNames.add(x.name);
+                                //            return true;
+                                //        }
+                                //        break;
+                                //    case false:
+                                //        if (uniqueNamesDeleted.has(x.name))
+                                //            return false;
+                                //        else {
+                                //            uniqueNamesDeleted.add(x.name);
+                                //            return true;
+                                //        }
+                                //        break;
+                                //}
+                                console.log(uniqueNames);
                             })
                                 .map((Order) => (
                                     <p onClick={() => this.UpdateSelected(Order.id)} class={(Order.id == this.state.selectedOrder && Order.isDeleted) ? "selectedDeletedOrder" : Order.id == this.state.selectedOrder ? "selectedOrder" : Order.isDeleted ? "deletedOrder" : null}>
