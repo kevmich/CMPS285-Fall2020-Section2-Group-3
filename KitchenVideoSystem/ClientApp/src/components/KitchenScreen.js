@@ -142,23 +142,18 @@ export default class KitchenScreen extends Component {
                             }
                         })
                             .map((Order) => (
-                                <p class={Order.isDeleted ? "kitchenDeletedOrder" : null}>{this.CountSame(Order.name, Order.size, Order.orderNumber, Order.is)}&nbsp;{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)}{Order.name}<br /></p>       
+                                <p class={Order.isDeleted ? "kitchenDeletedOrder" : null}>&nbsp;{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}&nbsp;
+                                    {this.CountSame(Order.name, Order.size, Order.orderNumber, Order.isDeleted)}&nbsp;{this.sizeSwitch(Order.size)}{Order.name}<br /></p>       
                         ))}
 
                     </div>
                     <div class={value[0].isComplete ? "CompleteText" : "IncompleteText"}>
-                        <p> {value[0].isComplete ? "COMPLETE" : "INCOMPLETE"} </p>
+                        <p> {value[0].isComplete ? "COMPLETE" : "‎"} </p>
                     </div>
                 </div>
             )
         })
     }
-    //                        {
-    //    this.state.Orders.map((Order) => (
-    //        <p id={Order.isComplete ? "completeOrders" : "incompleteOrders"}>{this.sizeSwitch(Order.size)}{Order.name} <br /> </p>
-    //    ))
-    //}
-
 
     render() {
         return (
