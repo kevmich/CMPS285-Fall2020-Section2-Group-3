@@ -14,7 +14,6 @@ import Clock from 'react-digital-clock'
 var _ = require('lodash');
 
 export default class KitchenScreen extends Component {
-
     constructor(props) {
         super(props);
         this.updateScreen = this.updateScreen.bind(this);
@@ -26,24 +25,22 @@ export default class KitchenScreen extends Component {
             visible: false
         };
     }
-    
+
     componentDidMount() {
         this.updateScreen();
         this.interval = setInterval(() => this.updateScreen(), 1000);
         document.title = "Kitchen Screen";
     }
 
-    updateScreen(){
+    updateScreen() {
         axios.get('/api/orders/getunfinishedorders')
             .then((response) => {
                 console.log(response.data);
-                this.setState({ Orders: response.data})
-
+                this.setState({ Orders: response.data })
             });
     }
     finishAllOrders() {
         axios.get('/api/orders/finishallorders')
-
     }
 
     componentWillUnmount() {
@@ -97,7 +94,6 @@ export default class KitchenScreen extends Component {
         }
     }
 
-
     serveOrder(guid, isComplete) {
         if (isComplete) {
             axios({
@@ -110,17 +106,14 @@ export default class KitchenScreen extends Component {
         }
         this.updateScreen();
     }
-    //{ ordersArray = (_.groupBy(this.state.Orders, 'orderNumber')) }
-    //{ console.log(this.state.Orders) }
 
     renderObject() {
-        
         return Object.entries(_.groupBy(this.state.Orders, 'orderNumber')).map(([key, value], i) => {
             return (
                 <div class="AllGroupOrder" onClick={() => this.serveOrder(key, value[0].isComplete)}>
                     <div class="GroupOrder" id={value[0].isComplete ? "completeOrders" : "incompleteOrders"} key={key}>
                         {value.map((Order) => (
-                            <p>{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)} {Order.name} <br /> </p>       
+                            <p>{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)} {Order.name} <br /> </p>
                         ))}
 
                     </div>
@@ -131,16 +124,10 @@ export default class KitchenScreen extends Component {
             )
         })
     }
-    //                        {
-    //    this.state.Orders.map((Order) => (
-    //        <p id={Order.isComplete ? "completeOrders" : "incompleteOrders"}>{this.sizeSwitch(Order.size)}{Order.name} <br /> </p>
-    //    ))
-    //}
-
 
     render() {
         return (
-             
+
             <div>
                 <div id="KitchenScreenList">
                     <p>{this.renderObject()}</p>
@@ -159,18 +146,20 @@ export default class KitchenScreen extends Component {
                         <p>RECALL</p>
                     </div></div> : <div></div>}
 
-                <button class="Recall" onClick={() => { 
-                    axios.get('api/orders/getorder/' + this.state.RecallGuid)
-                        .then((response) => {
-                            console.log(response.data);
-                            this.setState({
-                                RecallOrder: response.data
-                            })
-
+                <button class="Recall" onClick={() => {
+                    axios.get('api/orders/getorder/' + this.state.RecallGuid, {
+                        headers: {
+                            'Authorization': 'Bearer ' + localStorage.getItem('token')
+                        }
+                    }).then((response) => {
+                        console.log(response.data);
+                        this.setState({
+                            RecallOrder: response.data
+                        })
                     });
                     this.setState({ visible: !this.state.visible });
                 }} > Recall </button>
-                
+
             </div>
         );
     }
