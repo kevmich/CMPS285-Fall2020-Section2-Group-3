@@ -155,7 +155,18 @@ export default class CashierScreen extends Component {
             });
     }
 
+    CountSame(itemName, itemSize, guid) {
+        var number = 0;
+        this.state.Orders.forEach((Order) => {
+            if (Order.name == itemName && Order.size == itemSize && Order.orderNumber == guid)
+                number++;
+        });
+        return number;
+    }
+
     render() {
+        let uniqueNames = new Set();
+
         return (
             <div>
                 <div id="cashierClock">
@@ -229,9 +240,17 @@ export default class CashierScreen extends Component {
                         <div id="CurrentOrder">
                             <div id="CurrentOrderList">
                                 <b>CURRENT ORDER</b>
-                            {this.state.Orders.map((Order) => (
+                            {this.state.Orders.filter((x) => {
+                                if (uniqueNames.has(x.name))
+                                    return false;
+                                else {
+                                    uniqueNames.add(x.name);
+                                    return true;
+                                }
+                            })
+                                .map((Order) => (
                                 <p onClick={() => this.UpdateSelected(Order.id)} class={(Order.id == this.state.selectedOrder && Order.isDeleted) ? "selectedDeletedOrder" : Order.id == this.state.selectedOrder ? "selectedOrder" : Order.isDeleted ? "deletedOrder" : null}>
-                                    {this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)} {Order.name}
+                                        {this.CountSame(Order.name, Order.size, Order.orderNumber)}&nbsp;{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)}{Order.name}
                                 </p>
                                 ))}
                         </div>

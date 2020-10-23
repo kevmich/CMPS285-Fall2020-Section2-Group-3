@@ -112,14 +112,32 @@ export default class KitchenScreen extends Component {
     //{ ordersArray = (_.groupBy(this.state.Orders, 'orderNumber')) }
     //{ console.log(this.state.Orders) }
 
+    CountSame(itemName, itemSize, guid) {
+        var number = 0;
+        this.state.Orders.forEach((Order) => {
+            if (Order.name == itemName && Order.size == itemSize && Order.orderNumber == guid)
+                number++;
+        });
+        return number;
+    }
+
     renderObject() {
+        let uniqueNames = new Set();
         
         return Object.entries(_.groupBy(this.state.Orders, 'orderNumber')).map(([key, value], i) => {
             return (
                 <div class="AllGroupOrder" onClick={() => this.serveOrder(key, value[0].isComplete)}>
                     <div class="GroupOrder" id={value[0].isComplete ? "completeOrders" : "incompleteOrders"} key={key}>
-                        {value.map((Order) => (
-                            <p class={Order.isDeleted ? "kitchenDeletedOrder" : null}>{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)}{Order.name}<br /> </p>       
+                        {value.filter((x) => {
+                            if (uniqueNames.has(x.name))
+                                return false;
+                            else {
+                                uniqueNames.add(x.name);
+                                return true;
+                            }
+                        })
+                            .map((Order) => (
+                                <p class={Order.isDeleted ? "kitchenDeletedOrder" : null}>{this.CountSame(Order.name, Order.size, Order.orderNumber)}&nbsp;{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)}{Order.name}<br /></p>       
                         ))}
 
                     </div>
