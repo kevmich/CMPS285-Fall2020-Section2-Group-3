@@ -124,9 +124,20 @@ export default class KitchenScreen extends Component {
             return null;
     }
 
+    CountSameRecall(itemName, itemSize, guid, deleted) {
+        var number = 0;
+        this.state.RecallOrder.forEach((Order) => {
+            if (Order.name == itemName && Order.size == itemSize && Order.orderNumber == guid && Order.isDeleted == deleted)
+                number++;
+        });
+        if (number > 1)
+            return number;
+        else
+            return null;
+    }
+
     renderObject() {
         let uniqueNames = new Set();
-        let uniqueNamesDeleted = new Set();
         
         return Object.entries(_.groupBy(this.state.Orders, 'orderNumber')).map(([key, value], i) => {
             return (
@@ -156,6 +167,8 @@ export default class KitchenScreen extends Component {
     }
 
     render() {
+        let uniqueRecall = new Set();
+
         return (
              
             <div>
@@ -171,8 +184,16 @@ export default class KitchenScreen extends Component {
                 <Link to="./">
                     <button class="KitchenBackButton">Back</button>
                 </Link>
-                {this.state.visible ? <div><div id="RecallDiv"> {this.state.RecallOrder.map((Order) => (
-                    <p class={Order.isDeleted ? "RecallDelete" : null}> { this.iconSwitch(Order.orderItemId) }{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)}{Order.name}<br /></p>
+                {this.state.visible ? <div><div id="RecallDiv"> {this.state.RecallOrder.filter((x) => {
+                    if (uniqueRecall.has(x.name + x.size + (x.isDeleted ? 1 : 0) + x.orderNumber))
+                        return false;
+                    else {
+                        uniqueRecall.add(x.name + x.size + (x.isDeleted ? 1 : 0) + x.orderNumber);
+                        return true;
+                    }
+                })
+                    .map((Order) => (
+                        <p class={Order.isDeleted ? "RecallDelete" : null}>{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}&nbsp;{this.CountSameRecall(Order.name, Order.size, Order.orderNumber, Order.isDeleted)}&nbsp;{ this.sizeSwitch(Order.size) }{ Order.name } < br /></p>
                 ))}
                 </div><div class="RecallText">
                         <p>RECALL</p>
