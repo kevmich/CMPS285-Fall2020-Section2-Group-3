@@ -156,21 +156,19 @@ export default class CashierScreen extends Component {
             });
     }
 
-    CountSame(itemName, itemSize, guid, deleted) {
+    CountSame(itemName, itemSize, deleted) {
         var number = 0;
         this.state.Orders.forEach((Order) => {
-            if (Order.name == itemName && Order.size == itemSize && Order.orderNumber == guid && Order.isDeleted == deleted)
+            if (Order.name == itemName && Order.size == itemSize && Order.isDeleted == deleted)
                 number++;
         });
         if (number > 1)
             return number;
-        else
-            return null;
+
     }
 
     render() {
         let uniqueNames = new Set();
-        let uniqueNamesDeleted = new Set();
 
         return (
             <div>
@@ -246,7 +244,7 @@ export default class CashierScreen extends Component {
                             <div id="CurrentOrderList">
                             <b>CURRENT ORDER</b>
                             {this.state.Orders.filter((x) => {
-                                console.log(x.name + x.size + (x.isDeleted ? 1 : 0));
+                                //console.log(x.name + x.size + (x.isDeleted ? 1 : 0));
                                 if (uniqueNames.has(x.name + x.size + (x.isDeleted ? 1 : 0)))
                                     return false;
                                 else {
@@ -254,29 +252,10 @@ export default class CashierScreen extends Component {
                                     return true;
                                 }
 
-                                //switch (x.isDeleted) {
-                                //    case true:
-                                //        if (uniqueNames.has(x.name))
-                                //            return false;
-                                //        else {
-                                //            uniqueNames.add(x.name);
-                                //            return true;
-                                //        }
-                                //        break;
-                                //    case false:
-                                //        if (uniqueNamesDeleted.has(x.name))
-                                //            return false;
-                                //        else {
-                                //            uniqueNamesDeleted.add(x.name);
-                                //            return true;
-                                //        }
-                                //        break;
-                                //}
-                                console.log(uniqueNames);
                             })
                                 .map((Order) => (
                                     <p onClick={() => this.UpdateSelected(Order.id)} class={(Order.id == this.state.selectedOrder && Order.isDeleted) ? "selectedDeletedOrder" : Order.id == this.state.selectedOrder ? "selectedOrder" : Order.isDeleted ? "deletedOrder" : null}>
-                                        {this.CountSame(Order.name, Order.size, Order.orderNumber, Order.isDeleted)}&nbsp;{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}{this.sizeSwitch(Order.size)}{Order.name}
+                                        &nbsp;{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}&nbsp;{this.CountSame(Order.name, Order.size, Order.isDeleted)}&nbsp;{this.sizeSwitch(Order.size)}{Order.name}
                                 </p>
                                 ))}
                         </div>
