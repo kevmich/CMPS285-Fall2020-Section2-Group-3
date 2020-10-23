@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router';
+import { Route, Switch, Redirect } from 'react-router';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import  Login  from './components/Login';
 import CashierScreen from './components/CashierScreen';
 import KitchenScreen from './components/KitchenScreen';
-import { Redirect } from 'react-router'
-
 import './custom.css'
 import ProtectedRoute from "./ProtectedRoute";
 
