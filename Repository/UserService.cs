@@ -29,8 +29,8 @@ namespace TokenBasedAuth.Services
             {
                 using (var connection = new SqlConnection(_connectionString))
                 {
-                    //var parameter = new { Username = user.Username};
-                    var sql = "SELECT Users.Password FROM Users WHERE Username = '" + user.Username + "'";
+                    var parameter = new { Username = user.Username};
+                    var sql = "SELECT Users.Password FROM Users WHERE Username = @Username";
                     var comparePass = connection.QuerySingle<String>(sql);
                     if (comparePass == SHA.ComputeSHA256Hash(user.Password))
                         return true;
