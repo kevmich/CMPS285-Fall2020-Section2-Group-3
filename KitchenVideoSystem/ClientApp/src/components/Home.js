@@ -25,7 +25,7 @@ export class Home extends Component {
 
     render() {
         if (this.state.islogout) {
-            return <Redirect to="/login" />;
+            return <Redirect to="/" />;
         }
         return (
 
