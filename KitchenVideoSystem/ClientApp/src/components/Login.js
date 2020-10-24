@@ -60,7 +60,7 @@ class Login extends Component {
         }
         return (
             <div className = "Login">
-            <div className="container">
+            <div className="LoginContainer">
                 <form onSubmit={this.login} className="form-signin">
                     <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
                     <div className="row">
