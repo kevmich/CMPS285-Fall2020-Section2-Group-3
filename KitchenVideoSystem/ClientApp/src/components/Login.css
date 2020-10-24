@@ -1,24 +1,64 @@
-﻿body {
+﻿.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px 0 30px 0;
 }
-
-.login {
-    margin: 0;
+.Login {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 50%;
+    height: 50%;
 }
 
-#error {
-    color: red;
+
+input,
+.btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    margin: 5px 0;
+    opacity: 0.85;
+    display: inline-block;
+    font-size: 17px;
+    line-height: 20px;
+    text-decoration: none; 
 }
 
-.loginClock {
-    background-color: #3f51b6;
-    position: fixed;
-    bottom: 0px;
+    input:hover,
+    .btn:hover {
+        opacity: 1;
+    }
+
+input[type="submit"] {
+    background-color: #4caf50;
     color: white;
-    border-top-right-radius: 10px;
-    padding-right: 10px;
+    cursor: pointer;
+}
+
+ input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+
+h1 {
+    margin-left: 30px;
+}
+
+p {
+    text-align: center;
+}
+.col {
+    float: left;
+    width: 50%;
+    margin: auto;
+    padding: 0 50px;
+    margin-top: 6px;
+}
+
+.alert {
+    color: red;
 }

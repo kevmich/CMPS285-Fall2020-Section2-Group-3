@@ -59,6 +59,7 @@ class Login extends Component {
             return <Redirect to="/home" />;
         }
         return (
+            <div className = "Login">
             <div className="container">
                 <form onSubmit={this.login} className="form-signin">
                     <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
@@ -79,11 +80,12 @@ class Login extends Component {
                             <input type="submit" value="Login" />
                         </div>
                     </div>
-                    <p> {this.state.loginFail ? "Incorrect Username or Password." : null } </p>
+                    <p className = "alert"> {this.state.loginFail ? "Incorrect Username or Password." : null } </p>
 
                 </form>
 
-            </div>
+                </div>
+                </div>
         );
     }
 }
