@@ -3,7 +3,6 @@ import "./Login.css";
 import { Redirect } from "react-router-dom";
 import axios from 'axios'
 
-
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -27,7 +26,6 @@ class Login extends Component {
     };
 
     login = event => {
-
         let user_id = this.state.loginParams.user_id;
         let user_password = this.state.loginParams.user_password;
 
@@ -38,12 +36,12 @@ class Login extends Component {
                 "username": user_id,
                 "password": user_password
             }
-        }).then( (response) => {
+        }).then((response) => {
             localStorage.setItem("token", response.data.token)
             this.setState({
                 islogged: true
             });
-        }).catch( (error) => {
+        }).catch((error) => {
             if (error.response.status == 401) {
                 this.setState({
                     loginFail: true
@@ -59,33 +57,35 @@ class Login extends Component {
             return <Redirect to="/home" />;
         }
         return (
-            <div className = "Login">
-            <div className="LoginContainer">
-                <form onSubmit={this.login} className="form-signin">
-                    <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
-                    <div className="row">
-                        <div className="col">
-                            <input
-                                type="text"
-                                name="user_id"
-                                onChange={this.handleFormChange}
-                                placeholder="Enter Username"
-                            />
-                            <input
-                                type="password"
-                                name="user_password"
-                                onChange={this.handleFormChange}
-                                placeholder="Enter Password"
-                            />
-                            <input type="submit" value="Login" />
+            <div className="Login">
+                <div className="LoginContainer">
+                    <form onSubmit={this.login} className="form-signin">
+                        <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+                        <div className="row">
+                            <div className="col">
+                                <h3 className="h3 text-left"> Username: </h3>
+                                <input
+                                    type="text"
+                                    name="user_id"
+                                    onChange={this.handleFormChange}
+                                    placeholder="Enter Username"
+                                />
+                                <h3 className="h3 text-left"> Password: </h3>
+                                <input
+                                    type="password"
+                                    name="user_password"
+                                    onChange={this.handleFormChange}
+                                    placeholder="Enter Password"
+                                />
+                                <input type="submit" value="Login" />
+                            </div>
                         </div>
-                    </div>
-                    <p className = "alert"> {this.state.loginFail ? "Incorrect Username or Password." : null } </p>
+                        <p className="alert"> {this.state.loginFail ? "Incorrect Username or Password." : null} </p>
 
-                </form>
+                    </form>
 
                 </div>
-                </div>
+            </div>
         );
     }
 }

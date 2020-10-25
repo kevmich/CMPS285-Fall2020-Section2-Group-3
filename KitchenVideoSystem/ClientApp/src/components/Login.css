@@ -3,10 +3,10 @@
     background-color: #f2f2f2;
     padding: 20px 0 30px 0;
 }
+
 .Login {
     position: absolute;
     top: 0;
-    bottom: 0;
     left: 0;
     right: 0;
     margin: auto;
@@ -14,6 +14,9 @@
     height: 50%;
 }
 
+    .Login input[type="text"] {
+        margin-bottom: 20px;
+    }
 
 input,
 .btn {
@@ -26,7 +29,7 @@ input,
     display: inline-block;
     font-size: 17px;
     line-height: 20px;
-    text-decoration: none; 
+    text-decoration: none;
 }
 
     input:hover,
@@ -34,23 +37,29 @@ input,
         opacity: 1;
     }
 
-input[type="submit"] {
-    background-color: #4caf50;
-    color: white;
-    cursor: pointer;
-}
-
- input[type="submit"]:hover {
-        background-color: #45a049;
+    input[type="submit"] {
+        background-color: #4caf50;
+        color: white;
+        cursor: pointer;
     }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
 
 .Login h1 {
     margin-left: 30px;
 }
 
+.Login h3 {
+    font-size: 20px;
+    margin-bottom: -18px;
+}
+
 .Login p {
     text-align: center;
 }
+
 .Login .col {
     float: left;
     width: 50%;
