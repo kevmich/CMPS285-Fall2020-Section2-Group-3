@@ -55,7 +55,12 @@ input,
 .Login h3 {
     font-size: 20px;
     margin-bottom: -18px;
-    text-align: center;
+    text-align: center; 
+}
+
+.Login .signIn {
+    margin-left: 0px !important;
+    font-size: 35px;
 }
 
 .Login p {

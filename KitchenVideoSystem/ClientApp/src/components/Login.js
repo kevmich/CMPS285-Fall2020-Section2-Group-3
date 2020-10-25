@@ -62,7 +62,7 @@ class Login extends Component {
                 <div className="LoginContainer">
                     <form onSubmit={this.login} className="form-signin">
                         <img src={KvsIcon} height="80px" class="center" />
-                        <h1 className="h3 mb-3 font-weight-normal">Please sign in to KVS </h1>
+                        <h1 className="signIn">Please sign in to KVS </h1>
                         <div className="row">
                             <div className="col">
                                 <h3 className="h3 text-left"> Username: </h3>
