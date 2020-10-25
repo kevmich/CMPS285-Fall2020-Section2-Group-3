@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link, Redirect} from 'react-router-dom';
 import { NavLink } from 'reactstrap';
+import './Home.css'
+import KvsIcon from '../content/KVS-Icon.png';
 
 
 export class Home extends Component {
@@ -31,14 +33,14 @@ export class Home extends Component {
 
           
             <div>
-                <button onClick={this.signOut} href="#">
-                    Sign Out
-            </button>
-            <NavLink tag={Link} to="/cashierscreen">Cashier</NavLink>
-            <br />
-            <NavLink tag={Link} to="/kitchenscreen">Kitchen</NavLink>
-            
-      </div>
+                <div className="ButtonList">
+                    <img src={KvsIcon} height="120px" class="center" />
+                    <h1 className="HomeTitle">Welcome to KVS!</h1>
+                    <NavLink tag={Link} to="/cashierscreen" className="HomeButton">Cashier</NavLink>
+                    <NavLink tag={Link} to="/kitchenscreen" className="HomeButton">Kitchen</NavLink>
+                    <button onClick={this.signOut} href="#" className="SignOutButton">Sign Out</button>
+                 </div>
+            </div>
       );
       
     }

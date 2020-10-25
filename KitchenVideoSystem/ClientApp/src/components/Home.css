@@ -1,0 +1,36 @@
+﻿.ButtonList{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.HomeButton:hover {
+    color: white;
+}
+
+
+.HomeButton {
+    background-color: #3f51b6;
+    margin: 10px;
+    color: white;
+    border-radius: 10px;
+}
+
+.SignOutButton {
+    background-color: red;
+    margin: 10px;
+    color: white;
+    border-radius: 10px;
+    height: 90px;
+    border: none;
+}
+
+.HomeTitle {
+    font-size: 35px;
+    font-weight: 700;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
