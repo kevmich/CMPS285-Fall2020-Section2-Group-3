@@ -199,7 +199,7 @@ export default class KitchenScreen extends Component {
                 <button class="Recall" onClick={() => {
                     axios.get('api/orders/getorder/' + this.state.RecallGuid, {
                         headers: {
-                            'Authorization': 'Bearer ' + localStorage.getItem('token')
+                            'Authorization': 'Bearer ' + sessionStorage.getItem('token')
                         }
                     }).then((response) => {
                         console.log(response.data);

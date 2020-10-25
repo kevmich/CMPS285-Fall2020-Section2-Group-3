@@ -47,7 +47,7 @@ export default class CashierScreen extends Component {
     updateCurrent() {
         axios.get('/api/orders/GetOrder/' + this.state.OrderNumber, {
             headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
+                'Authorization': 'Bearer ' + sessionStorage.getItem('token')
             }
         })
             .then((response) => {

@@ -15,7 +15,7 @@ export class Home extends Component {
         };
     }
     signOut = () => {
-        localStorage.removeItem("token");
+        sessionStorage.removeItem("token");
         this.setState({
             islogout: true
         });

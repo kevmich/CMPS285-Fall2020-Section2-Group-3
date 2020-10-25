@@ -38,7 +38,7 @@ class Login extends Component {
                 "password": user_password
             }
         }).then((response) => {
-            localStorage.setItem("token", response.data.token)
+            sessionStorage.setItem("token", response.data.token)
             this.setState({
                 islogged: true
             });
@@ -54,7 +54,7 @@ class Login extends Component {
         event.preventDefault();
     };
     render() {
-        if (localStorage.getItem("token")) {
+        if (sessionStorage.getItem("token")) {
             return <Redirect to="/home" />;
         }
         return (
