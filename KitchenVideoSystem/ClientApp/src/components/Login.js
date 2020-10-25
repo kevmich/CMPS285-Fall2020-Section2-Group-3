@@ -2,6 +2,7 @@
 import "./Login.css";
 import { Redirect } from "react-router-dom";
 import axios from 'axios'
+import KvsIcon from '../content/KVS-Icon.png';
 
 class Login extends Component {
     constructor(props) {
@@ -60,7 +61,8 @@ class Login extends Component {
             <div className="Login">
                 <div className="LoginContainer">
                     <form onSubmit={this.login} className="form-signin">
-                        <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+                        <img src={KvsIcon} height="80px" class="center" />
+                        <h1 className="signIn">Please sign in to KVS </h1>
                         <div className="row">
                             <div className="col">
                                 <h3 className="h3 text-left"> Username: </h3>
@@ -80,7 +82,7 @@ class Login extends Component {
                                 <input type="submit" value="Login" />
                             </div>
                         </div>
-                        <p className="alert"> {this.state.loginFail ? "Incorrect Username or Password." : null} </p>
+                        {this.state.loginFail ? <p className="alert"> Incorrect Username or Password. </p> : null}
 
                     </form>
 

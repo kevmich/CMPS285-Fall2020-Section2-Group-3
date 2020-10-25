@@ -14,9 +14,9 @@
     height: 50%;
 }
 
-    .Login input[type="text"] {
-        margin-bottom: 20px;
-    }
+.Login input[type="text"] {
+    margin-bottom: 20px;
+}
 
 input,
 .btn {
@@ -49,11 +49,18 @@ input,
 
 .Login h1 {
     margin-left: 30px;
+    text-align: center;
 }
 
 .Login h3 {
     font-size: 20px;
     margin-bottom: -18px;
+    text-align: center; 
+}
+
+.Login .signIn {
+    margin-left: 0px !important;
+    font-size: 35px;
 }
 
 .Login p {
@@ -69,5 +76,18 @@ input,
 }
 
 .alert {
-    color: red;
+    margin-top: 30px;
+    left:25%;
+    font-size:20px;
+    border-radius:5px;
+    width: 50%;
+    color: white;
+    background-color: red;
+}
+
+.Login .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
 }
