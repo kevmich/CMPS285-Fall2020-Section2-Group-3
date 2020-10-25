@@ -5,15 +5,15 @@ import { v4 as uuidv4 } from 'uuid';
 import './CashierScreen.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
-import hamburgerIcon from '../content/hamburger-solid.svg';
-import cheeseburgerIcon from '../content/cheeseburger-solid.svg';
-import nuggiesIcon from '../content/nuggets.svg';
-import corndogIcon from '../content/corn-dog.svg';
-import pretzelIcon from '../content/pretzel.svg';
-import smalldrinkIcon from '../content/drink-small.svg';
-import mediumdrinkIcon from '../content/drink-medium.svg';
-import largedrinkIcon from '../content/drink-large.svg';
-import hotdogIcon from '../content/hotdog-solid.svg'
+import hamburgerIcon from '../content/hamburger-solid.png';
+import cheeseburgerIcon from '../content/cheeseburger-solid.png';
+import nuggiesIcon from '../content/nuggets.png';
+import corndogIcon from '../content/corn-dog.png';
+import pretzelIcon from '../content/pretzel.png';
+import smalldrinkIcon from '../content/drink-small.png';
+import mediumdrinkIcon from '../content/drink-medium.png';
+import largedrinkIcon from '../content/drink-large.png';
+import hotdogIcon from '../content/hotdog-solid.png'
 import Clock from 'react-digital-clock'
 import { uniq } from 'lodash';
 
