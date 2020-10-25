@@ -261,10 +261,10 @@ export default class CashierScreen extends Component {
                                 .map((Order) => (
                                     <p onClick={() => this.UpdateSelected(Order.id)} class={(Order.id == this.state.selectedOrder && Order.isDeleted) ? "selectedDeletedOrder" : Order.id == this.state.selectedOrder ? "selectedOrder" : Order.isDeleted ? "deletedOrder" : null}>
                                         &nbsp;{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}&nbsp;{this.CountSame(Order.name, Order.size, Order.isDeleted)}&nbsp;{this.sizeSwitch(Order.size)}{Order.name}
+                                        {Order.id == this.state.selectedOrder ? <button onClick={() => this.DeleteOrder(this.state.selectedOrder)} class={Order.isDeleted ? "UndeleteButton" : "DeleteButton"}>{Order.isDeleted ? "UNDELETE" : "DELETE"}</button> : null}
                                 </p>
                                 ))}
                         </div>
-                        <button onClick={() => this.DeleteOrder(this.state.selectedOrder)} class="DeleteButton">DELETE</button>
                         <button onClick={this.CompleteOrder} class="CompleteButton" >{checksquareIcon} COMPLETE</button>
                         </div>
                 </div>

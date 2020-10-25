@@ -245,10 +245,19 @@ input[type="button"] {
 
 .DeleteButton {
     position: absolute;
+    right: auto;
     text-align: center;
-    bottom: 15%;
     border-radius: 10px;
     background-color: tomato;
     color: white;
    
+}
+
+.UndeleteButton {
+    position: absolute;
+    right: auto;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #3f51b6;
+    color: white;
 }
