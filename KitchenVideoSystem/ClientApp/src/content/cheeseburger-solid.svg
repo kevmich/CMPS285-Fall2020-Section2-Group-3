@@ -7,17 +7,17 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
-   sodipodi:docname="cheeseburger-solid.svg"
-   id="svg854"
-   version="1.1"
-   viewBox="0 0 512 512"
-   role="img"
-   class="svg-inline--fa fa-hamburger fa-w-16"
-   data-icon="hamburger"
-   data-prefix="fas"
+   aria-hidden="true"
    focusable="false"
-   aria-hidden="true">
+   data-prefix="fas"
+   data-icon="hamburger"
+   class="svg-inline--fa fa-hamburger fa-w-16"
+   role="img"
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg854"
+   sodipodi:docname="cheeseburger-solid.svg"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)">
   <metadata
      id="metadata860">
     <rdf:RDF>
@@ -26,51 +26,40 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <defs
      id="defs858" />
   <sodipodi:namedview
-     inkscape:current-layer="svg854"
-     inkscape:window-maximized="0"
-     inkscape:window-y="189"
-     inkscape:window-x="92"
-     inkscape:cy="48.43184"
-     inkscape:cx="282.60978"
-     inkscape:zoom="0.4046529"
-     showgrid="false"
-     id="namedview856"
-     inkscape:window-height="851"
-     inkscape:window-width="1271"
-     inkscape:pageshadow="2"
-     inkscape:pageopacity="0"
-     guidetolerance="10"
-     gridtolerance="10"
-     objecttolerance="10"
-     borderopacity="1"
+     inkscape:document-rotation="0"
+     pagecolor="#ffffff"
      bordercolor="#666666"
-     pagecolor="#ffffff" />
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     id="namedview856"
+     showgrid="false"
+     inkscape:zoom="0.8093058"
+     inkscape:cx="144.19328"
+     inkscape:cy="196.72352"
+     inkscape:window-x="1592"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg854" />
   <path
-     id="path868"
-     d="m 58.64,224 h 394.72 c 34.57,0 54.62,-43.9 34.82,-75.88 C 448,83.2 359.55,32.1 256,32 152.46,32.1 64,83.2 23.82,148.11 4,180.09 24.07,224 58.64,224 Z" />
+     d="M 256 32 C 152.46 32.1 64.000315 83.199365 23.820312 148.10938 C 4.0003135 180.08937 24.070625 224 58.640625 224 L 453.35938 224 C 487.92937 224 507.97969 180.09914 488.17969 148.11914 C 447.99969 83.199143 359.55 32.1 256 32 z M 256 80 A 16 16 0 1 1 240 96 A 16 16 0 0 1 256 80 z M 128 112 A 16 16 0 1 1 112 128 A 16 16 0 0 1 128 112 z M 384 112 A 16 16 0 1 1 368 128 A 16 16 0 0 1 384 112 z "
+     id="path868" />
   <path
-     id="path866"
-     d="M 480,384 H 32 a 16,16 0 0 0 -16,16 v 16 a 64,64 0 0 0 64,64 h 352 a 64,64 0 0 0 64,-64 v -16 a 16,16 0 0 0 -16,-16 z" />
+     d="M 480,384 H 32 a 16,16 0 0 0 -16,16 v 16 a 64,64 0 0 0 64,64 h 352 a 64,64 0 0 0 64,-64 v -16 a 16,16 0 0 0 -16,-16 z"
+     id="path866" />
   <path
-     d="M 48 256 A 48 48 0 0 0 48 352 L 464 352 A 48 48 0 0 0 464 256 L 416.80078 256 L 338.07812 334.72266 L 259.35547 256 L 48 256 z "
-     id="path852" />
-  <path
-     style="fill:#ffffff;fill-opacity:1"
-     id="path874"
-     d="m 128,112 a 16,16 0 1 1 -16,16 16,16 0 0 1 16,-16 z" />
-  <path
-     style="fill:#ffffff;fill-opacity:1"
-     id="path872"
-     d="M 256,80 A 16,16 0 1 1 240,96 16,16 0 0 1 256,80 Z" />
-  <path
-     style="fill:#ffffff;fill-opacity:1"
-     id="path870"
-     d="m 384,112 a 16,16 0 1 1 -16,16 16,16 0 0 1 16,-16 z" />
+     id="path852"
+     d="M 48 256 A 48 48 0 0 0 48 352 L 464 352 A 48 48 0 0 0 464 256 L 416.80078 256 L 338.07812 334.72266 L 259.35547 256 L 48 256 z " />
 </svg>
