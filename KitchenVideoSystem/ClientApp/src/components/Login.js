@@ -22,7 +22,9 @@ class Login extends Component {
         let val = event.target.value;
         loginParamsNew[event.target.name] = val;
         this.setState({
-            loginParams: loginParamsNew
+            loginParams: loginParamsNew,
+            loginFail: false
+
         });
     };
 
@@ -43,7 +45,7 @@ class Login extends Component {
                 islogged: true
             });
         }).catch((error) => {
-            if (error.response.status == 401) {
+            if (error.response.status == 401 || error.response.status == 400) {
                 this.setState({
                     loginFail: true
                 });
@@ -53,6 +55,14 @@ class Login extends Component {
 
         event.preventDefault();
     };
+
+
+    componentDidMount() {
+        document.title = "KVS Login";
+    }
+
+
+
     render() {
         if (sessionStorage.getItem("token")) {
             return <Redirect to="/home" />;
@@ -83,6 +93,7 @@ class Login extends Component {
                             </div>
                         </div>
                         {this.state.loginFail ? <p className="alert"> Incorrect Username or Password. </p> : null}
+
 
                     </form>
 
