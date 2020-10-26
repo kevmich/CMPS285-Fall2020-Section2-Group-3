@@ -4,7 +4,8 @@ import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import './CashierScreen.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckSquare } from '@fortawesome/free-solid-svg-icons'
+import { faCheckSquare, faUndo } from '@fortawesome/free-solid-svg-icons'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import hamburgerIcon from '../content/hamburger-solid.png';
 import cheeseburgerIcon from '../content/cheeseburger-solid.png';
 import nuggiesIcon from '../content/nuggets.png';
@@ -261,7 +262,7 @@ export default class CashierScreen extends Component {
                                 .map((Order) => (
                                     <p onClick={() => this.UpdateSelected(Order.id)} class={(Order.id == this.state.selectedOrder && Order.isDeleted) ? "selectedDeletedOrder" : Order.id == this.state.selectedOrder ? "selectedOrder" : Order.isDeleted ? "deletedOrder" : null}>
                                         &nbsp;{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}&nbsp;{this.CountSame(Order.name, Order.size, Order.isDeleted)}&nbsp;{this.sizeSwitch(Order.size)}{Order.name}
-                                        {Order.id == this.state.selectedOrder ? <button onClick={() => this.DeleteOrder(this.state.selectedOrder)} class={Order.isDeleted ? "UndeleteButton" : "DeleteButton"}>{Order.isDeleted ? "UNDELETE" : "DELETE"}</button> : null}
+                                        {Order.id == this.state.selectedOrder ? <button onClick={() => this.DeleteOrder(this.state.selectedOrder)} class={Order.isDeleted ? "UndeleteButton" : "DeleteButton"}>{Order.isDeleted ? <FontAwesomeIcon icon={faUndo} /> : <FontAwesomeIcon icon={faTrash} />}</button> : null}
                                 </p>
                                 ))}
                         </div>

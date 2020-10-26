@@ -213,6 +213,7 @@ body {
 }
 
 #CurrentOrderList {
+    width: auto;
     overflow: auto;
     height: 80%;
 }
