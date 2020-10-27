@@ -260,10 +260,12 @@ export default class CashierScreen extends Component {
 
                             })
                                 .map((Order) => (
-                                    <p onClick={() => this.UpdateSelected(Order.id)} class={(Order.id == this.state.selectedOrder && Order.isDeleted) ? "selectedDeletedOrder" : Order.id == this.state.selectedOrder ? "selectedOrder" : Order.isDeleted ? "deletedOrder" : null}>
-                                        &nbsp;{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}&nbsp;{this.CountSame(Order.name, Order.size, Order.isDeleted)}&nbsp;{this.sizeSwitch(Order.size)}{Order.name}
-                                        {Order.id == this.state.selectedOrder ? <button onClick={() => this.DeleteOrder(this.state.selectedOrder)} class={Order.isDeleted ? "UndeleteButton" : "DeleteButton"}>{Order.isDeleted ? <FontAwesomeIcon icon={faUndo} /> : <FontAwesomeIcon icon={faTrash} />}</button> : null}
-                                </p>
+                                    <div class="OrderDisplay">
+                                        <p onClick={() => this.UpdateSelected(Order.id)} class={(Order.id == this.state.selectedOrder && Order.isDeleted) ? "selectedDeletedOrder" : Order.id == this.state.selectedOrder ? "selectedOrder" : Order.isDeleted ? "deletedOrder" : null}>
+                                            &nbsp;{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}&nbsp;{this.CountSame(Order.name, Order.size, Order.isDeleted)}&nbsp;{this.sizeSwitch(Order.size)}{Order.name}
+                                        </p>
+                                        <button onClick={() => this.DeleteOrder(Order.id)} class={Order.isDeleted ? "UndeleteButton" : "DeleteButton"}>{Order.isDeleted ? <FontAwesomeIcon icon={faUndo} /> : <FontAwesomeIcon icon={faTrash} />}</button>
+                                    </div>
                                 ))}
                         </div>
                         <button onClick={this.CompleteOrder} class="CompleteButton" >{checksquareIcon} COMPLETE</button>
