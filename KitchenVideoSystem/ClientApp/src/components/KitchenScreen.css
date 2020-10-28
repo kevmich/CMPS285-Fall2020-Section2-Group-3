@@ -95,6 +95,7 @@ li {
     margin-top: -30px;
     border-radius: 10px;
     font-weight: 600;
+    display: flex;
 }
 
 .IncompleteText {
@@ -107,7 +108,13 @@ li {
     margin-top: -30px;
     border-radius: 10px;
     font-weight: 600;
+    display: flex;
 }
+
+.BottomText {
+    width: 500px;
+}
+
 .AllGroupOrder {
     flex-wrap: nowrap;
     flex-direction: column;
@@ -117,12 +124,17 @@ li {
 .Recall {
     background-color: #683fb6;
     position: fixed;
+    width: 500px;
     bottom: 0;
     right: 0;
     color: white;
     border-top-left-radius: 10px;
     padding-right: 10px;
     z-index: 99;
+}
+
+.RecallButton {
+    display: flex;
 }
 
 #RecallDiv {

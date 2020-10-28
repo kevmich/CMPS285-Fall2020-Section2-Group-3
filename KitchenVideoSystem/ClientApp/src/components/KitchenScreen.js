@@ -162,8 +162,8 @@ export default class KitchenScreen extends Component {
                             ))}
                     </div>
                     <div class={value[0].isComplete ? "CompleteText" : "IncompleteText"}>
-                        <p> {value[0].isComplete ? "COMPLETE" : "INCOMPLETE"} &nbsp;&nbsp; {(this.GetSecondsFrom(value[0].dateStarted))}</p>
-                        
+                        <p class="BottomText"> {value[0].isComplete ? "COMPLETE" : "INCOMPLETE"}</p>
+                        <p>{(this.GetSecondsFrom(value[0].dateStarted))}</p>
                     </div>
                 </div>
             )
@@ -197,12 +197,13 @@ export default class KitchenScreen extends Component {
                     }
                 })
                     .map((Order) => (
-                        <p class={Order.isDeleted ? "RecallDelete" : null}>{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}&nbsp;{this.CountSameRecall(Order.name, Order.size, Order.orderNumber, Order.isDeleted)}&nbsp;{ this.sizeSwitch(Order.size)}{Order.name} < br /></p>
-                ))}
-                </div><div class="RecallText">
+                        <p class={Order.isDeleted ? "RecallDelete" : null} id={Order.isDeleted ? "RecallDelete" : null}>{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}&nbsp;{this.CountSameRecall(Order.name, Order.size, Order.orderNumber, Order.isDeleted)}&nbsp;{ this.sizeSwitch(Order.size)}{Order.name} < br /></p>
+                    ))}
+                    {/*<p>{this.GetSecondsFrom(someSource)}</p>*/}
+                </div>
+                    <div class="RecallText">
                         <p>RECALL</p>
                     </div></div> : <div></div>}
-
                 <button class="Recall" onClick={() => {
                     axios.get('api/orders/getorder/' + this.state.RecallGuid, {
                         headers: {
@@ -216,7 +217,6 @@ export default class KitchenScreen extends Component {
                     });
                     this.setState({ visible: !this.state.visible });
                 }} > Recall </button>
-
             </div>
         );
     }
