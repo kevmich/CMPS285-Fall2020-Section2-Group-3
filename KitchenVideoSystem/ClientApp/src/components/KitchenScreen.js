@@ -133,6 +133,13 @@ export default class KitchenScreen extends Component {
             return null;
     }
 
+    GetSecondsFrom(date) {
+        var d = new Date(date);
+        var currentDate = new Date();
+        return Math.floor((currentDate - d) / 1000);
+    }
+
+
     renderObject() {
         let uniqueNames = new Set();
         
@@ -152,11 +159,11 @@ export default class KitchenScreen extends Component {
                             .map((Order) => (
                                 <p class={Order.isDeleted ? "kitchenDeletedOrder" : null}>&nbsp;{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}&nbsp;
                                     {this.CountSame(Order.name, Order.size, Order.orderNumber, Order.isDeleted)}&nbsp;{this.sizeSwitch(Order.size)}{Order.name}<br /></p>       
-                        ))}
-
+                            ))}
                     </div>
                     <div class={value[0].isComplete ? "CompleteText" : "IncompleteText"}>
-                        <p> {value[0].isComplete ? "COMPLETE" : "INCOMPLETE"} </p>
+                        <p> {value[0].isComplete ? "COMPLETE" : "INCOMPLETE"} &nbsp;&nbsp; {(this.GetSecondsFrom(value[0].dateStarted))}</p>
+                        
                     </div>
                 </div>
             )
@@ -190,7 +197,7 @@ export default class KitchenScreen extends Component {
                     }
                 })
                     .map((Order) => (
-                        <p class={Order.isDeleted ? "RecallDelete" : null}>{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}&nbsp;{this.CountSameRecall(Order.name, Order.size, Order.orderNumber, Order.isDeleted)}&nbsp;{ this.sizeSwitch(Order.size) }{ Order.name } < br /></p>
+                        <p class={Order.isDeleted ? "RecallDelete" : null}>{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}&nbsp;{this.CountSameRecall(Order.name, Order.size, Order.orderNumber, Order.isDeleted)}&nbsp;{ this.sizeSwitch(Order.size)}{Order.name} < br /></p>
                 ))}
                 </div><div class="RecallText">
                         <p>RECALL</p>

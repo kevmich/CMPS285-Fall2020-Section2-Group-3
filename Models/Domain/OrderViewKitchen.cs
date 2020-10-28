@@ -14,5 +14,7 @@ namespace Models
         public Boolean IsDeleted { get; set; }
         public int OrderItemId { get; set; }
 
+        public DateTimeOffset DateStarted { get; set; }
+
     }
 }
