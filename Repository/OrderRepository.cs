@@ -87,7 +87,7 @@ namespace Repository
             using (var connection = new SqlConnection(_connectionString))
             {
                 var parameter = new { orderNumber = guid };
-                var sql = $"SELECT Orders.Id, OrderItems.Name, Orders.Size, Orders.OrderItemId, Orders.IsDeleted, Orders.DateStarted FROM Orders INNER JOIN OrderItems ON Orders.OrderItemId = OrderItems.Id WHERE OrderNumber = @ordernumber ORDER BY DateStarted";
+                var sql = $"SELECT Orders.Id, OrderItems.Name, Orders.Size, Orders.OrderItemId, Orders.IsDeleted, Orders.DateStarted FROM Orders INNER JOIN OrderItems ON Orders.OrderItemId = OrderItems.Id WHERE OrderNumber = @ordernumber ORDER BY IsDeleted, Size, OrderItemId";
                 var order = connection.Query<OrderView>(sql, parameter).ToArray();
                 return order;
             }
@@ -149,7 +149,7 @@ namespace Repository
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var sql = $"SELECT OrderItems.Name, Orders.Size, Orders.OrderNumber, Orders.IsComplete, Orders.OrderItemId, Orders.IsDeleted, Orders.DateStarted FROM Orders INNER JOIN OrderItems ON Orders.OrderItemId = OrderItems.Id WHERE DateFinished IS NULL ORDER BY DateStarted";
+                var sql = $"SELECT OrderItems.Name, Orders.Size, Orders.OrderNumber, Orders.IsComplete, Orders.OrderItemId, Orders.IsDeleted, Orders.DateStarted FROM Orders INNER JOIN OrderItems ON Orders.OrderItemId = OrderItems.Id WHERE DateFinished IS NULL ORDER BY IsDeleted, Size, OrderItemId";
                 var orders = connection.Query<OrderViewKitchen>(sql).ToArray();
                 return orders;
             }

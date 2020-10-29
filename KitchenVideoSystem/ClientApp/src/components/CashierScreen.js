@@ -125,7 +125,7 @@ export default class CashierScreen extends Component {
             data: {
                 "OrderNumber": this.state.OrderNumber,
                 "OrderItemId": id,
-                "DateStarted": this.state.time,
+                "DateStarted": new Date(),
                 "Size": size,
                 "IsComplete": false,
                 "IsDeleted": false,
