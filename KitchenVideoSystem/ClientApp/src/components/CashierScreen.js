@@ -28,13 +28,10 @@ export default class CashierScreen extends Component {
         this.CompleteOrder = this.CompleteOrder.bind(this);
         this.updateCurrent = this.updateCurrent.bind(this);
         this.setUnfinishedGuid = this.setUnfinishedGuid.bind(this);
-        this.UpdateSelected = this.UpdateSelected.bind(this);
         this.DeleteOrder = this.DeleteOrder.bind(this);
         this.state = {
             OrderNumber: uuidv4(),
             Orders: [],
-            time: new Date(),
-            selectedOrder: null,
 
         };
     }
@@ -118,7 +115,6 @@ export default class CashierScreen extends Component {
     }
 
     onClick(id, size) {
-        this.setState({ time: new Date() });
         axios({
             method: 'post',
             url: '/api/orders/sendorder',
@@ -143,16 +139,8 @@ export default class CashierScreen extends Component {
         }).then(response => this.updateCurrent());
         this.setState({
             OrderNumber: uuidv4(),
-            selectedOrder: null
         });
         console.log("Complete Order Click!!!");
-    }
-    
-    UpdateSelected(id) {
-        this.setState({
-            selectedOrder: id
-        });
-        this.updateCurrent();
     }
 
     DeleteOrder(id) {
@@ -261,7 +249,7 @@ export default class CashierScreen extends Component {
                             })
                                 .map((Order) => (
                                     <div class="OrderDisplay">
-                                        <p onClick={() => this.UpdateSelected(Order.id)} id="OrderColumn" class={(Order.id == this.state.selectedOrder && Order.isDeleted) ? "selectedDeletedOrder" : Order.id == this.state.selectedOrder ? "selectedOrder" : Order.isDeleted ? "deletedOrder" : null}>
+                                        <p id="OrderColumn" class={(Order.isDeleted) ? "deletedOrder" : null}>
                                             &nbsp;{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}&nbsp;{this.CountSame(Order.name, Order.size, Order.isDeleted)}&nbsp;{this.sizeSwitch(Order.size)}{Order.name}
                                         </p>
                                         <button onClick={() => this.DeleteOrder(Order.id)} class={Order.isDeleted ? "UndeleteButton" : "DeleteButton"}>{Order.isDeleted ? <FontAwesomeIcon icon={faUndo} /> : <FontAwesomeIcon icon={faTrash} />}</button>
