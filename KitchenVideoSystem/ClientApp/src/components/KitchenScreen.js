@@ -23,6 +23,7 @@ export default class KitchenScreen extends Component {
             Orders: [],
             RecallGuid: null,
             RecallOrder: [],
+            RecallTime: null,
             visible: false
         };
     }
@@ -134,9 +135,14 @@ export default class KitchenScreen extends Component {
     }
 
     GetSecondsFrom(date) {
-        var d = new Date(date);
-        var currentDate = new Date();
-        return Math.floor((currentDate - d) / 1000);
+        if (date != -1) {
+            var d = new Date(date);
+            var currentDate = new Date();
+            return Math.floor((currentDate - d) / 1000);
+        } else {
+            return;
+        }
+        
     }
 
 
@@ -148,7 +154,7 @@ export default class KitchenScreen extends Component {
                 <div class="AllGroupOrder" onClick={() => this.serveOrder(key, value[0].isComplete)}>
                     <div class="GroupOrder" id={value[0].isComplete ? "completeOrders" : "incompleteOrders"} key={key}>
                         {value.filter((x) => {
-                            console.log(x.name + x.size + (x.isDeleted ? 1 : 0) + x.orderNumber);
+                            //console.log(x.name + x.size + (x.isDeleted ? 1 : 0) + x.orderNumber);
                             if (uniqueNames.has(x.name + x.size + (x.isDeleted ? 1 : 0) + x.orderNumber))
                                 return false;
                             else {
@@ -201,7 +207,7 @@ export default class KitchenScreen extends Component {
                     ))}
                 </div>
                     <div class="RecallText">
-                        <p>RECALL  &nbsp;&nbsp; {this.GetSecondsFrom(this.state.RecallOrder[0])} </p>
+                        <p>RECALL  &nbsp;&nbsp; {this.GetSecondsFrom(this.state.RecallTime)} </p>
                     </div></div> : <div></div>}
                 <button class="Recall" onClick={() => {
                     axios.get('api/orders/getorder/' + this.state.RecallGuid, {
@@ -209,10 +215,16 @@ export default class KitchenScreen extends Component {
                             'Authorization': 'Bearer ' + sessionStorage.getItem('token')
                         }
                     }).then((response) => {
-                        console.log(response.data);
                         this.setState({
-                            RecallOrder: response.data
+                            RecallOrder: response.data,
+                            RecallTime: response.data[0].dateStarted
                         })
+                    }).catch((err) => {
+                        if (err.response.status == 400)
+                        this.setState({
+                            RecallTime: -1
+                        })
+
                     });
                     this.setState({ visible: !this.state.visible });
                 }} > Recall </button>
