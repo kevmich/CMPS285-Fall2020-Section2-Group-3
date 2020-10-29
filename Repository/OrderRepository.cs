@@ -87,7 +87,7 @@ namespace Repository
             using (var connection = new SqlConnection(_connectionString))
             {
                 var parameter = new { orderNumber = guid };
-                var sql = $"SELECT Orders.Id, OrderItems.Name, Orders.Size, Orders.OrderItemId, Orders.IsDeleted FROM Orders INNER JOIN OrderItems ON Orders.OrderItemId = OrderItems.Id WHERE OrderNumber = @ordernumber ORDER BY DateStarted";
+                var sql = $"SELECT Orders.Id, OrderItems.Name, Orders.Size, Orders.OrderItemId, Orders.IsDeleted, Orders.DateStarted FROM Orders INNER JOIN OrderItems ON Orders.OrderItemId = OrderItems.Id WHERE OrderNumber = @ordernumber ORDER BY DateStarted";
                 var order = connection.Query<OrderView>(sql, parameter).ToArray();
                 return order;
             }

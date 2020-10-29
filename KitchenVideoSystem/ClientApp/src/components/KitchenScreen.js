@@ -199,10 +199,9 @@ export default class KitchenScreen extends Component {
                     .map((Order) => (
                         <p class={Order.isDeleted ? "RecallDelete" : null} id={Order.isDeleted ? "RecallDelete" : null}>{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}&nbsp;{this.CountSameRecall(Order.name, Order.size, Order.orderNumber, Order.isDeleted)}&nbsp;{ this.sizeSwitch(Order.size)}{Order.name} < br /></p>
                     ))}
-                    {/*<p>{this.GetSecondsFrom(someSource)}</p>*/}
                 </div>
                     <div class="RecallText">
-                        <p>RECALL</p>
+                        <p>RECALL  &nbsp;&nbsp; {this.GetSecondsFrom(this.state.RecallOrder[0])} </p>
                     </div></div> : <div></div>}
                 <button class="Recall" onClick={() => {
                     axios.get('api/orders/getorder/' + this.state.RecallGuid, {

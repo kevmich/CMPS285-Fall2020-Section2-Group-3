@@ -112,7 +112,7 @@ li {
 }
 
 .BottomText {
-    width: 500px;
+    width: 89.5%;
 }
 
 .AllGroupOrder {
@@ -124,10 +124,10 @@ li {
 .Recall {
     background-color: #683fb6;
     position: fixed;
-    width: 500px;
     bottom: 0;
     right: 0;
     color: white;
+    width: 500px;
     border-top-left-radius: 10px;
     padding-right: 10px;
     z-index: 99;
