@@ -21,10 +21,12 @@ namespace TokenBasedAuth.Controllers
     {
         private readonly IUserService _service;
         private readonly AuthOptions _authOptions;
-        public TokenController(IUserService service, IOptions<AuthOptions> authOptionsAccessor)
+        private IPermissionRepository _permissionRepository;
+        public TokenController(IUserService service, IOptions<AuthOptions> authOptionsAccessor, IPermissionRepository permissionRepository)
         {
             _service = service;
             _authOptions = authOptionsAccessor.Value;
+            _permissionRepository = permissionRepository;
         }
 
         [HttpPost]
@@ -37,7 +39,7 @@ namespace TokenBasedAuth.Controllers
 
                 // Really trash solution, need to add db stuff
                 string perms = "";
-                if (User.Username == "user")
+                if (_permissionRepository.CanViewCashier(User))
                 {
                     perms = "CanViewCashier";
                 }

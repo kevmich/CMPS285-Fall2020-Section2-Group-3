@@ -32,6 +32,7 @@ namespace KitchenVideoSystem
 
             //Dependency Injection
             services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IPermissionRepository, PermissionRepository>();
             services.AddTransient<IUserService, UserService>();
             services.Configure<AuthOptions>(Configuration.GetSection("AuthOptions"));
 
@@ -60,6 +61,10 @@ namespace KitchenVideoSystem
             {
                 options.AddPolicy("Cashier",
                     policy => policy.RequireClaim("CanViewCashier"));
+                options.AddPolicy("Cook",
+                    policy => policy.RequireClaim("CanViewKitchen"));
+                options.AddPolicy("Admin",
+                    policy => policy.RequireClaim("IsAdmin"));
             });
 
             services.AddControllers();
