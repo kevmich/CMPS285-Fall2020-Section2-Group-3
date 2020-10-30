@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -33,6 +34,13 @@ namespace KitchenVideoSystem.Controllers
         [HttpGet, Route("GetAllOrders")]
         public IEnumerable<Order> GetAllOrders()
         {
+            // Probably trash, but this gets the username from the header and stores it in "username".
+            var jwt = Request.Headers["Authorization"];
+            jwt = jwt.ToString().Remove(0, 7);
+            var handler = new JwtSecurityTokenHandler();
+            var token = handler.ReadJwtToken(jwt);
+            var username = token.Claims.FirstOrDefault(c => c.Type == "sub").Value;
+
             var exampleOrder = _orderRepository.GetAllOrders();
             return exampleOrder;
         }
