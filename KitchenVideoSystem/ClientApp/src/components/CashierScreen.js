@@ -4,8 +4,7 @@ import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import './CashierScreen.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckSquare, faUndo } from '@fortawesome/free-solid-svg-icons'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faCheckSquare, faUndo, faTrash } from '@fortawesome/free-solid-svg-icons'
 import hamburgerIcon from '../content/hamburger-solid.png';
 import cheeseburgerIcon from '../content/cheeseburger-solid.png';
 import nuggiesIcon from '../content/nuggets.png';
