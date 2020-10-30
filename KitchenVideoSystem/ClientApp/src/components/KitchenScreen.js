@@ -32,10 +32,15 @@ export default class KitchenScreen extends Component {
         this.updateScreen();
         this.interval = setInterval(() => this.updateScreen(), 1000);
         document.title = "Kitchen Screen";
+
     }
 
     updateScreen() {
-        axios.get('/api/orders/getunfinishedorders')
+        axios.get('/api/orders/getunfinishedorders', {
+            headers: {
+                'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+            }
+        })
             .then((response) => {
                 console.log(response.data);
                 this.setState({ Orders: response.data})
@@ -43,7 +48,11 @@ export default class KitchenScreen extends Component {
     }
 
     finishAllOrders() {
-        axios.get('/api/orders/finishallorders');
+        axios.get('/api/orders/finishallorders', {
+            headers: {
+                'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+            }
+        });
     }
 
     componentWillUnmount() {
@@ -101,7 +110,7 @@ export default class KitchenScreen extends Component {
         if (isComplete) {
             axios({
                 method: 'post',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + sessionStorage.getItem('token') },
                 url: '/api/orders/FinishOrder',
                 data: "\"" + guid + "\""
             })
