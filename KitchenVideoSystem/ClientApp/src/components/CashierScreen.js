@@ -55,7 +55,11 @@ export default class CashierScreen extends Component {
     }
 
     setUnfinishedGuid() {
-        axios.get('/api/orders/GetUnfinishedGuid/')
+        axios.get('/api/orders/GetUnfinishedGuid/', {
+            headers: {
+                'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+            }
+        })
             .then((response) => {
                 if (response.data == "00000000-0000-0000-0000-000000000000") {
                     this.setState({
@@ -118,6 +122,8 @@ export default class CashierScreen extends Component {
         axios({
             method: 'post',
             url: '/api/orders/sendorder',
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + sessionStorage.getItem('token') },
+
             data: {
                 "OrderNumber": this.state.OrderNumber,
                 "OrderItemId": id,
