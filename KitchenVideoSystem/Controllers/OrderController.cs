@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
+
 //using KitchenVideoSystem.ClientApp;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using Repository;
-
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 
 namespace KitchenVideoSystem.Controllers
 {
@@ -31,25 +29,26 @@ namespace KitchenVideoSystem.Controllers
             return _orderRepository.GetPrice(id);
         }
 
-        [Authorize]
         [HttpGet, Route("GetAllOrders")]
         public IEnumerable<Order> GetAllOrders()
         {
-            // Probably trash, but this gets the username from the header and stores it in "username".
-            var jwt = Request.Headers["Authorization"];
-            jwt = jwt.ToString().Remove(0, 7);
-            var handler = new JwtSecurityTokenHandler();
-            var token = handler.ReadJwtToken(jwt);
-            var username = token.Claims.FirstOrDefault(c => c.Type == "sub").Value;
-
             var exampleOrder = _orderRepository.GetAllOrders();
             return exampleOrder;
         }
 
-        [Authorize]
+        [Authorize(Policy = "Cashier")]
         [HttpGet, Route("getorder/{guid}")]
         public OrderView[] GetOrder([FromRoute] Guid guid)
         {
+            // Probably trash, but this gets the username from the header and stores it in "username".
+            //var jwt = Request.Headers["Authorization"];
+            //jwt = jwt.ToString().Remove(0, 7);
+            //var handler = new JwtSecurityTokenHandler();
+            //var token = handler.ReadJwtToken(jwt);
+            //var username = token.Claims.FirstOrDefault(c => c.Type == "sub").Value;
+
+
+
             var exampleOrder = _orderRepository.GetOrder(guid);
             return exampleOrder;
         }
@@ -64,7 +63,7 @@ namespace KitchenVideoSystem.Controllers
         [HttpPost, Route("finishOrder")]
         public void FinishOrder([FromBody] Guid guid)
         {
-                _orderRepository.FinishOrder(guid);
+            _orderRepository.FinishOrder(guid);
         }
 
         [HttpGet, Route("finishallorders")]

@@ -11,6 +11,7 @@ using Repository;
 using TokenBasedAuth.Models;
 using Models.Entity;
 using TokenBasedAuth.Services;
+using System.Linq;
 
 namespace TokenBasedAuth.Controllers
 {
@@ -33,12 +34,23 @@ namespace TokenBasedAuth.Controllers
                 return BadRequest(ModelState);
             if (_service.IsValidUser(User))
             {
-                var authClaims = new[]
-               {
-                    new Claim(JwtRegisteredClaimNames.Sub, User.Username),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-                };
 
+                // Really trash solution, need to add db stuff
+                string perms = "";
+                if (User.Username == "user")
+                {
+                    perms = "CanViewCashier";
+                }
+
+                var authClaims = new[]
+                {
+                    new Claim(JwtRegisteredClaimNames.Sub, User.Username),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                       
+                    new Claim(perms, "")
+
+                };
+                
                 var token = new JwtSecurityToken(
                     issuer: _authOptions.Issuer,
                     audience: _authOptions.Audience,

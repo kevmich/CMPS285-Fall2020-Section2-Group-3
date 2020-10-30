@@ -41,6 +41,7 @@ namespace KitchenVideoSystem
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
             }).AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters
@@ -53,6 +54,12 @@ namespace KitchenVideoSystem
                     ValidAudience = authOptions.Audience,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authOptions.SecureKey))
                 };
+            });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Cashier",
+                    policy => policy.RequireClaim("CanViewCashier"));
             });
 
             services.AddControllers();
