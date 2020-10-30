@@ -139,7 +139,7 @@ export default class CashierScreen extends Component {
     CompleteOrder() {
         axios({
             method: 'post',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + sessionStorage.getItem('token') },
             url: '/api/orders/CompleteOrder',
             data: "\"" + this.state.OrderNumber + "\""
         }).then(response => this.updateCurrent());
@@ -150,7 +150,10 @@ export default class CashierScreen extends Component {
     }
 
     DeleteOrder(id) {
-        axios.get('/api/orders/DeleteOrder/' + id)
+        axios.get('/api/orders/DeleteOrder/' + id, {
+            headers: {
+                'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+            }})
             .then((response) => {
                 this.updateCurrent();
             });

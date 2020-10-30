@@ -13,6 +13,7 @@ using Repository;
 
 namespace KitchenVideoSystem.Controllers
 {
+    [Authorize]
     [Route("api/orders")]
     [ApiController]
     public class OrderController : ControllerBase
