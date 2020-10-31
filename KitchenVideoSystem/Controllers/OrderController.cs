@@ -36,16 +36,12 @@ namespace KitchenVideoSystem.Controllers
             return exampleOrder;
         }
 
-        [Authorize(Policy = "Cashier")]
-        [HttpGet, Route("getorder/{guid}")]
+        [Authorize(Policy = "Cashier"),
+         HttpGet, 
+         Route("getorder/{guid}")]
         public OrderView[] GetOrder([FromRoute] Guid guid)
         {
-            // Probably trash, but this gets the username from the header and stores it in "username".
-            //var jwt = Request.Headers["Authorization"];
-            //jwt = jwt.ToString().Remove(0, 7);
-            //var handler = new JwtSecurityTokenHandler();
-            //var token = handler.ReadJwtToken(jwt);
-            //var username = token.Claims.FirstOrDefault(c => c.Type == "sub").Value;
+        
 
 
 

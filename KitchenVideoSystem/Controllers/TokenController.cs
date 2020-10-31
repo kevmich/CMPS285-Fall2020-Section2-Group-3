@@ -1,17 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Models.Domain;
+using Models.Entity;
+using Repository;
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
-using Models;
-using Repository;
 using TokenBasedAuth.Models;
-using Models.Entity;
 using TokenBasedAuth.Services;
-using System.Linq;
 
 namespace TokenBasedAuth.Controllers
 {
@@ -22,6 +21,7 @@ namespace TokenBasedAuth.Controllers
         private readonly IUserService _service;
         private readonly AuthOptions _authOptions;
         private IPermissionRepository _permissionRepository;
+
         public TokenController(IUserService service, IOptions<AuthOptions> authOptionsAccessor, IPermissionRepository permissionRepository)
         {
             _service = service;
@@ -36,23 +36,18 @@ namespace TokenBasedAuth.Controllers
                 return BadRequest(ModelState);
             if (_service.IsValidUser(User))
             {
-
-                // Really trash solution, need to add db stuff
-                string perms = "";
-                if (_permissionRepository.CanViewCashier(User))
-                {
-                    perms = "CanViewCashier";
-                }
-
-                var authClaims = new[]
+                var authClaims = new List<Claim>
                 {
                     new Claim(JwtRegisteredClaimNames.Sub, User.Username),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                       
-                    new Claim(perms, "")
-
                 };
-                
+
+                PermissionView[] PermsArray = _permissionRepository.GetPermissions(User);
+                for (int i = 0; i < PermsArray.Length; i++)
+                {
+                    authClaims.Add(new Claim(PermsArray[i].Name, ""));
+                }
+
                 var token = new JwtSecurityToken(
                     issuer: _authOptions.Issuer,
                     audience: _authOptions.Audience,
