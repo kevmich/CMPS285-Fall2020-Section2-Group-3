@@ -64,5 +64,7 @@
     <Build Include="dbo\Tables\Orders.sql" />
     <Build Include="dbo\Tables\OrderItems.sql" />
     <Build Include="dbo\Tables\Users.sql" />
+    <Build Include="dbo\Tables\UsersPermissions.sql" />
+    <Build Include="dbo\Tables\Permissions.sql" />
   </ItemGroup>
 </Project>
