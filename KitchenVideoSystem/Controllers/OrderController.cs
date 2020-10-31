@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-
-//using KitchenVideoSystem.ClientApp;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using Repository;
@@ -40,11 +38,7 @@ namespace KitchenVideoSystem.Controllers
          HttpGet, 
          Route("getorder/{guid}")]
         public OrderView[] GetOrder([FromRoute] Guid guid)
-        {
-        
-
-
-
+        {        
             var exampleOrder = _orderRepository.GetOrder(guid);
             return exampleOrder;
         }

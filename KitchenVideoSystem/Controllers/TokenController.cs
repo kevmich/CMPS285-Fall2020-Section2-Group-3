@@ -42,10 +42,10 @@ namespace TokenBasedAuth.Controllers
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 };
 
-                PermissionView[] PermsArray = _permissionRepository.GetPermissions(User);
+                string[] PermsArray = _permissionRepository.GetPermissions(User.Username);
                 for (int i = 0; i < PermsArray.Length; i++)
                 {
-                    authClaims.Add(new Claim(PermsArray[i].Name, ""));
+                    authClaims.Add(new Claim(PermsArray[i], ""));
                 }
 
                 var token = new JwtSecurityToken(

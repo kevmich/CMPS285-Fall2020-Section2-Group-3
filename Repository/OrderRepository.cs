@@ -3,14 +3,8 @@ using Microsoft.Extensions.Options;
 using Models;
 using Models.Domain;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Text;
 
 namespace Repository
 {
@@ -38,8 +32,8 @@ namespace Repository
         void DeleteOrder(int id);
 
         void UpdateOrder(Order order);
-
     }
+
     public class OrderRepository : IOrderRepository
     {
         private string _connectionString = "";
@@ -54,7 +48,7 @@ namespace Repository
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var sql = "INSERT INTO Orders(OrderNumber, OrderItemId, DateStarted, Size, IsComplete)" 
+                var sql = "INSERT INTO Orders(OrderNumber, OrderItemId, DateStarted, Size, IsComplete)"
                     + "VALUES (@OrderNumber, @OrderItemId, @DateStarted, @Size, @IsComplete)";
                 connection.Execute(sql, order);
             }
@@ -72,18 +66,17 @@ namespace Repository
         }
 
         public Order[] GetAllOrders()
-        {           
+        {
             using (var connection = new SqlConnection(_connectionString))
             {
                 var sql = "SELECT * FROM Orders";
                 var orders = connection.Query<Order>(sql).ToArray();
                 return orders;
             }
-
         }
+
         public OrderView[] GetOrder(Guid guid)
         {
-
             using (var connection = new SqlConnection(_connectionString))
             {
                 var parameter = new { orderNumber = guid };
@@ -91,7 +84,6 @@ namespace Repository
                 var order = connection.Query<OrderView>(sql, parameter).ToArray();
                 return order;
             }
-
         }
 
         public Guid GetUnfinishedGuid()
@@ -110,6 +102,7 @@ namespace Repository
                 }
             }
         }
+
         public void FinishOrder(Guid guid)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -122,6 +115,7 @@ namespace Repository
                 var order = connection.Execute(sql, parameter);
             }
         }
+
         public void FinishAllOrders()
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -167,15 +161,11 @@ namespace Repository
 
         public void UpdateOrder(Order order)
         {
-
             using (var connection = new SqlConnection(_connectionString))
             {
                 var sql = "UPDATE Orders SET Name = @Name WHERE Id = @Id ";
                 connection.Query(sql, order);
             }
         }
-
     }
-
-} 
-
+}
