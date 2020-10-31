@@ -138,7 +138,6 @@ li {
 }
 
 #RecallDiv {
-   /* width: 480px; */
     width:510px;
     background-color: #f1d7ff;
     padding: 5px;
@@ -175,4 +174,14 @@ li {
     position: absolute;
     bottom: 7vh;
     right: 0;
+    height: 50px;
+}
+
+
+
+.RecallSec{
+    float: right;
+    right: 2%;
+    bottom:58px;
+    position:relative;
 }

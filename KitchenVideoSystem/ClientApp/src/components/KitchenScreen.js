@@ -216,7 +216,7 @@ export default class KitchenScreen extends Component {
                     ))}
                 </div>
                     <div class="RecallText">
-                        <p>RECALL  &nbsp;&nbsp; {this.GetSecondsFrom(this.state.RecallTime)} </p>
+                        <p>RECALL </p> <p class = "RecallSec">{this.GetSecondsFrom(this.state.RecallTime)} </p>
                     </div></div> : <div></div>}
                 <button class="Recall" onClick={() => {
                     axios.get('api/orders/getorder/' + this.state.RecallGuid, {
