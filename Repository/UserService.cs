@@ -5,6 +5,7 @@ using Models.Domain;
 using Models.Entity;
 using System;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace TokenBasedAuth.Services
 {
@@ -15,6 +16,8 @@ namespace TokenBasedAuth.Services
         public bool IsValidUser(UserModel user);
 
         public void DeleteUser(string username);
+
+        public string[] GetAllUsers();
     }
 
     public class UserService : IUserService
@@ -67,6 +70,15 @@ namespace TokenBasedAuth.Services
                 var parameter = new { username };
                 var sql = "DELETE FROM Users WHERE Username = @username";
                 connection.Execute(sql, parameter);
+            }
+        }
+
+        public string[] GetAllUsers()
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var sql = "SELECT Username FROM Users";
+                return connection.Query<string>(sql).ToArray();
             }
         }
     }
