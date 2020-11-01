@@ -10,8 +10,11 @@ namespace TokenBasedAuth.Services
 {
     public interface IUserService
     {
-        int AddUser(UserModel user);
-        bool IsValidUser(UserModel user);
+        public int AddUser(UserModel user);
+
+        public bool IsValidUser(UserModel user);
+
+        public void DeleteUser(string username);
     }
 
     public class UserService : IUserService
@@ -30,7 +33,7 @@ namespace TokenBasedAuth.Services
             {
                 using (var connection = new SqlConnection(_connectionString))
                 {
-                    var parameter = new { Username = user.Username};
+                    var parameter = new { Username = user.Username };
                     var sql = "SELECT Users.Password FROM Users WHERE Username = @Username";
                     var comparePass = connection.QuerySingle<String>(sql, parameter);
                     if (comparePass == SHA.ComputeSHA256Hash(user.Password))
@@ -55,9 +58,16 @@ namespace TokenBasedAuth.Services
                 var sql2 = connection.Execute(sql, parameter);
                 return 1;
             }
+        }
 
-            
-
+        public void DeleteUser(string username)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var parameter = new { username };
+                var sql = "DELETE FROM Users WHERE Username = @username";
+                connection.Execute(sql, parameter);
+            }
         }
     }
 }

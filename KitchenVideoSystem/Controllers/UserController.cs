@@ -38,5 +38,11 @@ namespace KitchenVideoSystem.Controllers
         {
             return _userService.AddUser(user);
         }
+
+        [HttpGet, Route("DeleteUser/{username}")]
+        public void DeleteUser([FromRoute] string username)
+        {
+            _userService.DeleteUser(username);
+        }
     }
 }
