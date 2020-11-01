@@ -147,7 +147,11 @@ export default class KitchenScreen extends Component {
         if (date != -1) {
             var d = new Date(date);
             var currentDate = new Date();
-            return Math.floor((currentDate - d) / 1000);
+            var time = Math.floor((currentDate - d) / 1000);
+            if (time < 999)
+                return time;
+            else
+                return 999;
         } else {
             return;
         }
