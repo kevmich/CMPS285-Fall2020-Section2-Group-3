@@ -5,6 +5,8 @@ import { Home } from './components/Home';
 import  Login  from './components/Login';
 import CashierScreen from './components/CashierScreen';
 import KitchenScreen from './components/KitchenScreen';
+import Admin from './components/Admin';
+import AddUser from './components/AddUser';
 import './custom.css'
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -15,6 +17,8 @@ export default class App extends Component {
     return (
         <div>
             <Switch>
+                <Route exact path='/Admin' component={Admin} />
+                <Route exact path='/admin/AddUser' component={AddUser} />
             <ProtectedRoute path='/home'>
                 <Route exact path='/home' component={Home} />
             </ProtectedRoute>

@@ -1,0 +1,11 @@
+﻿.title {
+    text-align: center
+}
+
+.username {
+    border-radius: 10px;
+    position: fixed;
+    top: 30%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+}
