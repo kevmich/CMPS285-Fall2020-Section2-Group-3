@@ -10,6 +10,7 @@ namespace TokenBasedAuth.Services
 {
     public interface IUserService
     {
+        int AddUser(UserModel user);
         bool IsValidUser(UserModel user);
     }
 
@@ -42,6 +43,21 @@ namespace TokenBasedAuth.Services
             {
                 return false;
             }
+        }
+
+        public int AddUser(UserModel user)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                user.Password = SHA.ComputeSHA256Hash(user.Password);
+                var parameter = new { username = user.Username, password = user.Password };
+                var sql = "INSERT INTO Users (username, password) VALUES (@username, @password)";
+                var sql2 = connection.Execute(sql, parameter);
+                return 1;
+            }
+
+            
+
         }
     }
 }

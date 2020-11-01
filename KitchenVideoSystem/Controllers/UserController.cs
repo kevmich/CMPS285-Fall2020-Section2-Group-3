@@ -15,20 +15,28 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace KitchenVideoSystem.Controllers
 {
-    [Route("api/permissions")]
+    [Route("api/user")]
     [ApiController]
-    public class PermissionController : ControllerBase
+    public class UserController : ControllerBase
     {
         private IPermissionRepository _permissionRepository;
-        public PermissionController(IPermissionRepository permissionRepository)
+        private IUserService _userService;
+        public UserController(IPermissionRepository permissionRepository, IUserService userService)
         {
             _permissionRepository = permissionRepository;
+            _userService = userService;
         }
 
-        [HttpGet, Route("GetUserPermissions/{username}")]
+        [HttpGet, Route("GetPermissions/{username}")]
         public string[] GetUserPermissions([FromRoute] string Username)
         {
             return _permissionRepository.GetPermissions(Username);
+        }
+
+        [HttpPost, Route("AddUser")]
+        public int AddUser([FromBody] UserModel user)
+        {
+            return _userService.AddUser(user);
         }
     }
 }
