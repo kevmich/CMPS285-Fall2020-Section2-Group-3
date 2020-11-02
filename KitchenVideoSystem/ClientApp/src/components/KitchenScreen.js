@@ -22,6 +22,7 @@ export default class KitchenScreen extends Component {
         this.state = {
             Orders: [],
             RecallGuid: null,
+            RecallGuidArray: [],
             RecallOrder: [],
             RecallTime: null,
             visible: false
@@ -114,6 +115,7 @@ export default class KitchenScreen extends Component {
                 url: '/api/orders/FinishOrder',
                 data: "\"" + guid + "\""
             })
+            this.state.RecallGuidArray.push(guid);
             this.setState({ RecallGuid: guid });
         }
         this.updateScreen();
@@ -217,8 +219,50 @@ export default class KitchenScreen extends Component {
                 })
                     .map((Order) => (
                         <p class={Order.isDeleted ? "RecallDelete" : null} id={Order.isDeleted ? "RecallDelete" : null}>{this.iconSwitch(Order.orderItemId)}{this.iconSwitchDrink(Order.size)}&nbsp;{this.CountSameRecall(Order.name, Order.size, Order.orderNumber, Order.isDeleted)}&nbsp;{ this.sizeSwitch(Order.size)}{Order.name} < br /></p>
-                    ))}
+                    ))
+                }
+                    <div class="RecallNav">
+                        {this.state.RecallGuidArray.indexOf(this.state.RecallGuid) != 0 ?
+                            <p class="RecallPreviousButton" onClick={() => {
+                                this.state.RecallGuid = this.state.RecallGuidArray[this.state.RecallGuidArray.indexOf(this.state.RecallGuid) - 1];
+                                axios.get('api/orders/getorder/' + this.state.RecallGuid, {
+                                    headers: {
+                                        'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+                                    }
+                                }).then((response) => {
+                                    this.setState({
+                                        RecallOrder: response.data,
+                                        RecallTime: response.data[0].dateStarted
+                                    })
+                                }).catch((err) => {
+                                    if (err.response.status == 400)
+                                        this.setState({
+                                            RecallTime: -1
+                                        })
+                                });
+                            }}>Previous</p> : null}
+                        {this.state.RecallGuidArray.indexOf(this.state.RecallGuid) != this.state.RecallGuidArray.length - 1 ?
+                            <p class="RecallNextButton" onClick={() => {
+                                this.state.RecallGuid = this.state.RecallGuidArray[this.state.RecallGuidArray.indexOf(this.state.RecallGuid) + 1];
+                                axios.get('api/orders/getorder/' + this.state.RecallGuid, {
+                                    headers: {
+                                        'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+                                    }
+                                }).then((response) => {
+                                    this.setState({
+                                        RecallOrder: response.data,
+                                        RecallTime: response.data[0].dateStarted
+                                    })
+                                }).catch((err) => {
+                                    if (err.response.status == 400)
+                                        this.setState({
+                                            RecallTime: -1
+                                        })
+                                });
+                            }}>Next</p> : null}
+                    </div>
                 </div>
+                    
                     <div class="RecallText">
                         <p>RECALL </p> <p class = "RecallSec">{this.GetSecondsFrom(this.state.RecallTime)} </p>
                     </div></div> : <div></div>}
@@ -237,7 +281,6 @@ export default class KitchenScreen extends Component {
                         this.setState({
                             RecallTime: -1
                         })
-
                     });
                     this.setState({ visible: !this.state.visible });
                 }} > Recall </button>

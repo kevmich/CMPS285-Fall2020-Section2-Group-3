@@ -161,6 +161,27 @@ li {
     text-decoration: line-through;
 }
 
+.RecallNav {
+    display: flex;
+}
+
+.RecallPreviousButton {
+    text-decoration: underline;
+    width: 500px;
+}
+
+.RecallPreviousButton:hover {
+    color: blue;
+}
+
+.RecallNextButton {
+    text-decoration: underline;
+}
+
+.RecallNextButton:hover {
+    color: blue;
+}
+
 .RecallText {
     width: 510px;
     padding-left: 10px;
@@ -176,8 +197,6 @@ li {
     right: 0;
     height: 50px;
 }
-
-
 
 .RecallSec{
     float: right;
