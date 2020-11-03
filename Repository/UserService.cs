@@ -55,20 +55,29 @@ namespace TokenBasedAuth.Services
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                user.Password = SHA.ComputeSHA256Hash(user.Password);
-                var parameter = new { username = user.Username, password = user.Password };
-                var sql = "INSERT INTO Users (username, password) VALUES (@username, @password)";
-                connection.Execute(sql, parameter);
-
-                var GetUserId = "SELECT Id FROM Users WHERE Username = @username";
-                var UserId = connection.QuerySingle<int>(GetUserId, parameter);
-                for (int i = 0; i < user.PermissionsArray.Length; i++)
+                try
                 {
-                    var parameter2 = new { UserId , PermissionId = user.PermissionsArray[i] };
-                    var sql2 = "INSERT INTO UsersPermissions (UserId, PermissionId) VALUES (@UserId, @PermissionId)";
-                    connection.Execute(sql2, parameter2);
+                    user.Password = SHA.ComputeSHA256Hash(user.Password);
+                    var parameter = new { username = user.Username, password = user.Password };
+                    var sql = "INSERT INTO Users (username, password) VALUES (@username, @password)";
+                    connection.Execute(sql, parameter);
+
+                    // If this fails then the user will still be added with no permissions
+                    var GetUserId = "SELECT Id FROM Users WHERE Username = @username";
+                    var UserId = connection.QuerySingle<int>(GetUserId, parameter);
+                    for (int i = 0; i < user.PermissionsArray.Length; i++)
+                    {
+                        var parameter2 = new { UserId, PermissionId = user.PermissionsArray[i] };
+                        var sql2 = "INSERT INTO UsersPermissions (UserId, PermissionId) VALUES (@UserId, @PermissionId)";
+                        connection.Execute(sql2, parameter2);
+                    }
+                    return 1;
                 }
-                return 1;
+                catch
+                {
+                    return -1;
+                }
+
             }
         }
 
