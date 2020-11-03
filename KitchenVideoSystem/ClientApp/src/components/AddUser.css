@@ -9,3 +9,24 @@
     left: 45%;
     transform: translate(-50%, -50%);
 }
+
+.cancelButton {
+    float: left;
+    width: 47%;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    margin: 5px 0;
+    opacity: 0.85;
+    display: inline-block;
+    font-size: 17px;
+    line-height: 20px;
+    text-decoration: none;
+    background-color: red;
+    color: white;
+}
+
+.createButton {
+    float: right; 
+    width: 47%;
+}
