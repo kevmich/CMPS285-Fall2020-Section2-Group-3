@@ -25,7 +25,7 @@ namespace KitchenVideoSystem.Controllers
         }
 
         [HttpPost, Route("AddUser")]
-        public int AddUser([FromBody] UserModel user)
+        public int AddUser([FromBody] Adduser user)
         {
             return _userService.AddUser(user);
         }

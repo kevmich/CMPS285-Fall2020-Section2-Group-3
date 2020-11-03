@@ -11,7 +11,7 @@ namespace TokenBasedAuth.Services
 {
     public interface IUserService
     {
-        public int AddUser(UserModel user);
+        public int AddUser(Adduser user);
 
         public bool IsValidUser(UserModel user);
 
@@ -51,14 +51,23 @@ namespace TokenBasedAuth.Services
             }
         }
 
-        public int AddUser(UserModel user)
+        public int AddUser(Adduser user)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
                 user.Password = SHA.ComputeSHA256Hash(user.Password);
                 var parameter = new { username = user.Username, password = user.Password };
                 var sql = "INSERT INTO Users (username, password) VALUES (@username, @password)";
-                var sql2 = connection.Execute(sql, parameter);
+                connection.Execute(sql, parameter);
+
+                var GetUserId = "SELECT Id FROM Users WHERE Username = @username";
+                var UserId = connection.QuerySingle<int>(GetUserId, parameter);
+                for (int i = 0; i < user.PermissionsArray.Length; i++)
+                {
+                    var parameter2 = new { UserId , PermissionId = user.PermissionsArray[i] };
+                    var sql2 = "INSERT INTO UsersPermissions (UserId, PermissionId) VALUES (@UserId, @PermissionId)";
+                    connection.Execute(sql2, parameter2);
+                }
                 return 1;
             }
         }
