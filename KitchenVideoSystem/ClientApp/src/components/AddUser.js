@@ -14,8 +14,7 @@ export default class AddUser extends Component {
                 user_id: "",
                 user_password: ""
             },
-            loginFail: false,
-            userFail: false 
+            userFail: true 
         };
     }
     handleFormChange = event => {
@@ -24,7 +23,6 @@ export default class AddUser extends Component {
         loginParamsNew[event.target.name] = val;
         this.setState({
             loginParams: loginParamsNew,
-            loginFail: false
 
         });
     };
@@ -38,22 +36,24 @@ export default class AddUser extends Component {
             url: '/api/user/adduser',
             data: {
                 "username": user_id,
-                "password": user_password
+                "password": user_password,
+                "permissionsarray": [
+                    1,
+                    2,
+                    3
+                ]
+                
             }
         }).then((response) => {
+            console.log(response.data)
+            console.log(this.state.userFail)
             if (response.data == 1) {
-                this.setState({
-                userFail: true
+               this.setState({
+                userFail: false
             });
             }
             
         }).catch((error) => {
-            if (error.response.status == 401 || error.response.status == 400) {
-                this.setState({
-                    loginFail: true
-                });
-                console.log("LOGIN FAIL");
-            }
         })
 
         event.preventDefault();
@@ -67,9 +67,10 @@ export default class AddUser extends Component {
 
 
     render() {
-        if (this.state.userFail == true) {
+        if (this.state.userFail == false) {
             return <Redirect to="/admin" />;
         }
+
         return (
             <div className="Login">
                 <div className="LoginContainer">
@@ -93,6 +94,7 @@ export default class AddUser extends Component {
                                     placeholder="Create Password"
                                 />
 
+
                                 <Link to="/admin">
                                     <button className="cancelButton"> Cancel </button>
                                 </Link>
@@ -100,8 +102,6 @@ export default class AddUser extends Component {
                                 <input className = "createButton" type="submit" value="Create" />
                             </div>
                         </div>
-                        {this.state.loginFail ? <p className="alert"> Incorrect Username or Password. </p> : null}
-
 
                     </form>
 
