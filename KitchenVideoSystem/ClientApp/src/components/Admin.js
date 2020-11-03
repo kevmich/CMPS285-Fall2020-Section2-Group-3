@@ -21,6 +21,7 @@ export default class Admin extends Component {
 
     componentDidMount() {
         this.GetAllUsers();
+        document.title = "Admin"
     }
 
     render() {
