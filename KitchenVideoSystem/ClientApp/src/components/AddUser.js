@@ -1,8 +1,9 @@
 ﻿import React, { Component } from 'react';
 import "./AddUser.css";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import axios from 'axios'
 import KvsIcon from '../content/KVS-Icon.png';
+
 export default class AddUser extends Component {
 
     constructor(props) {
@@ -13,7 +14,8 @@ export default class AddUser extends Component {
                 user_id: "",
                 user_password: ""
             },
-            loginFail: false
+            loginFail: false,
+            userFail: false 
         };
     }
     handleFormChange = event => {
@@ -39,10 +41,12 @@ export default class AddUser extends Component {
                 "password": user_password
             }
         }).then((response) => {
-            sessionStorage.setItem("token", response.data.token)
-            this.setState({
-                islogged: true
+            if (response.data == 1) {
+                this.setState({
+                userFail: true
             });
+            }
+            
         }).catch((error) => {
             if (error.response.status == 401 || error.response.status == 400) {
                 this.setState({
@@ -63,6 +67,9 @@ export default class AddUser extends Component {
 
 
     render() {
+        if (this.state.userFail == true) {
+            return <Redirect to="/admin" />;
+        }
         return (
             <div className="Login">
                 <div className="LoginContainer">
@@ -85,7 +92,12 @@ export default class AddUser extends Component {
                                     onChange={this.handleFormChange}
                                     placeholder="Create Password"
                                 />
-                                <input type="submit" value="Create" />
+
+                                <Link to="/admin">
+                                    <button className="cancelButton"> Cancel </button>
+                                </Link>
+
+                                <input className = "createButton" type="submit" value="Create" />
                             </div>
                         </div>
                         {this.state.loginFail ? <p className="alert"> Incorrect Username or Password. </p> : null}
