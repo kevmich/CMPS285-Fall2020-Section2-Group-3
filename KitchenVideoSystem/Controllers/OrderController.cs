@@ -4,12 +4,10 @@ using Models;
 using Repository;
 using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 
 namespace KitchenVideoSystem.Controllers
 {
-    [Authorize]
+    [Authorize(Policy = "Cashier")]
     [Route("api/orders")]
     [ApiController]
     public class OrderController : ControllerBase
@@ -34,11 +32,9 @@ namespace KitchenVideoSystem.Controllers
             return exampleOrder;
         }
 
-        [Authorize(Policy = "Cashier"),
-         HttpGet, 
-         Route("getorder/{guid}")]
+        [HttpGet, Route("getorder/{guid}")]
         public OrderView[] GetOrder([FromRoute] Guid guid)
-        {        
+        {
             var exampleOrder = _orderRepository.GetOrder(guid);
             return exampleOrder;
         }
@@ -50,29 +46,10 @@ namespace KitchenVideoSystem.Controllers
             return exampleOrder;
         }
 
-        [HttpPost, Route("finishOrder")]
-        public void FinishOrder([FromBody] Guid guid)
-        {
-            _orderRepository.FinishOrder(guid);
-        }
-
-        [HttpGet, Route("finishallorders")]
-        public void FinishAllOrders()
-        {
-            _orderRepository.FinishAllOrders();
-        }
-
         [HttpPost, Route("completeOrder")]
         public void CompleteOrder([FromBody] Guid guid)
         {
             _orderRepository.CompleteOrder(guid);
-        }
-
-        [HttpGet, Route("getunfinishedorders")]
-        public IEnumerable<OrderViewKitchen> GetUnfinishedOrders()
-        {
-            var exampleOrder = _orderRepository.GetUnfinishedOrders();
-            return exampleOrder;
         }
 
         [HttpPost, Route("sendorder")]

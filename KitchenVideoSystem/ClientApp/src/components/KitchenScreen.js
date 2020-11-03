@@ -37,7 +37,7 @@ export default class KitchenScreen extends Component {
     }
 
     updateScreen() {
-        axios.get('/api/orders/getunfinishedorders', {
+        axios.get('api/kitchen/getunfinishedorders', {
             headers: {
                 'Authorization': 'Bearer ' + sessionStorage.getItem('token')
             }
@@ -46,14 +46,6 @@ export default class KitchenScreen extends Component {
                 console.log(response.data);
                 this.setState({ Orders: response.data})
             });
-    }
-
-    finishAllOrders() {
-        axios.get('/api/orders/finishallorders', {
-            headers: {
-                'Authorization': 'Bearer ' + sessionStorage.getItem('token')
-            }
-        });
     }
 
     componentWillUnmount() {
@@ -112,7 +104,7 @@ export default class KitchenScreen extends Component {
             axios({
                 method: 'post',
                 headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + sessionStorage.getItem('token') },
-                url: '/api/orders/FinishOrder',
+                url: 'api/kitchen/FinishOrder',
                 data: "\"" + guid + "\""
             })
             this.state.RecallGuidArray.push(guid);
@@ -225,7 +217,7 @@ export default class KitchenScreen extends Component {
                         {this.state.RecallGuidArray.indexOf(this.state.RecallGuid) != 0 ?
                             <p class="RecallPreviousButton" onClick={() => {
                                 this.state.RecallGuid = this.state.RecallGuidArray[this.state.RecallGuidArray.indexOf(this.state.RecallGuid) - 1];
-                                axios.get('api/orders/getorder/' + this.state.RecallGuid, {
+                                axios.get('api/kitchen/getorder/' + this.state.RecallGuid, {
                                     headers: {
                                         'Authorization': 'Bearer ' + sessionStorage.getItem('token')
                                     }
@@ -244,7 +236,7 @@ export default class KitchenScreen extends Component {
                         {this.state.RecallGuidArray.indexOf(this.state.RecallGuid) != this.state.RecallGuidArray.length - 1 ?
                             <p class="RecallNextButton" onClick={() => {
                                 this.state.RecallGuid = this.state.RecallGuidArray[this.state.RecallGuidArray.indexOf(this.state.RecallGuid) + 1];
-                                axios.get('api/orders/getorder/' + this.state.RecallGuid, {
+                                axios.get('api/kitchen/getorder/' + this.state.RecallGuid, {
                                     headers: {
                                         'Authorization': 'Bearer ' + sessionStorage.getItem('token')
                                     }
@@ -267,7 +259,7 @@ export default class KitchenScreen extends Component {
                         <p>RECALL </p> <p class = "RecallSec">{this.GetSecondsFrom(this.state.RecallTime)} </p>
                     </div></div> : <div></div>}
                 <button class="Recall" onClick={() => {
-                    axios.get('api/orders/getorder/' + this.state.RecallGuid, {
+                    axios.get('api/kitchen/getorder/' + this.state.RecallGuid, {
                         headers: {
                             'Authorization': 'Bearer ' + sessionStorage.getItem('token')
                         }

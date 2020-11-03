@@ -5,7 +5,6 @@ import axios from 'axios'
 import KvsIcon from '../content/KVS-Icon.png';
 
 export default class AddUser extends Component {
-
     constructor(props) {
         super(props);
         this.login = this.login.bind(this);
@@ -14,7 +13,7 @@ export default class AddUser extends Component {
                 user_id: "",
                 user_password: ""
             },
-            userFail: true 
+            userFail: true
         };
     }
     handleFormChange = event => {
@@ -23,7 +22,6 @@ export default class AddUser extends Component {
         loginParamsNew[event.target.name] = val;
         this.setState({
             loginParams: loginParamsNew,
-
         });
     };
 
@@ -42,29 +40,27 @@ export default class AddUser extends Component {
                     2,
                     3
                 ]
-                
+            },
+            headers: {
+                'Authorization': 'Bearer ' + sessionStorage.getItem('token')
             }
         }).then((response) => {
             console.log(response.data)
             console.log(this.state.userFail)
             if (response.data == 1) {
-               this.setState({
-                userFail: false
-            });
+                this.setState({
+                    userFail: false
+                });
             }
-            
         }).catch((error) => {
         })
 
         event.preventDefault();
     };
 
-
     componentDidMount() {
         document.title = "Add User";
     }
-
-
 
     render() {
         if (this.state.userFail == false) {
@@ -94,12 +90,11 @@ export default class AddUser extends Component {
                                     placeholder="Create Password"
                                 />
 
-
                                 <Link to="/admin">
                                     <button className="cancelButton"> Cancel </button>
                                 </Link>
 
-                                <input className = "createButton" type="submit" value="Create" />
+                                <input className="createButton" type="submit" value="Create" />
                             </div>
                         </div>
 
