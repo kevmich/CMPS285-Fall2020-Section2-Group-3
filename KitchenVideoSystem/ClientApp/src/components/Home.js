@@ -5,6 +5,7 @@ import './Home.css'
 import KvsIcon from '../content/KVS-Icon.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCashRegister } from '@fortawesome/free-solid-svg-icons'
+import { faCog } from '@fortawesome/free-solid-svg-icons'
 import { faFire } from '@fortawesome/free-solid-svg-icons'
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 
@@ -48,6 +49,10 @@ export class Home extends Component {
                             </td>
                             <td>
                                 <NavLink tag={Link} to="/kitchenscreen" className="HomeButton"><FontAwesomeIcon icon={faFire} />&nbsp;Kitchen</NavLink>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colSpan="3"> <NavLink tag={Link} to="/admin" className="AdminButton"><FontAwesomeIcon icon={faCog} />&nbsp;Manage Users</NavLink>
                             </td>
                         </tr>
                         <tr>
