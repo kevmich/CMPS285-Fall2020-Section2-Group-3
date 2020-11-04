@@ -2,9 +2,12 @@
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import "./Admin.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 export default class Admin extends Component {
     constructor(props) {
         super(props);
+        this.DeleteUser = this.DeleteUser.bind(this);
         this.state = {
             Users: [],
         };
@@ -16,6 +19,14 @@ export default class Admin extends Component {
                 this.setState({
                     Users: response.data
                 })
+            })
+    }
+
+    DeleteUser(e) {
+        console.log(e.user);
+        axios.get('api/user/DeleteUser/' + e.user)
+            .then((response) => {
+                this.GetAllUsers();
             })
     }
 
@@ -38,7 +49,7 @@ export default class Admin extends Component {
                 </Link>
                 {this.state.Users.map((user) => (
                     <div>
-                        <p> {user} </p>
+                        <p> {user} <button className="DeleteButton" onClick={() => this.DeleteUser({ user })}> <FontAwesomeIcon icon={faTrash} /> </button> </p>
                     </div>
                 ))}
 
