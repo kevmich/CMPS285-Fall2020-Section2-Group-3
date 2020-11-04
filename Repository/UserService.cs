@@ -18,6 +18,10 @@ namespace TokenBasedAuth.Services
         public void DeleteUser(string username);
 
         public string[] GetAllUsers();
+
+        public int EditUser(EditUser user);
+
+        public EditUser GetUserInfo(string username);
     }
 
     public class UserService : IUserService
@@ -77,7 +81,6 @@ namespace TokenBasedAuth.Services
                 {
                     return -1;
                 }
-
             }
         }
 
@@ -97,6 +100,52 @@ namespace TokenBasedAuth.Services
             {
                 var sql = "SELECT Username FROM Users";
                 return connection.Query<string>(sql).ToArray();
+            }
+        }
+
+        public EditUser GetUserInfo(string username)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var returnUser = new EditUser();
+                var parameter = new { username };
+                var GetUserId = "SELECT Id FROM Users WHERE Username = @username";
+                returnUser.Id = connection.QuerySingle<int>(GetUserId, parameter);
+                var parameterId = new { UserId = returnUser.Id };
+
+                var sql = "SELECT PermissionId FROM UsersPermissions up WHERE up.UserId = @UserId";
+                returnUser.PermissionsArray = connection.Query<int>(sql, parameterId).ToArray();
+                return returnUser;
+            }
+        }
+
+        public int EditUser(EditUser user)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                // Delete user perms first
+                var parameter = new { UserId = user.Id};
+                var sql = "DELETE FROM UsersPermissions WHERE UserId = @UserId";
+                connection.Execute(sql, parameter);
+
+                for (int i = 0; i < user.PermissionsArray.Length; i++)
+                {
+                    var parameter2 = new { UserId = user.Id, PermissionId = user.PermissionsArray[i] };
+                    var sql2 = "INSERT INTO UsersPermissions (UserId, PermissionId) VALUES (@UserId, @PermissionId)";
+                    connection.Execute(sql2, parameter2);
+                }
+                if (user.Password == null) //Just update perms
+                {
+                    return 2;
+                }
+                else //Update perms and Password
+                {
+                    user.Password = SHA.ComputeSHA256Hash(user.Password);
+                    var parameter3 = new { username = user.Username, password = user.Password };
+                    var sql3 = "INSERT INTO Users (password) VALUES (@password) WHERE Username = @Username";
+                    connection.Execute(sql3, parameter3);
+                }
+                return 1;
             }
         }
     }

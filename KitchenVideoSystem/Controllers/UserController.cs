@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Models.Domain;
 using Models.Entity;
 using Repository;
 using TokenBasedAuth.Services;
@@ -43,5 +43,18 @@ namespace KitchenVideoSystem.Controllers
         {
             return _userService.GetAllUsers();
         }
+
+        [HttpGet, Route("GetUserInfo/{username}")]
+        public EditUser GetUserInfo([FromRoute] string username)
+        {
+            return _userService.GetUserInfo(username);
+        }
+
+        [HttpPost, Route("EditUser")]
+        public int EditUser([FromBody] EditUser user)
+        {
+            return _userService.EditUser(user);
+        }
+
     }
 }
