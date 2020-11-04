@@ -17,9 +17,9 @@ export default class AddUser extends Component {
             },
             userFail: true,
             permissions: [
-                { id: 0, value: "Admin", isChecked: false },
-                { id: 1, value: "Cashier", isChecked: false },
-                { id: 2, value: "Cook", isChecked: false }
+                { id: 1, value: "Admin", isChecked: false },
+                { id: 2, value: "Cashier", isChecked: false },
+                { id: 3, value: "Cook", isChecked: false }
             ]
         };
     }
@@ -37,17 +37,22 @@ export default class AddUser extends Component {
         let user_id = this.state.loginParams.user_id;
         let user_password = this.state.loginParams.user_password;
 
+        var checkBox = [];
+        var perms = this.state.permissions
+        for (var i = 0; i < perms.length; i++) {
+            if (perms[i].isChecked) {
+                checkBox.push(perms[i].id);
+            }
+        }
+        console.log(checkBox);
+
         axios({
             method: 'post',
             url: '/api/user/adduser',
             data: {
                 "username": user_id,
                 "password": user_password,
-                "permissionsarray": [
-                    1,
-                    2,
-                    3
-                ]
+                "permissionsarray": checkBox
             },
             headers: {
                 'Authorization': 'Bearer ' + sessionStorage.getItem('token')
