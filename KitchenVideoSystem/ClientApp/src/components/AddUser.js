@@ -3,6 +3,8 @@ import "./AddUser.css";
 import { Redirect, Link } from "react-router-dom";
 import axios from 'axios'
 import KvsIcon from '../content/KVS-Icon.png';
+import  CheckBox  from './CheckBox';
+
 
 export default class AddUser extends Component {
     constructor(props) {
@@ -13,9 +15,15 @@ export default class AddUser extends Component {
                 user_id: "",
                 user_password: ""
             },
-            userFail: true
+            userFail: true,
+            permissions: [
+                { id: 0, value: "Admin", isChecked: false },
+                { id: 1, value: "Cashier", isChecked: false },
+                { id: 2, value: "Cook", isChecked: false }
+            ]
         };
     }
+
     handleFormChange = event => {
         let loginParamsNew = { ...this.state.loginParams };
         let val = event.target.value;
@@ -62,6 +70,17 @@ export default class AddUser extends Component {
         document.title = "Add User";
     }
 
+    handleCheckChieldElement = (event) => {
+        let permissions = this.state.permissions
+        permissions.forEach(permission => {
+            if (permission.value === event.target.value)
+                permission.isChecked = event.target.checked
+        })
+        this.setState({ permissions: permissions })
+    }
+
+
+
     render() {
         if (this.state.userFail == false) {
             return <Redirect to="/admin" />;
@@ -89,6 +108,14 @@ export default class AddUser extends Component {
                                     onChange={this.handleFormChange}
                                     placeholder="Create Password"
                                 />
+                                <p className= "permissionText"> Permissions: </p>
+                                <ul className = "checkBox">
+                                {
+                                    this.state.permissions.map((permission) => {
+                                        return (<CheckBox handleCheckChieldElement={this.handleCheckChieldElement}  {...permission} />)
+                                    })
+                                }
+                                </ul>
 
                                 <Link to="/admin">
                                     <button className="cancelButton"> Cancel </button>
