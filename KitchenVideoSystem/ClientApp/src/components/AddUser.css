@@ -30,3 +30,27 @@
     float: right; 
     width: 47%;
 }
+
+.checkBox {
+}
+
+.permissonItem {
+    display: flex;
+    align-items: flex-start;
+    text-align: center;
+    font-size: 20px;
+}
+
+.inputButton {
+    align-items: center;
+    width: 25vh;
+}
+
+.permissionText {
+    font-size: 20px;
+    text-align: left !important;
+}
+
+.permlabel {
+    width: 100px;
+}
