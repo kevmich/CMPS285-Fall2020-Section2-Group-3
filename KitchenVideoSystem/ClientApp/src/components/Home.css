@@ -1,4 +1,4 @@
-﻿.ButtonList{
+﻿.ButtonList {
     margin-top: 10px;
     display: flex;
     flex-direction: column;
@@ -11,9 +11,20 @@
     color: white;
 }
 
+.AdminButton:hover {
+    color: white;
+}
 
 .HomeButton {
     background-color: #3f51b6;
+    margin: 10px;
+    color: white;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.AdminButton {
+    background-color: #ff9008;
     margin: 10px;
     color: white;
     border-radius: 10px;
