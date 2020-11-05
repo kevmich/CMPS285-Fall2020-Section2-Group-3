@@ -57,6 +57,11 @@ namespace TokenBasedAuth.Services
 
         public int AddUser(Adduser user)
         {
+            if (user.Username == "")
+                return -2;
+            if (user.Username == "admin")
+                return -3;
+
             using (var connection = new SqlConnection(_connectionString))
             {
                 try
@@ -86,6 +91,10 @@ namespace TokenBasedAuth.Services
 
         public void DeleteUser(string username)
         {
+            if (username == "")
+                return;
+            if (username == "admin")
+                return;
             using (var connection = new SqlConnection(_connectionString))
             {
                 var parameter = new { username };
@@ -121,10 +130,14 @@ namespace TokenBasedAuth.Services
 
         public int EditUser(EditUser user)
         {
+            if (user.Username == "")
+                return -2;
+            if (user.Username == "admin")
+                return -3;
             using (var connection = new SqlConnection(_connectionString))
             {
                 // Delete user perms first
-                var parameter = new { UserId = user.Id};
+                var parameter = new { UserId = user.Id };
                 var sql = "DELETE FROM UsersPermissions WHERE UserId = @UserId";
                 connection.Execute(sql, parameter);
 
