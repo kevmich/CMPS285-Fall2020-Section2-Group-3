@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Models.Domain;
 using Models.Entity;
 using Repository;
@@ -6,7 +7,7 @@ using TokenBasedAuth.Services;
 
 namespace KitchenVideoSystem.Controllers
 {
-    //[Authorize(Policy = "Admin")]
+    [Authorize(Policy = "Admin")]
     [Route("api/user")]
     [ApiController]
     public class UserController : ControllerBase

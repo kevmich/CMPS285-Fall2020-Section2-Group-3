@@ -14,7 +14,11 @@ export default class Admin extends Component {
     }
 
     GetAllUsers() {
-        axios.get('api/user/GetAllUsers')
+        axios.get('api/user/GetAllUsers', {
+            headers: {
+                'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+            }
+        })
             .then((response) => {
                 this.setState({
                     Users: response.data
@@ -24,7 +28,11 @@ export default class Admin extends Component {
 
     DeleteUser(e) {
         console.log(e.user);
-        axios.get('api/user/DeleteUser/' + e.user)
+        axios.get('api/user/DeleteUser/' + e.user, {
+            headers: {
+                'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+            }
+        })
             .then((response) => {
                 this.GetAllUsers();
             })
