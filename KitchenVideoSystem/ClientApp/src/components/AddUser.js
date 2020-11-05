@@ -16,6 +16,8 @@ export default class AddUser extends Component {
                 user_password: ""
             },
             userFail: true,
+            SameUser: false,
+            adminFail: false,
             permissions: [
                 { id: 1, value: "Admin", isChecked: false },
                 { id: 2, value: "Cashier", isChecked: false },
@@ -30,6 +32,8 @@ export default class AddUser extends Component {
         loginParamsNew[event.target.name] = val;
         this.setState({
             loginParams: loginParamsNew,
+            SameUser: false,
+            adminFail: false
         });
     };
 
@@ -58,11 +62,23 @@ export default class AddUser extends Component {
                 'Authorization': 'Bearer ' + sessionStorage.getItem('token')
             }
         }).then((response) => {
-            console.log(response.data)
-            console.log(this.state.userFail)
+            console.log("DATA");
+            console.log(response.data);
+            console.log(this.state.userFail);
             if (response.data == 1) {
                 this.setState({
                     userFail: false
+                });
+                
+            }
+            if (response.data == -1) {
+                this.setState({
+                    SameUser: true
+                });
+            }
+            if (response.data == -3) {
+                this.setState({
+                    adminFail: true
                 });
             }
         }).catch((error) => {
@@ -103,6 +119,7 @@ export default class AddUser extends Component {
                                 <input
                                     type="text"
                                     name="user_id"
+                                    required pattern="[0-9a-zA-Z_.-]*"
                                     onChange={this.handleFormChange}
                                     placeholder="Create Username"
                                 />
@@ -110,6 +127,7 @@ export default class AddUser extends Component {
                                 <input
                                     type="password"
                                     name="user_password"
+                                    required pattern="*"
                                     onChange={this.handleFormChange}
                                     placeholder="Create Password"
                                 />
@@ -129,6 +147,8 @@ export default class AddUser extends Component {
                                 <input className="createButton" type="submit" value="Create" />
                             </div>
                         </div>
+                        {this.state.SameUser ? <p className="alert"> User already exists. </p> : null}
+                        {this.state.adminFail ? <p className="alert"> Admin cannot be modified. </p> : null}
 
                     </form>
 

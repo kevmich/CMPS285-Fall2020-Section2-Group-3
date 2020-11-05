@@ -31,7 +31,6 @@ export default class CashierScreen extends Component {
         this.state = {
             OrderNumber: uuidv4(),
             Orders: [],
-
         };
     }
 
