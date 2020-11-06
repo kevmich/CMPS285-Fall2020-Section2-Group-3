@@ -158,7 +158,7 @@ export default class AddUser extends Component {
                                     </ul>
 
                                     <Link to="/admin">
-                                        <button className="cancelButton"> Cancel </button>
+                                        <input className="cancelButton" type="Button" value="Cancel" /> 
                                     </Link>
 
                                     <input className="createButton" type="submit" value="Apply" />
