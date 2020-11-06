@@ -7,6 +7,7 @@ import CashierScreen from './components/CashierScreen';
 import KitchenScreen from './components/KitchenScreen';
 import Admin from './components/Admin';
 import AddUser from './components/AddUser';
+import EditUser from './components/EditUser';
 import './custom.css'
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -19,6 +20,7 @@ export default class App extends Component {
             <Switch>
                 <Route exact path='/Admin' component={Admin} />
                 <Route exact path='/admin/AddUser' component={AddUser} />
+                <Route exact path='/admin/EditUser' component={EditUser} />
             <ProtectedRoute path='/home'>
                 <Route exact path='/home' component={Home} />
             </ProtectedRoute>
