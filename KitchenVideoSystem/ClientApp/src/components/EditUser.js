@@ -16,7 +16,7 @@ export default class AddUser extends Component {
                 user_password: ""
             },
             user: (JSON.parse(sessionStorage.getItem("user"))),
-            editUser: [this.getUserInfo("user")],
+            editUser: [this.getUserInfo(this.props.location.state.editUser[0].user)],
             userFail: true,
             SameUser: false,
             adminFail: false,
@@ -48,9 +48,8 @@ export default class AddUser extends Component {
             .then((response) =>
                 this.setState({
                     editUser: response.data
-            }))
+                }))
     }
-
 
     login = event => {
         let user_id = this.state.loginParams.user_id;
@@ -69,8 +68,9 @@ export default class AddUser extends Component {
             method: 'post',
             url: '/api/user/edituser',
             data: {
-                "username": user_id,
-                "password": user_password,
+                "id": this.state.editUser.id,
+                "username": this.state.editUser.username,
+                "password": this.state.editUser.password,
                 "permissionsarray": checkBox
             },
             headers: {
@@ -84,7 +84,6 @@ export default class AddUser extends Component {
                 this.setState({
                     userFail: false
                 });
-
             }
             if (response.data == -1) {
                 this.setState({
@@ -111,8 +110,6 @@ export default class AddUser extends Component {
         this.setState({ permissions: permissions })
     }
 
-
-
     render() {
         if (this.state.userFail == false) {
             return <Redirect to="/admin" />;
@@ -135,7 +132,6 @@ export default class AddUser extends Component {
                                     <input
                                         type="text"
                                         name="user_id"
-                                        required pattern="[0-9a-zA-Z_.-]*"
                                         onChange={this.handleFormChange}
                                         placeholder="Change Username (unchanged)"
                                     />
@@ -143,7 +139,6 @@ export default class AddUser extends Component {
                                     <input
                                         type="password"
                                         name="user_password"
-                                        required pattern="*"
                                         onChange={this.handleFormChange}
                                         placeholder="Change Password (unchanged)"
                                     />
@@ -160,13 +155,14 @@ export default class AddUser extends Component {
                                         <button className="cancelButton"> Cancel </button>
                                     </Link>
 
-                                    <input className="createButton" type="submit" value="Create" />
+                                    <input className="createButton" type="submit" value="Apply" />
                                 </div>
                             </div>
                             {this.state.SameUser ? <p className="alert"> User already exists. </p> : null}
                             {this.state.adminFail ? <p className="alert"> Admin cannot be modified. </p> : null}
                             {console.log("AHH")}
-                            {console.log(this.state.editUser.username)}
+                            {console.log(this.state.editUser)}
+                            {console.log(this.props.location.state.editUser[0].user)}
                         </form>
 
                     </div>

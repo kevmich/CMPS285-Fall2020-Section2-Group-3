@@ -7,7 +7,7 @@ using TokenBasedAuth.Services;
 
 namespace KitchenVideoSystem.Controllers
 {
-    [Authorize(Policy = "Admin")]
+    //[Authorize(Policy = "Admin")]
     [Route("api/user")]
     [ApiController]
     public class UserController : ControllerBase
