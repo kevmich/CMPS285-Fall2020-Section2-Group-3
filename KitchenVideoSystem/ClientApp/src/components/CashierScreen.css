@@ -155,6 +155,7 @@ body {
 }
 
 #Clock {
+    display: flex;
     background-color: #3f51b6;
     position: fixed;
     bottom: 0px;

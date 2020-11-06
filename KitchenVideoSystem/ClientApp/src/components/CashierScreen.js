@@ -31,6 +31,7 @@ export default class CashierScreen extends Component {
         this.state = {
             OrderNumber: uuidv4(),
             Orders: [],
+            user: (JSON.parse(sessionStorage.getItem("user")))
         };
     }
 
@@ -175,6 +176,7 @@ export default class CashierScreen extends Component {
             <div>
                 <div id="Clock">
                     <Clock />
+                        &nbsp;&nbsp;{this.state.user.username}
                 </div>
                 <Link to="./">
                     <button class="BackButton">Back</button>

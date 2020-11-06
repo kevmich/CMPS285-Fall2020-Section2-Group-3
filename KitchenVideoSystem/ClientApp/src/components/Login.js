@@ -16,7 +16,9 @@ class Login extends Component {
                 user_id: "",
                 user_password: ""
             },
-            loginFail: false
+            loginFail: false,
+            user: (JSON.parse(sessionStorage.getItem("user"))),
+
         };
     }
     handleFormChange = event => {
