@@ -4,6 +4,7 @@ import axios from 'axios';
 import "./Admin.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import Clock from 'react-digital-clock'
 
 export default class Admin extends Component {
@@ -49,26 +50,48 @@ export default class Admin extends Component {
     render() {
         return (
             <div>
-                <h1 className="title"> Manage Users </h1>
-
+                <div className="title">
+                <h1> Manage Users </h1>
                 <Link to="./admin/adduser">
-                    <button class="addButton">Add User</button>
+                    <button class="addButton"> <FontAwesomeIcon icon={faPlus} />&nbsp;Add User</button>
                 </Link>
+                </div>
 
                 <Link to="./">
-                    <button class="BackButton">Back</button>
+                    <button class="BackButton"> Back</button>
                 </Link>
                 <div id="Clock">
                     <Clock />
                      &nbsp;&nbsp;{this.state.user.username}
 
                 </div>
-                {this.state.Users.map((user) => (
-                    <div>
-                        <p> {user} <button className="DeleteButton" onClick={() => this.DeleteUser({ user })}> <FontAwesomeIcon icon={faTrash} /> </button> </p>
-                    </div>
-                ))}
 
+                <div className="adminTableDiv">
+       
+                    <table className="adminTable">
+
+                    <tr>
+                        <th>Username </th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                {this.state.Users.map((user) => (
+                    <tr>
+                        
+                        <td>
+                            {user}
+                        </td>
+
+                        <td>test</td>
+
+                            <td >
+                             <button className="DeleteButton" onClick={() => this.DeleteUser({ user })}> <FontAwesomeIcon icon={faTrash} /> </button>
+                        </td>            
+                         
+                    </tr>
+                ))}
+                    </table>
+                    </div>
             </div>
         );
     }
