@@ -25,7 +25,8 @@ export default class KitchenScreen extends Component {
             RecallGuidArray: [],
             RecallOrder: [],
             RecallTime: null,
-            visible: false
+            visible: false,
+            user: (JSON.parse(sessionStorage.getItem("user")))
         };
     }
 
@@ -197,6 +198,7 @@ export default class KitchenScreen extends Component {
                 <br />
                 <div id="Clock">
                     <Clock />
+                    &nbsp;&nbsp;{this.state.user.username}
                 </div>
                 <Link to="./">
                     <button class="BackButton">Back</button>

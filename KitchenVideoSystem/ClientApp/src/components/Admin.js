@@ -13,6 +13,7 @@ export default class Admin extends Component {
         this.DeleteUser = this.DeleteUser.bind(this);
         this.state = {
             Users: [],
+            user: (JSON.parse(sessionStorage.getItem("user")))
         };
     }
 
@@ -61,6 +62,8 @@ export default class Admin extends Component {
                 </Link>
                 <div id="Clock">
                     <Clock />
+                     &nbsp;&nbsp;{this.state.user.username}
+
                 </div>
 
                 <div className="adminTableDiv">

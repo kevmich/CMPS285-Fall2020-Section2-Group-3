@@ -15,6 +15,7 @@ export default class AddUser extends Component {
                 user_id: "",
                 user_password: ""
             },
+            user: (JSON.parse(sessionStorage.getItem("user"))),
             userFail: true,
             SameUser: false,
             adminFail: false,
@@ -111,6 +112,7 @@ export default class AddUser extends Component {
             <div>
                 <div id="Clock">
                     <Clock />
+                     &nbsp;&nbsp;{this.state.user.username}
                 </div>
             <div className="Login">
                 <div className="LoginContainer">
