@@ -4,6 +4,8 @@ import axios from 'axios';
 import "./Admin.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import Clock from 'react-digital-clock'
+
 export default class Admin extends Component {
     constructor(props) {
         super(props);
@@ -53,8 +55,11 @@ export default class Admin extends Component {
                 </Link>
 
                 <Link to="./">
-                    <button class="backButton">back</button>
+                    <button class="BackButton">Back</button>
                 </Link>
+                <div id="Clock">
+                    <Clock />
+                </div>
                 {this.state.Users.map((user) => (
                     <div>
                         <p> {user} <button className="DeleteButton" onClick={() => this.DeleteUser({ user })}> <FontAwesomeIcon icon={faTrash} /> </button> </p>

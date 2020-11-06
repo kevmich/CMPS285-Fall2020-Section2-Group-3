@@ -173,11 +173,11 @@ export default class CashierScreen extends Component {
 
         return (
             <div>
-                <div id="cashierClock">
+                <div id="Clock">
                     <Clock />
                 </div>
                 <Link to="./">
-                    <button class="CashierBackButton">Back</button>
+                    <button class="BackButton">Back</button>
                 </Link>
                 <div class="FoodItems">
                     <b> Food </b>

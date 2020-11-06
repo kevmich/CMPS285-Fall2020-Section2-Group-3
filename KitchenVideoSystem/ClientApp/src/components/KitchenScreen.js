@@ -195,11 +195,11 @@ export default class KitchenScreen extends Component {
                 <br />
                 <br />
                 <br />
-                <div id="kitchenClock">
+                <div id="Clock">
                     <Clock />
                 </div>
                 <Link to="./">
-                    <button class="KitchenBackButton">Back</button>
+                    <button class="BackButton">Back</button>
                 </Link>
                 {this.state.visible ? <div><div id="RecallDiv"> {this.state.RecallOrder.filter((x) => {
                     if (uniqueRecall.has(x.name + x.size + (x.isDeleted ? 1 : 0) + x.orderNumber))

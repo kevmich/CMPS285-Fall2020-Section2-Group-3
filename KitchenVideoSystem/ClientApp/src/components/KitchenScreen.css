@@ -26,16 +26,6 @@ li {
     margin-left: -1em;
 }
 
-#kitchenClock {
-    background-color: #3f51b6;
-    position: fixed;
-    bottom: 0px;
-    color: white;
-    border-top-right-radius: 10px;
-    padding-right: 10px;
-    z-index: 99;
-}
-
 #Completed {
     border-color: chartreuse;
     border-width: 10px;
@@ -59,16 +49,6 @@ li {
 #incompleteOrders {
     border-color: tomato;
     background-color: #ffefeb;
-}
-
-.KitchenBackButton {
-    background-color: #3f51b6;
-    position: fixed;
-    bottom: 75px;
-    color: white;
-    border-top-right-radius: 10px;
-    padding-right: 10px;
-    z-index: 99;
 }
 
 .GroupOrder {

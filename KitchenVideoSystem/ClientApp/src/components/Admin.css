@@ -2,17 +2,6 @@
     text-align: center
 }
 
-.backButton {
-    background-color: red;
-    left: 0px;
-    color: black;
-    border-radius: 10px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
 .addButton {
     background-color: green;
     left: 0px;

@@ -40,7 +40,7 @@ body {
     background: transparent;
 }
 
-.CashierBackButton {
+.BackButton {
     background-color: #3f51b6;
     position: fixed;
     bottom: 75px;
@@ -154,7 +154,7 @@ body {
     color: black;
 }
 
-#cashierClock {
+#Clock {
     background-color: #3f51b6;
     position: fixed;
     bottom: 0px;
