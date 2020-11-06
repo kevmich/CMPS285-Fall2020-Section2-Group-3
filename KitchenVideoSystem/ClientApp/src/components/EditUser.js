@@ -16,7 +16,7 @@ export default class AddUser extends Component {
                 user_password: ""
             },
             user: (JSON.parse(sessionStorage.getItem("user"))),
-            editUser: [this.getUserInfo("user")],
+            editUser: [this.getUserInfo(this.props.location.state.editUser[0].user)],
             userFail: true,
             SameUser: false,
             adminFail: false,
@@ -48,9 +48,8 @@ export default class AddUser extends Component {
             .then((response) =>
                 this.setState({
                     editUser: response.data
-            }))
+                }))
     }
-
 
     login = event => {
         let user_id = this.state.loginParams.user_id;
@@ -84,7 +83,6 @@ export default class AddUser extends Component {
                 this.setState({
                     userFail: false
                 });
-
             }
             if (response.data == -1) {
                 this.setState({
@@ -110,8 +108,6 @@ export default class AddUser extends Component {
         })
         this.setState({ permissions: permissions })
     }
-
-
 
     render() {
         if (this.state.userFail == false) {
@@ -167,6 +163,7 @@ export default class AddUser extends Component {
                             {this.state.adminFail ? <p className="alert"> Admin cannot be modified. </p> : null}
                             {console.log("AHH")}
                             {console.log(this.state.editUser.username)}
+                            {console.log(this.props.location.state.editUser[0].user)}
                         </form>
 
                     </div>

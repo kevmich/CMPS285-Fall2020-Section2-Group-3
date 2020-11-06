@@ -82,7 +82,13 @@ export default class Admin extends Component {
                         </td>
 
                         <td>
-                            <Link to="./admin/edituser">
+
+                            <Link to={{
+                                pathname: "./admin/edituser",
+                                state: {
+                                    editUser: [{user}]
+                                    }
+                                }}>
                             <button class="editButton"> <FontAwesomeIcon icon={faPen} /> </button>
                             </Link>
                         </td>
