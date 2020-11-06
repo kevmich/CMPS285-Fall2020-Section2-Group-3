@@ -134,19 +134,12 @@ export default class AddUser extends Component {
                             <h1 className="signIn">Edit User <b>{this.state.editUser.username}</b></h1>
                             <div className="row">
                                 <div className="col">
-                                    <h3 className="h3 text-left"> Change Username: </h3>
-                                    <input
-                                        type="text"
-                                        name="user_id"
-                                        onChange={this.handleFormChange}
-                                        placeholder="Change Username (unchanged)"
-                                    />
                                     <h3 className="h3 text-left"> Change Password: </h3>
                                     <input
                                         type="password"
                                         name="user_password"
                                         onChange={this.handleFormChange}
-                                        placeholder="Change Password (unchanged)"
+                                        placeholder="(unchanged)"
                                     />
                                     <p className="permissionText"> Permissions: </p>
                                     <ul className="checkBox">
