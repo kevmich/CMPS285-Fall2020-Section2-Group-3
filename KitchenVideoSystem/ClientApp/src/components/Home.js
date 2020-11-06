@@ -8,6 +8,8 @@ import { faCashRegister } from '@fortawesome/free-solid-svg-icons'
 import { faCog } from '@fortawesome/free-solid-svg-icons'
 import { faFire } from '@fortawesome/free-solid-svg-icons'
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import Clock from 'react-digital-clock'
+
 
 export class Home extends Component {
     static displayName = Home.name;
@@ -38,6 +40,9 @@ export class Home extends Component {
         return (
 
             <div>
+                <div id="Clock">
+                    <Clock />
+                </div>
                 <div className="ButtonList">
                     <img src={KvsIcon} height="120px" class="center" />
                     <h1 className="HomeTitle">Welcome to KVS, {this.state.user.username}!</h1>

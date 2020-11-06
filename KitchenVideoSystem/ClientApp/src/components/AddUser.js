@@ -3,8 +3,8 @@ import "./AddUser.css";
 import { Redirect, Link } from "react-router-dom";
 import axios from 'axios'
 import KvsIcon from '../content/KVS-Icon.png';
-import  CheckBox  from './CheckBox';
-
+import CheckBox from './CheckBox';
+import Clock from 'react-digital-clock'
 
 export default class AddUser extends Component {
     constructor(props) {
@@ -108,6 +108,10 @@ export default class AddUser extends Component {
         }
 
         return (
+            <div>
+                <div id="Clock">
+                    <Clock />
+                </div>
             <div className="Login">
                 <div className="LoginContainer">
                     <form onSubmit={this.login} className="form-signin">
@@ -153,7 +157,8 @@ export default class AddUser extends Component {
                     </form>
 
                 </div>
-            </div>
+                </div>
+                </div>
         );
     }
 }

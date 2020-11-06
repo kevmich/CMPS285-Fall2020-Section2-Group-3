@@ -3,6 +3,8 @@ import "./Login.css";
 import { Redirect } from "react-router-dom";
 import axios from 'axios'
 import KvsIcon from '../content/KVS-Icon.png';
+import Clock from 'react-digital-clock'
+
 
 class Login extends Component {
     constructor(props) {
@@ -75,6 +77,10 @@ class Login extends Component {
             return <Redirect to="/home" />;
         }
         return (
+            <div>
+                <div id="Clock">
+                    <Clock />
+                </div>
             <div className="Login">
                 <div className="LoginContainer">
                     <form onSubmit={this.login} className="form-signin">
@@ -106,7 +112,8 @@ class Login extends Component {
                     </form>
 
                 </div>
-            </div>
+                </div>
+                </div>
         );
     }
 }
