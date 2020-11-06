@@ -137,7 +137,7 @@ namespace TokenBasedAuth.Services
                 return -3;
             using (var connection = new SqlConnection(_connectionString))
             {
-                // Delete user perms first
+                // Delete all user perms first
                 var parameter = new { UserId = user.Id };
                 var sql = "DELETE FROM UsersPermissions WHERE UserId = @UserId";
                 connection.Execute(sql, parameter);
@@ -156,7 +156,7 @@ namespace TokenBasedAuth.Services
                 {
                     user.Password = SHA.ComputeSHA256Hash(user.Password);
                     var parameter3 = new { username = user.Username, password = user.Password };
-                    var sql3 = "INSERT INTO Users (password) VALUES (@password) WHERE Username = @Username";
+                    var sql3 = "UPDATE Users SET Password = @Password WHERE Username = @Username";
                     connection.Execute(sql3, parameter3);
                 }
                 return 1;

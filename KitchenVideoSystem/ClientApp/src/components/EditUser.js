@@ -53,7 +53,13 @@ export default class AddUser extends Component {
 
     login = event => {
         let user_id = this.state.loginParams.user_id;
-        let user_password = this.state.loginParams.user_password;
+        let user_password = null;
+        if (this.state.loginParams.user_password == "") {
+            user_password = null;
+        }
+        else {
+            user_password = this.state.loginParams.user_password
+        }
 
         var checkBox = [];
         var perms = this.state.permissions
@@ -70,7 +76,7 @@ export default class AddUser extends Component {
             data: {
                 "id": this.state.editUser.id,
                 "username": this.state.editUser.username,
-                "password": this.state.editUser.password,
+                "password": user_password,
                 "permissionsarray": checkBox
             },
             headers: {
