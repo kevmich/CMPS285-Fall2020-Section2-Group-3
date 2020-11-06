@@ -80,14 +80,12 @@ export default class Admin extends Component {
                         <td>
                             {user}
                         </td>
-
                         <td>
                             <Link to="./admin/edituser">
                             <button class="editButton"> <FontAwesomeIcon icon={faPen} /> </button>
                             </Link>
                         </td>
-
-                            <td >
+                         <td>
                              <button className="DeleteButton" onClick={() => this.DeleteUser({ user })}> <FontAwesomeIcon icon={faTrash} /> </button>
                         </td>            
                          
