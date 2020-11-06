@@ -107,7 +107,7 @@ namespace TokenBasedAuth.Services
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var sql = "SELECT Username FROM Users";
+                var sql = "SELECT Username FROM Users WHERE NOT Username = 'admin'";
                 return connection.Query<string>(sql).ToArray();
             }
         }
