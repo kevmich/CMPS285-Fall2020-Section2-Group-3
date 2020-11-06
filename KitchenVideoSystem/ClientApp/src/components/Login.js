@@ -24,7 +24,6 @@ class Login extends Component {
         this.setState({
             loginParams: loginParamsNew,
             loginFail: false
-
         });
     };
 
@@ -67,23 +66,9 @@ class Login extends Component {
         })
     }
 
-    DeleteOrder(id) {
-        axios.get('/api/orders/DeleteOrder/' + id, {
-            headers: {
-                'Authorization': 'Bearer ' + sessionStorage.getItem('token')
-            }
-        })
-            .then((response) => {
-                this.updateCurrent();
-            });
-    }
-
-
     componentDidMount() {
         document.title = "KVS Login";
     }
-
-
 
     render() {
         if (sessionStorage.getItem("token")) {
@@ -117,7 +102,6 @@ class Login extends Component {
                             </div>
                         </div>
                         {this.state.loginFail ? <p className="alert"> Incorrect Username or Password. </p> : null}
-
 
                     </form>
 

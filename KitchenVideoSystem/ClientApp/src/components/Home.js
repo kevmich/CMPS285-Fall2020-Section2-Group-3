@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect} from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { NavLink } from 'reactstrap';
 import './Home.css'
 import KvsIcon from '../content/KVS-Icon.png';
@@ -17,7 +17,6 @@ export class Home extends Component {
         this.state = {
             islogout: false,
             user: (JSON.parse(sessionStorage.getItem("user"))),
-
         };
     }
     signOut = () => {
@@ -38,7 +37,6 @@ export class Home extends Component {
         }
         return (
 
-          
             <div>
                 <div className="ButtonList">
                     <img src={KvsIcon} height="120px" class="center" />
@@ -60,15 +58,13 @@ export class Home extends Component {
                         </tr>
                         <tr>
                             <td colSpan="3">
-                                <button onClick={this.signOut} href="#" className="SignOutButton"><FontAwesomeIcon icon={faSignOutAlt}/>&nbsp;Sign Out</button>
+                                <button onClick={this.signOut} href="#" className="SignOutButton"><FontAwesomeIcon icon={faSignOutAlt} />&nbsp;Sign Out</button>
                             </td>
                         </tr>
                     </table>
-                    
-                    
-                 </div>
+
+                </div>
             </div>
-      );
-      
+        );
     }
 }
