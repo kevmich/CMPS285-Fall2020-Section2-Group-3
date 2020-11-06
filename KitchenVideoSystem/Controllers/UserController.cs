@@ -45,7 +45,7 @@ namespace KitchenVideoSystem.Controllers
             return _userService.GetAllUsers();
         }
 
-        [HttpGet, Route("GetUserInfo/{username}")]
+        [HttpGet, Route("GetUserInfo/{username}"), AllowAnonymous]
         public EditUser GetUserInfo([FromRoute] string username)
         {
             return _userService.GetUserInfo(username);

@@ -15,11 +15,14 @@ export class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            islogout: false
+            islogout: false,
+            user: (JSON.parse(sessionStorage.getItem("user"))),
+
         };
     }
     signOut = () => {
         sessionStorage.removeItem("token");
+        sessionStorage.removeItem("user");
         this.setState({
             islogout: true
         });
@@ -39,7 +42,7 @@ export class Home extends Component {
             <div>
                 <div className="ButtonList">
                     <img src={KvsIcon} height="120px" class="center" />
-                    <h1 className="HomeTitle">Welcome to KVS!</h1>
+                    <h1 className="HomeTitle">Welcome to KVS, {this.state.user.username}!</h1>
                     <table>
                         <tr>
                             <td>

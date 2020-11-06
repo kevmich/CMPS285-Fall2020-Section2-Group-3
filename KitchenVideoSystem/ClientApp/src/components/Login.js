@@ -41,9 +41,7 @@ class Login extends Component {
             }
         }).then((response) => {
             sessionStorage.setItem("token", response.data.token)
-            this.setState({
-                islogged: true
-            });
+            this.getUserInfo(user_id);
         }).catch((error) => {
             if (error.response.status == 401 || error.response.status == 400) {
                 this.setState({
@@ -55,6 +53,30 @@ class Login extends Component {
 
         event.preventDefault();
     };
+
+    getUserInfo(username) {
+        axios.get('/api/user/getuserinfo/' + username, {
+            headers: {
+                'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+            }
+        }).then((response) => {
+            sessionStorage.setItem("user", JSON.stringify(response.data));
+            this.setState({
+                islogged: true
+            });
+        })
+    }
+
+    DeleteOrder(id) {
+        axios.get('/api/orders/DeleteOrder/' + id, {
+            headers: {
+                'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+            }
+        })
+            .then((response) => {
+                this.updateCurrent();
+            });
+    }
 
 
     componentDidMount() {

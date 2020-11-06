@@ -117,6 +117,7 @@ namespace TokenBasedAuth.Services
             using (var connection = new SqlConnection(_connectionString))
             {
                 var returnUser = new EditUser();
+                returnUser.Username = username;
                 var parameter = new { username };
                 var GetUserId = "SELECT Id FROM Users WHERE Username = @username";
                 returnUser.Id = connection.QuerySingle<int>(GetUserId, parameter);
