@@ -44,6 +44,7 @@
 .inputButton {
     align-items: center;
     width: 25vh;
+    transform: scale(2.5);
 }
 
 .permissionText {

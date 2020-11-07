@@ -50,7 +50,7 @@ export default class Admin extends Component {
         return (
             <div>
                 <div className="title">
-                <h1> Manage Users </h1>
+                    <b style={{ fontSize: "60px" }}> Manage Users </b>
                 <Link to="./admin/adduser">
                     <button class="addButton"> <FontAwesomeIcon icon={faUserPlus} />&nbsp;Add User</button>
                 </Link>
