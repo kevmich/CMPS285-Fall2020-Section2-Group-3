@@ -119,7 +119,7 @@ export default class AddUser extends Component {
                 <div className="LoginContainer">
                         <form onSubmit={this.login} className="form-signin">
                             <FontAwesomeIcon icon={faUserPlus} height="80px" class="center" />
-                        <h1 className="signIn">Add User </h1>
+                            <h1 className="signIn">Add User&nbsp;&nbsp;&nbsp;</h1>
                         <div className="row">
                             <div className="col">
                                 <h3 className="h3 text-left"> Username: </h3>

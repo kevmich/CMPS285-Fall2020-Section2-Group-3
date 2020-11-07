@@ -20,7 +20,6 @@ export default class AddUser extends Component {
             editUser: [this.getUserInfo(this.props.location.state.editUser[0].user)],
             userFail: true,
             SameUser: false,
-            adminFail: false,
             permissions: [
                 { id: 1, value: "Admin", isChecked: false },
                 { id: 2, value: "Cashier", isChecked: false },
@@ -40,7 +39,7 @@ export default class AddUser extends Component {
         this.setState({
             loginParams: loginParamsNew,
             SameUser: false,
-            adminFail: false
+            Submit: false
         });
     };
 
@@ -101,10 +100,11 @@ export default class AddUser extends Component {
                     SameUser: true
                 });
             }
-            if (response.data == -3) {
+
+            if (response.data > 0) {
                 this.setState({
-                    adminFail: true
-                });
+                    Submit: true
+                })
             }
         }).catch((error) => {
         })
@@ -122,7 +122,9 @@ export default class AddUser extends Component {
     }
 
     render() {
-        if (this.state.userFail == false) {
+        if (this.state.Submit == true) {
+            return <Redirect to="/admin" />;
+        } else if (this.state.userFail == false) {
             return <Redirect to="/admin" />;
         }
 
@@ -155,17 +157,17 @@ export default class AddUser extends Component {
                                         }
                                     </ul>
 
+
+                                    <input className="createButton" type="submit" value="Apply" />
+
                                     <Link to="/admin">
                                         <input className="cancelButton" type="Button" value="Cancel" /> 
-
                                     </Link>
-                                    <input className="createButton" type="submit" value="Apply" />
+
 
                                     
                                 </div>
                             </div>
-                            {this.state.SameUser ? <p className="alert"> User already exists. </p> : null}
-                            {this.state.adminFail ? <p className="alert"> Admin cannot be modified. </p> : null}
                             {console.log("AHH")}
                             {console.log(this.state.editUser)}
                         </form>
