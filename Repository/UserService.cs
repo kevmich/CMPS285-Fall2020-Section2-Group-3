@@ -3,9 +3,12 @@ using EasyEncryption;
 using Microsoft.Extensions.Options;
 using Models.Domain;
 using Models.Entity;
+using Models.Enums;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace TokenBasedAuth.Services
 {
@@ -112,6 +115,13 @@ namespace TokenBasedAuth.Services
             }
         }
 
+        public class UserPermissionDto
+        { 
+            public int PermissionId { get; set; }
+            public bool IsChecked { get; set; }
+        }
+
+
         public EditUser GetUserInfo(string username)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -123,8 +133,20 @@ namespace TokenBasedAuth.Services
                 returnUser.Id = connection.QuerySingle<int>(GetUserId, parameter);
                 var parameterId = new { UserId = returnUser.Id };
 
-                var sql = "SELECT PermissionId FROM UsersPermissions up WHERE up.UserId = @UserId";
+                var sql = "  SELECT p.PermissionId  FROM UsersPermissions up  JOIN[Permissions] p on up.PermissionId = p.Id  WHERE up.UserId = @UserId";
                 returnUser.PermissionsArray = connection.Query<int>(sql, parameterId).ToArray();
+                //......
+                //var permissionIds = connection.Query<int>(sql, parameterId).ToArray();
+
+                //var dtos = new List<UserPermissionDto>
+                //{
+                //    new UserPermissionDto { PermissionId = (int)PermissionEnum.Admin, IsChecked = permissionIds.Contains((int)PermissionEnum.Admin) },
+                //    new UserPermissionDto { PermissionId = (int)PermissionEnum.CanViewCashier, IsChecked = permissionIds.Contains((int)PermissionEnum.CanViewCashier) },
+                //    new UserPermissionDto { PermissionId = (int)PermissionEnum.CanViewKitchen, IsChecked = permissionIds.Contains((int)PermissionEnum.CanViewKitchen) }
+                //};
+                //.......
+
+
                 return returnUser;
             }
         }

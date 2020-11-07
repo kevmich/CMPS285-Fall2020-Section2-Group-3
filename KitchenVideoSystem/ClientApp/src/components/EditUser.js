@@ -47,8 +47,12 @@ export default class AddUser extends Component {
         axios.get('/api/user/getuserinfo/' + username)
             .then((response) =>
                 this.setState({
-                    editUser: response.data
+                    editUser: response.data,
+                    permissions: [{ id: 1, value: "Admin", isChecked: response.data.permissionsArray.includes(0)},
+                        { id: 2, value: "Cashier", isChecked: response.data.permissionsArray.includes(1) },
+                        { id: 3, value: "Cook", isChecked: response.data.permissionsArray.includes(2) } ]
                 }))
+        
     }
 
     login = event => {
@@ -161,7 +165,6 @@ export default class AddUser extends Component {
                             {this.state.adminFail ? <p className="alert"> Admin cannot be modified. </p> : null}
                             {console.log("AHH")}
                             {console.log(this.state.editUser)}
-                            {console.log(this.props.location.state.editUser[0].user)}
                         </form>
 
                     </div>
