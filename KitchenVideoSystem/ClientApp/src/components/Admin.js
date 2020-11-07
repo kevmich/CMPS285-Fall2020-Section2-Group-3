@@ -92,7 +92,10 @@ export default class Admin extends Component {
                             </Link>
                         </td>
                          <td>
-                             <button className="DeleteButton" onClick={() => this.DeleteUser({ user })}> <FontAwesomeIcon icon={faTrash} /> </button>
+                            <button className="DeleteButton" onClick={e =>
+                                window.confirm("Are you sure you want to delete the user '" + user  +"'?") && 
+                                this.DeleteUser({ user }) 
+                            }> <FontAwesomeIcon icon={faTrash} /> </button>
                         </td>            
                          
                     </tr>
