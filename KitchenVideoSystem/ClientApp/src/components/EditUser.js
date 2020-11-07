@@ -4,7 +4,7 @@ import { Redirect, Link } from "react-router-dom";
 import axios from 'axios'
 import CheckBox from './CheckBox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPen } from '@fortawesome/free-solid-svg-icons'
+import { faUserEdit } from '@fortawesome/free-solid-svg-icons'
 import Clock from 'react-digital-clock'
 
 export default class AddUser extends Component {
@@ -137,7 +137,7 @@ export default class AddUser extends Component {
                 <div className="Login">
                     <div className="LoginContainer">
                         <form onSubmit={this.login} className="form-signin">
-                            <FontAwesomeIcon icon={faPen}  height="80px" class="center" />
+                            <FontAwesomeIcon icon={faUserEdit}  height="80px" class="center" />
                             <h1 className="signIn">Edit User <b>{this.state.editUser.username}</b></h1>
                             <div className="row">
                                 <div className="col">

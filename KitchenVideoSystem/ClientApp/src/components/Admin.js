@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import "./Admin.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash, faUserPlus, faPen } from '@fortawesome/free-solid-svg-icons'
+import { faUserTimes, faUserPlus, faUserEdit } from '@fortawesome/free-solid-svg-icons'
 import Clock from 'react-digital-clock'
 
 export default class Admin extends Component {
@@ -88,14 +88,14 @@ export default class Admin extends Component {
                                     editUser: [{user}]
                                     }
                                 }}>
-                            <button class="editButton"> <FontAwesomeIcon icon={faPen} /> </button>
+                            <button class="editButton"> <FontAwesomeIcon icon={faUserEdit} /> </button>
                             </Link>
                         </td>
                          <td>
-                            <button className="DeleteButton" onClick={e =>
+                            <button className='delete' onClick={e =>
                                 window.confirm("Are you sure you want to delete the user '" + user  +"'?") && 
                                 this.DeleteUser({ user }) 
-                            }> <FontAwesomeIcon icon={faTrash} /> </button>
+                            }> <FontAwesomeIcon icon={faUserTimes} /> </button>
                         </td>            
                          
                     </tr>

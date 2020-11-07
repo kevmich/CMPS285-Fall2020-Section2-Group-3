@@ -28,3 +28,9 @@
     color: white;
 }
 
+.delete{
+    color:white;
+    background-color:#ff6347;
+    border-radius: 10px;
+}
+
