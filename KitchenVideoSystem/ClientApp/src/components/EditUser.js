@@ -2,8 +2,9 @@
 import "./AddUser.css";
 import { Redirect, Link } from "react-router-dom";
 import axios from 'axios'
-import KvsIcon from '../content/KVS-Icon.png';
 import CheckBox from './CheckBox';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPen } from '@fortawesome/free-solid-svg-icons'
 import Clock from 'react-digital-clock'
 
 export default class AddUser extends Component {
@@ -134,7 +135,7 @@ export default class AddUser extends Component {
                 <div className="Login">
                     <div className="LoginContainer">
                         <form onSubmit={this.login} className="form-signin">
-                            <img src={KvsIcon} height="80px" class="center" />
+                            <FontAwesomeIcon icon={faPen}  height="80px" class="center" />
                             <h1 className="signIn">Edit User <b>{this.state.editUser.username}</b></h1>
                             <div className="row">
                                 <div className="col">
@@ -156,9 +157,11 @@ export default class AddUser extends Component {
 
                                     <Link to="/admin">
                                         <input className="cancelButton" type="Button" value="Cancel" /> 
-                                    </Link>
 
+                                    </Link>
                                     <input className="createButton" type="submit" value="Apply" />
+
+                                    
                                 </div>
                             </div>
                             {this.state.SameUser ? <p className="alert"> User already exists. </p> : null}

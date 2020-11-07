@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import "./Admin.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash, faPlus, faPen } from '@fortawesome/free-solid-svg-icons'
+import { faTrash, faUserPlus, faPen } from '@fortawesome/free-solid-svg-icons'
 import Clock from 'react-digital-clock'
 
 export default class Admin extends Component {
@@ -52,7 +52,7 @@ export default class Admin extends Component {
                 <div className="title">
                 <h1> Manage Users </h1>
                 <Link to="./admin/adduser">
-                    <button class="addButton"> <FontAwesomeIcon icon={faPlus} />&nbsp;Add User</button>
+                    <button class="addButton"> <FontAwesomeIcon icon={faUserPlus} />&nbsp;Add User</button>
                 </Link>
                 </div>
 
