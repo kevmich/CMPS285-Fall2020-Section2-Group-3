@@ -41,7 +41,7 @@ export class Home extends Component {
             <div>
                 <div id="Clock">
                     <Clock />
-                    &nbsp;&nbsp;{this.state.user.username}
+                    &nbsp;<p class="clockUser">&nbsp;{this.state.user.username}</p>
                 </div>
                 <div className="ButtonList">
                     <img src={KvsIcon} height="120px" class="center" />

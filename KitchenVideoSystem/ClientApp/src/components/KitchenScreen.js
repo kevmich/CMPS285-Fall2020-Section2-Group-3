@@ -198,7 +198,7 @@ export default class KitchenScreen extends Component {
                 <br />
                 <div id="Clock">
                     <Clock />
-                    &nbsp;&nbsp;{this.state.user.username}
+                    &nbsp;<p class="clockUser">&nbsp;{this.state.user.username}</p>
                 </div>
                 <Link to="./">
                     <button class="BackButton">Back</button>

@@ -154,16 +154,6 @@ body {
     color: black;
 }
 
-#Clock {
-    display: flex;
-    background-color: #3f51b6;
-    position: fixed;
-    bottom: 0px;
-    color: white;
-    border-top-right-radius: 10px;
-    padding-right: 10px;
-}
-
 #DrinkTable {
     vertical-align: middle;
 

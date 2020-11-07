@@ -129,7 +129,7 @@ export default class AddUser extends Component {
             <div>
                 <div id="Clock">
                     <Clock />
-                     &nbsp;&nbsp;{this.state.user.username}
+                     &nbsp;<p class="clockUser">&nbsp;{this.state.user.username}</p>
                 </div>
                 <div className="Login">
                     <div className="LoginContainer">

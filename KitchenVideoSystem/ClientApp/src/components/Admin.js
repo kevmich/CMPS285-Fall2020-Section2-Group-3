@@ -61,7 +61,7 @@ export default class Admin extends Component {
                 </Link>
                 <div id="Clock">
                     <Clock />
-                     &nbsp;&nbsp;{this.state.user.username}
+                     &nbsp;<p class="clockUser">&nbsp;{this.state.user.username}</p>
 
                 </div>
 

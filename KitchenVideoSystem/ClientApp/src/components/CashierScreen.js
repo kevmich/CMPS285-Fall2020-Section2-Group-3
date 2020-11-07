@@ -176,7 +176,7 @@ export default class CashierScreen extends Component {
             <div>
                 <div id="Clock">
                     <Clock />
-                        &nbsp;&nbsp;{this.state.user.username}
+                        &nbsp;<p class="clockUser">&nbsp;{this.state.user.username}</p>
                 </div>
                 <Link to="./">
                     <button class="BackButton">Back</button>
