@@ -1,5 +1,5 @@
 ﻿import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import './KitchenScreen.css'
 import axios from 'axios';
 import hamburgerIcon from '../content/hamburger-solid.png';
@@ -186,6 +186,10 @@ export default class KitchenScreen extends Component {
 
     render() {
         let uniqueRecall = new Set();
+
+        if (!(this.state.user.permissionsArray.includes(2))) {
+            return <Redirect to="/home" />;
+        }
 
         return (
 

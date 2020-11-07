@@ -1,5 +1,5 @@
 ﻿import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import "./Admin.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -47,6 +47,10 @@ export default class Admin extends Component {
     }
 
     render() {
+        if (!(this.state.user.permissionsArray.includes(0))) {
+            return <Redirect to="/home" />;
+        }
+
         return (
             <div>
                 <div className="title">
