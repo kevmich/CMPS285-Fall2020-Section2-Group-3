@@ -48,13 +48,22 @@ export class Home extends Component {
                     <h1 className="HomeTitle">Welcome to KVS, {this.state.user.username}!</h1>
                     <table>
                         <tr>
-                            {this.state.user.permissionsArray.includes(1) ? <td>
+                            {this.state.user.permissionsArray.includes(1) && this.state.user.permissionsArray.includes(2) ? <td>
                                 <NavLink tag={Link} to="/cashierscreen" className="HomeButton"><FontAwesomeIcon icon={faCashRegister} />&nbsp;Cashier</NavLink>
                             </td> : null}
 
-                            <td width="10%">
-                            </td>
-                            {this.state.user.permissionsArray.includes(2) ? <td>
+                            {this.state.user.permissionsArray.includes(1) && !(this.state.user.permissionsArray.includes(2)) ? <td colSpan="3">
+                                <NavLink tag={Link} to="/cashierscreen" className="HomeButton"><FontAwesomeIcon icon={faCashRegister} />&nbsp;Cashier</NavLink>
+                            </td> : null}
+
+                            {this.state.user.permissionsArray.includes(1) && (this.state.user.permissionsArray.includes(2)) ? <td width="10%">
+                            </td> : null}
+
+                            {this.state.user.permissionsArray.includes(2) && this.state.user.permissionsArray.includes(1) ? <td>
+                                <NavLink tag={Link} to="/kitchenscreen" className="HomeButton"><FontAwesomeIcon icon={faFire} />&nbsp;Kitchen</NavLink>
+                            </td> : null}
+
+                            {this.state.user.permissionsArray.includes(2) && !(this.state.user.permissionsArray.includes(1)) ? <td colSpan="3">
                                 <NavLink tag={Link} to="/kitchenscreen" className="HomeButton"><FontAwesomeIcon icon={faFire} />&nbsp;Kitchen</NavLink>
                             </td> : null}
 
