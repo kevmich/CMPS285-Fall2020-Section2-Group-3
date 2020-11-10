@@ -131,6 +131,7 @@ li {
     position: absolute;
     bottom: 10vh;
     right: 0;
+    padding-bottom: 20px;
 }
 
 .kitchenDeletedOrder {
@@ -142,24 +143,63 @@ li {
 }
 
 .RecallNav {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.RecallNavLeft {
+    text-align: left;
 }
 
 .RecallPreviousButton {
-    text-decoration: underline;
-    width: 500px;
+    background-color: #683fb6;
+    width: 150px;
+    height: 75px;
+    border-radius: 10px;
 }
 
-.RecallPreviousButton:hover {
-    color: blue;
+.RecallPreviousNullButton {
+    background-color: rgba(104, 63, 182, 0.5);
+    width: 150px;
+    height: 75px;
+    border-radius: 10px;
+}
+
+.fa-caret-left {
+    color: white;
+}
+
+.fa-caret-left-null {
+    color: rgba(255,255,255,0.5);
+}
+
+.RecallNavRight {
+    text-align: right;
 }
 
 .RecallNextButton {
-    text-decoration: underline;
+    background-color: #683fb6;
+    width: 150px;
+    height: 75px;
+    border-radius: 10px;
 }
 
-.RecallNextButton:hover {
-    color: blue;
+.RecallNextNullButton {
+    background-color: rgba(104, 63, 182, 0.5);
+    width: 150px;
+    height: 75px;
+    border-radius: 10px;
+}
+
+.fa-caret-right {
+    color: white;
+}
+
+.fa-caret-right-null {
+    color: rgba(255,255,255,0.5);
 }
 
 .RecallText {

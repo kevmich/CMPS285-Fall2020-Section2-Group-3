@@ -1,5 +1,8 @@
 ﻿import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretLeft } from '@fortawesome/free-solid-svg-icons';
+import { faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import './KitchenScreen.css'
 import axios from 'axios';
 import hamburgerIcon from '../content/hamburger-solid.png';
@@ -220,8 +223,8 @@ export default class KitchenScreen extends Component {
                     ))
                 }
                     <div class="RecallNav">
-                        {this.state.RecallGuidArray.indexOf(this.state.RecallGuid) != 0 ?
-                            <p class="RecallPreviousButton" onClick={() => {
+                        <div class="RecallNavLeft">{(this.state.RecallGuidArray.indexOf(this.state.RecallGuid) != 0 && this.state.RecallGuidArray.length != 0) ?
+                            <button class="RecallPreviousButton" onClick={() => {
                                 this.state.RecallGuid = this.state.RecallGuidArray[this.state.RecallGuidArray.indexOf(this.state.RecallGuid) - 1];
                                 axios.get('api/kitchen/getorder/' + this.state.RecallGuid, {
                                     headers: {
@@ -238,9 +241,10 @@ export default class KitchenScreen extends Component {
                                             RecallTime: -1
                                         })
                                 });
-                            }}>Previous</p> : null}
-                        {this.state.RecallGuidArray.indexOf(this.state.RecallGuid) != this.state.RecallGuidArray.length - 1 ?
-                            <p class="RecallNextButton" onClick={() => {
+                            }}><FontAwesomeIcon icon={faCaretLeft} style={{ width: '100px' }} /></button> :
+                            <button class="RecallPreviousNullButton"><FontAwesomeIcon icon={faCaretLeft} style={{ width: '100px' }} /></button>}</div>
+                        <div class="RecallNavRight">{this.state.RecallGuidArray.indexOf(this.state.RecallGuid) != this.state.RecallGuidArray.length - 1 ?
+                            <button class="RecallNextButton" onClick={() => {
                                 this.state.RecallGuid = this.state.RecallGuidArray[this.state.RecallGuidArray.indexOf(this.state.RecallGuid) + 1];
                                 axios.get('api/kitchen/getorder/' + this.state.RecallGuid, {
                                     headers: {
@@ -257,7 +261,8 @@ export default class KitchenScreen extends Component {
                                             RecallTime: -1
                                         })
                                 });
-                            }}>Next</p> : null}
+                            }}><FontAwesomeIcon icon={faCaretRight} style={{ width: '100px' }} /></button> :
+                            <button class="RecallNextNullButton"><FontAwesomeIcon icon={faCaretRight} style={{ width: '100px' }} /></button>}</div>
                     </div>
                 </div>
                     
