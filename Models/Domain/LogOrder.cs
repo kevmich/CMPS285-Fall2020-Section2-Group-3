@@ -4,6 +4,7 @@ namespace Models.Domain
 {
     public class LogOrder
     {
+        public int Id { get; set; }
         public String Name { get; set; }
 
         public int Size { get; set; }

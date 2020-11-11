@@ -4,10 +4,7 @@ import { NavLink } from 'reactstrap';
 import './Home.css'
 import KvsIcon from '../content/KVS-Icon.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCashRegister } from '@fortawesome/free-solid-svg-icons'
-import { faCog } from '@fortawesome/free-solid-svg-icons'
-import { faFire } from '@fortawesome/free-solid-svg-icons'
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import { faCashRegister, faCog, faFire, faSignOutAlt, faClipboardList} from '@fortawesome/free-solid-svg-icons'
 import Clock from 'react-digital-clock'
 
 export class Home extends Component {
@@ -73,6 +70,13 @@ export class Home extends Component {
                             </td> : null}
 
                         </tr>
+
+                        <tr>
+                            <td colSpan="3"> <NavLink tag={Link} to="/Log"><FontAwesomeIcon icon={faClipboardList} />&nbsp;Order Log</NavLink>
+                            </td>
+
+                        </tr>
+
                         <tr>
                             <td colSpan="3">
                                 <button onClick={this.signOut} href="#" className="SignOutButton"><FontAwesomeIcon icon={faSignOutAlt} />&nbsp;Sign Out</button>

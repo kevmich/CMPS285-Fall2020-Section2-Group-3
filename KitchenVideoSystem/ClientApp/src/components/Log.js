@@ -28,6 +28,12 @@ class Log extends Component {
             data: 5
         }).then((response) => {
             console.log(response.data)
+
+            //response.data.map((data) => (
+            //    data.dateStarted = "1"
+            //))
+
+
             this.setState({
                 LogData: response.data
             });
@@ -41,7 +47,6 @@ class Log extends Component {
     }
 
     handleSubmit(event) {
-        alert('A name was submitted: ' + this.state.date);
         this.GetLog();
         event.preventDefault();
     }
@@ -49,20 +54,32 @@ class Log extends Component {
     render() {
         return (
             <div>
-                <h1> hello! </h1>
+                <h1> Order Log </h1>
                 <form onSubmit={this.handleSubmit}>
                     <label>
-                        Get orders from day:
+                        Select Date:
                     <input type="date" id="birthday" name="senddate" value={this.state.date} onChange={this.handleChange}></input>
                     </label>
                     <input type="submit" value="Submit" />
                 </form>
-                {
-                    this.state.LogData.map((data) => (
-                        <p>{data.name}, {data.size}, {data.dateStarted}</p>
-
-                    ))
-                }
+                
+                    <table>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Size</th>
+                            <th>DateStarted</th>
+                        </tr>
+                    {this.state.LogData.map((data) => (
+                            <tr>
+                                <th>{data.id}</th>
+                                <th>{data.name}</th>
+                                <th>{data.size}</th>
+                                <th>{data.dateStarted}</th>
+                            </tr>
+                    ))}
+                        </table>
+                
             </div>
         );
     }
