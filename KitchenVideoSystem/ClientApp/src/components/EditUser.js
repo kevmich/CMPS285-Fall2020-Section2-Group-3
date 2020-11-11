@@ -48,7 +48,7 @@ export default class AddUser extends Component {
             .then((response) =>
                 this.setState({
                     editUser: response.data,
-                    permissions: [{ id: 1, value: "Manage User", isChecked: response.data.permissionsArray.includes(0)},
+                    permissions: [{ id: 1, value: "Manage Users", isChecked: response.data.permissionsArray.includes(0)},
                         { id: 2, value: "Cashier", isChecked: response.data.permissionsArray.includes(1) },
                         { id: 3, value: "Kitchen", isChecked: response.data.permissionsArray.includes(2) } ]
                 }))
@@ -164,8 +164,6 @@ export default class AddUser extends Component {
                                         <input className="cancelButton" type="Button" value="Cancel" /> 
                                     </Link>
 
-
-                                    
                                 </div>
                             </div>
                             {console.log("AHH")}

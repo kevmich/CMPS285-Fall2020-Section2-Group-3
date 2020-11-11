@@ -108,6 +108,9 @@ export default class AddUser extends Component {
         if (this.state.userFail == false) {
             return <Redirect to="/ManageUsers" />;
         }
+        if (!(this.state.user.permissionsArray.includes(0))) {
+            return <Redirect to="/home" />;
+        }
 
         return (
             <div>
