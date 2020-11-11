@@ -14,16 +14,19 @@ class Log extends Component {
     }
 
     componentDidMount() {
-        axios.get('/api/log/GetAllLog', {
-            //headers: {
-            //    'Authorization': 'Bearer ' + sessionStorage.getItem('token')
-            //}
+        axios({
+            method: 'post',
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + sessionStorage.getItem('token') },
+            url: '/api/log/GetDayLog/' + '2020-11-11',
+            data: 5
         }).then((response) => {
             console.log(response.data)
             this.setState({
                 LogData: response.data
             });
         })
+
+
     }
 
     render() {
@@ -32,7 +35,7 @@ class Log extends Component {
                 <h1> hello! </h1>
                 {
                     this.state.LogData.map((data) => (
-                        <p>{data.name}</p>
+                        <p>{data.name}, {data.size}, {data.dateStarted}</p>
 
                     ))
                 }

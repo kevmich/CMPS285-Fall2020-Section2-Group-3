@@ -25,6 +25,12 @@ namespace KitchenVideoSystem.Controllers
         {
             return _logRepository.GetAllLogOrders();
         }
+        [HttpPost, Route("GetDayLog/{date}")]
+        public LogOrder[] GetDayLog([FromRoute] string date, [FromBody] int offset)
+        {
+            return _logRepository.GetDayLog(date, offset);
+        }
+
 
 
     }

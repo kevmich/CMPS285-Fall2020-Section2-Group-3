@@ -10,6 +10,8 @@ namespace Models.Domain
 
         public int OrderItemId { get; set; }
 
+        public Guid OrderNumer { get; set; }
+
         public DateTimeOffset DateStarted { get; set; }
 
         public DateTimeOffset DateFinished { get; set; }
