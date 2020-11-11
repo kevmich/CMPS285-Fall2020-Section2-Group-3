@@ -13,11 +13,10 @@ class Log extends Component {
             date: ''
         };
 
-
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.GetLog = this.GetLog.bind(this);
-
+        this.formatTime = this.formatTime.bind(this);
     }
 
     GetLog() {
@@ -33,13 +32,10 @@ class Log extends Component {
             //    data.dateStarted = "1"
             //))
 
-
             this.setState({
                 LogData: response.data
             });
         })
-
-
     }
 
     handleChange(event) {
@@ -49,6 +45,13 @@ class Log extends Component {
     handleSubmit(event) {
         this.GetLog();
         event.preventDefault();
+    }
+
+    formatTime(time) {
+        console.log(time);
+        var newTime = new Date(time).toLocaleTimeString();
+        console.log(newTime);
+        return newTime;
     }
 
     render() {
@@ -62,24 +65,30 @@ class Log extends Component {
                     </label>
                     <input type="submit" value="Submit" />
                 </form>
-                
-                    <table>
-                        <tr>
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>Size</th>
-                            <th>DateStarted</th>
-                        </tr>
+
+                <table>
+                    <tr>
+                        <th>Time Started</th>
+                        <th>Time Finished</th>
+                        <th>Order Number</th>
+                        <th>Size</th>
+                        <th>Order Item</th>
+
+                        <th>Quantity</th>
+                    </tr>
                     {this.state.LogData.map((data) => (
-                            <tr>
-                                <th>{data.id}</th>
-                                <th>{data.name}</th>
-                                <th>{data.size}</th>
-                                <th>{data.dateStarted}</th>
-                            </tr>
+                        <tr>
+                            <th>{this.formatTime(data.dateStarted)}</th>
+                            <th>{this.formatTime(data.dateFinished)}</th>
+                            <th>{data.orderNumber}</th>
+                            <th>{data.size}</th>
+                            <th>{data.name}</th>
+
+                            <th>PLACEHOLDER</th>
+                        </tr>
                     ))}
-                        </table>
-                
+                </table>
+
             </div>
         );
     }
