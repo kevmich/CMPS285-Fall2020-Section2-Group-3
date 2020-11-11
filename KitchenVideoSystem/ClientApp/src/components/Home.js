@@ -69,7 +69,7 @@ export class Home extends Component {
 
                         </tr>
                         <tr>
-                            {this.state.user.permissionsArray.includes(0) ? <td colSpan="3"> <NavLink tag={Link} to="/admin" className="AdminButton"><FontAwesomeIcon icon={faCog} />&nbsp;Manage Users</NavLink>
+                            {this.state.user.permissionsArray.includes(0) ? <td colSpan="3"> <NavLink tag={Link} to="/ManageUsers" className="AdminButton"><FontAwesomeIcon icon={faCog} />&nbsp;Manage Users</NavLink>
                             </td> : null}
 
                         </tr>

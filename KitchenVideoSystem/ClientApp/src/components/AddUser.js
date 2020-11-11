@@ -21,9 +21,9 @@ export default class AddUser extends Component {
             SameUser: false,
             adminFail: false,
             permissions: [
-                { id: 1, value: "Admin", isChecked: false },
+                { id: 1, value: "Manage Users", isChecked: false },
                 { id: 2, value: "Cashier", isChecked: false },
-                { id: 3, value: "Cook", isChecked: false }
+                { id: 3, value: "Kitchen", isChecked: false }
             ]
         };
     }
@@ -106,7 +106,7 @@ export default class AddUser extends Component {
 
     render() {
         if (this.state.userFail == false) {
-            return <Redirect to="/admin" />;
+            return <Redirect to="/ManageUsers" />;
         }
 
         return (
@@ -147,7 +147,7 @@ export default class AddUser extends Component {
                                 }
                                 </ul>
 
-                                 <Link to="/admin">
+                                 <Link to="/ManageUsers">
                                         <input className="cancelButton" type="Button" value ="Cancel"/> 
                                 </Link>
 

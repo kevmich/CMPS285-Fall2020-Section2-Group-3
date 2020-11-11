@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
-import "./Admin.css";
+import "./ManageUsers.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserTimes, faUserPlus, faUserEdit } from '@fortawesome/free-solid-svg-icons'
 import Clock from 'react-digital-clock'
@@ -43,7 +43,7 @@ export default class Admin extends Component {
 
     componentDidMount() {
         this.GetAllUsers();
-        document.title = "Admin"
+        document.title = "Manage Users"
     }
 
     render() {
@@ -55,7 +55,7 @@ export default class Admin extends Component {
             <div>
                 <div className="title">
                     <b style={{ fontSize: "60px" }}> Manage Users </b>
-                <Link to="./admin/adduser">
+                <Link to="./ManageUsers/adduser">
                     <button class="addButton"> <FontAwesomeIcon icon={faUserPlus} />&nbsp;Add User</button>
                 </Link>
                 </div>
@@ -87,7 +87,7 @@ export default class Admin extends Component {
                         <td>
 
                             <Link to={{
-                                pathname: "./admin/edituser",
+                                pathname: "./ManageUsers/edituser",
                                 state: {
                                     editUser: [{user}]
                                     }

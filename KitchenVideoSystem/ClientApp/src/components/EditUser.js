@@ -48,9 +48,9 @@ export default class AddUser extends Component {
             .then((response) =>
                 this.setState({
                     editUser: response.data,
-                    permissions: [{ id: 1, value: "Admin", isChecked: response.data.permissionsArray.includes(0)},
+                    permissions: [{ id: 1, value: "Manage User", isChecked: response.data.permissionsArray.includes(0)},
                         { id: 2, value: "Cashier", isChecked: response.data.permissionsArray.includes(1) },
-                        { id: 3, value: "Cook", isChecked: response.data.permissionsArray.includes(2) } ]
+                        { id: 3, value: "Kitchen", isChecked: response.data.permissionsArray.includes(2) } ]
                 }))
         
     }
@@ -123,9 +123,9 @@ export default class AddUser extends Component {
 
     render() {
         if (this.state.Submit == true) {
-            return <Redirect to="/admin" />;
+            return <Redirect to="/ManageUsers" />;
         } else if (this.state.userFail == false) {
-            return <Redirect to="/admin" />;
+            return <Redirect to="/ManageUsers" />;
         }
 
         return (
@@ -160,7 +160,7 @@ export default class AddUser extends Component {
 
                                     <input className="createButton" type="submit" value="Apply" />
 
-                                    <Link to="/admin">
+                                    <Link to="/ManageUsers">
                                         <input className="cancelButton" type="Button" value="Cancel" /> 
                                     </Link>
 
