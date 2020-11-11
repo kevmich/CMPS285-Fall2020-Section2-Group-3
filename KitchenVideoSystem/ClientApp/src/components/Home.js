@@ -72,7 +72,7 @@ export class Home extends Component {
                         </tr>
 
                         <tr>
-                            <td colSpan="3"> <NavLink tag={Link} to="/Log"><FontAwesomeIcon icon={faClipboardList} />&nbsp;Order Log</NavLink>
+                            <td colSpan="3"> <NavLink tag={Link} to="/Log" className="LogButton"><FontAwesomeIcon icon={faClipboardList} />&nbsp;Order Log</NavLink>
                             </td>
 
                         </tr>
