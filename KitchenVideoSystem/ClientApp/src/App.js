@@ -8,6 +8,7 @@ import KitchenScreen from './components/KitchenScreen';
 import Admin from './components/ManageUsers';
 import AddUser from './components/AddUser';
 import EditUser from './components/EditUser';
+import Log from './components/Log';
 import './custom.css'
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -21,6 +22,7 @@ export default class App extends Component {
                 <Route exact path='/ManageUsers' component={Admin} />
                 <Route exact path='/ManageUsers/AddUser' component={AddUser} />
                 <Route exact path='/ManageUsers/EditUser' component={EditUser} />
+                <Route exact path='/log' component={Log} />
             <ProtectedRoute path='/home'>
                 <Route exact path='/home' component={Home} />
             </ProtectedRoute>
