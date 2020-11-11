@@ -33,6 +33,7 @@ namespace KitchenVideoSystem
             //Dependency Injection
             services.AddTransient<IOrderRepository, OrderRepository>();
             services.AddTransient<IPermissionRepository, PermissionRepository>();
+            services.AddTransient<ILogRepository, LogRepository>();
             services.AddTransient<IUserService, UserService>();
             services.Configure<AuthOptions>(Configuration.GetSection("AuthOptions"));
 
