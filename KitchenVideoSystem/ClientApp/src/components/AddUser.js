@@ -23,7 +23,8 @@ export default class AddUser extends Component {
             permissions: [
                 { id: 1, value: "Manage Users", isChecked: false },
                 { id: 2, value: "Cashier", isChecked: false },
-                { id: 3, value: "Kitchen", isChecked: false }
+                { id: 3, value: "Kitchen", isChecked: false },
+                { id: 4, value: "View Log", isChecked: false }
             ]
         };
     }

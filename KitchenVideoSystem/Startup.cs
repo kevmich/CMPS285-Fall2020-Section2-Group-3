@@ -66,6 +66,8 @@ namespace KitchenVideoSystem
                     policy => policy.RequireClaim("CanViewKitchen"));
                 options.AddPolicy("Admin",
                     policy => policy.RequireClaim("Admin"));
+                options.AddPolicy("Log",
+                    policy => policy.RequireClaim("CanViewLog"));
             });
 
             services.AddControllers();

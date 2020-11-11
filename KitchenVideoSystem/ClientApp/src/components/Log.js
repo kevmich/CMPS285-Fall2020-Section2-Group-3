@@ -61,7 +61,7 @@ class Log extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Select Date:
-                    <input type="date" id="birthday" name="senddate" value={this.state.date} onChange={this.handleChange}></input>
+                    <input type="date" id="date" name="senddate" value={this.state.date} onChange={this.handleChange}></input>
                     </label>
                     <input type="submit" value="Submit" />
                 </form>
@@ -73,7 +73,6 @@ class Log extends Component {
                         <th>Order Number</th>
                         <th>Size</th>
                         <th>Order Item</th>
-
                         <th>Quantity</th>
                     </tr>
                     {this.state.LogData.map((data) => (
