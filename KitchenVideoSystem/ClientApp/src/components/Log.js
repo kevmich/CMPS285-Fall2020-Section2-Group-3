@@ -3,6 +3,7 @@ import "./Login.css";
 import { Redirect } from "react-router-dom";
 import axios from 'axios'
 import KvsIcon from '../content/KVS-Icon.png';
+import { CSVLink, CSVDownload } from "react-csv";
 
 class Log extends Component {
     constructor(props) {
@@ -10,13 +11,16 @@ class Log extends Component {
 
         this.state = {
             LogData: [],
-            date: ''
+            date: '',
+            csvData: []
+            
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.GetLog = this.GetLog.bind(this);
         this.formatTime = this.formatTime.bind(this);
+        this.PrepareCsvData = this.PrepareCsvData.bind(this);
     }
 
     GetLog() {
@@ -26,7 +30,7 @@ class Log extends Component {
             url: '/api/log/GetDayLog/' + this.state.date,
             data: 5
         }).then((response) => {
-            console.log(response.data)
+            //console.log(response.data)
 
             //response.data.map((data) => (
             //    data.dateStarted = "1"
@@ -44,13 +48,12 @@ class Log extends Component {
 
     handleSubmit(event) {
         this.GetLog();
+        this.PrepareCsvData();
         event.preventDefault();
     }
 
     formatTime(time) {
-        console.log(time);
         var newTime = new Date(time).toLocaleTimeString();
-        console.log(newTime);
         return newTime;
     }
 
@@ -62,7 +65,34 @@ class Log extends Component {
         });
         if (number > 1)
             return number;
+    }
 
+    PrepareCsvData() {
+        let uniqueNames = new Set();
+        let logData = [];
+
+        this.state.LogData.filter((x) => {
+            if (uniqueNames.has(x.name + x.size + x.orderNumber))
+                return false;
+            else {
+                uniqueNames.add(x.name + x.size + x.orderNumber);
+                return true;
+            }
+        }).map((data) => (
+            logData.push(
+                [ "dateStarted", this.formatTime(data.dateStarted) ],
+                [ "dateFinished", this.formatTime(data.dateFinished) ],
+                [ "orderNumber", data.orderNumber ],
+                [ "size", data.size ],
+                [ "name", data.name ],
+                [ "quantity", this.CountSame(data.name, data.size, data.orderNumber) ]
+            )
+        ))
+        console.log("LOGDATA");
+
+        
+        this.setState({ csvData: logData })
+        console.log(this.state.LogData);
     }
 
     render() {
@@ -77,8 +107,11 @@ class Log extends Component {
                     <input type="date" id="date" name="senddate" value={this.state.date} onChange={this.handleChange}></input>
                     </label>
                     <input type="submit" value="Submit" />
+                    {this.state.csvData ? <CSVLink data={this.state.csvData}>Download</CSVLink> : null}
+
                 </form>
 
+                
                 <table>
                     <tr>
                         <th>Time Started</th>
@@ -95,7 +128,6 @@ class Log extends Component {
                             uniqueNames.add(x.name + x.size + x.orderNumber);
                             return true;
                         }
-
                     }).map((data) => (
                         <tr>
                             <th>{this.formatTime(data.dateStarted)}</th>
