@@ -32,6 +32,7 @@
 }
 
 .checkBox {
+    column-count: 2;
 }
 
 .permissonItem {
@@ -44,7 +45,7 @@
 .inputButton {
     align-items: center;
     width: 25vh;
-    transform: scale(2.5);
+    transform: scale(1.8);
 }
 
 .permissionText {
