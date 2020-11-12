@@ -73,7 +73,7 @@ export class Home extends Component {
 
                         <tr>
                             {this.state.user.permissionsArray.includes(3) ?
-                                <td colSpan="3"> <NavLink tag={Link} to="/Log"><FontAwesomeIcon icon={faClipboardList} />&nbsp;Order Log</NavLink>
+                                <td colSpan="3"> <NavLink tag={Link} to="/Log" className="LogButton"><FontAwesomeIcon icon={faClipboardList} />&nbsp;Order Log</NavLink>
                                 </td> : null}
 
                         </tr>

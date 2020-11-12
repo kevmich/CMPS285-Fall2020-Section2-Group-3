@@ -47,3 +47,18 @@
     margin-top: 15px;
     margin-bottom: 25px;
 }
+
+.LogButton {
+    background-color: green;
+    margin: 10px;
+    color: white;
+    border-radius: 10px;
+    height: 90px;
+    border: none;
+    width: 100%;
+
+}
+
+.LogButton:hover {
+    color: white;
+}
