@@ -140,9 +140,16 @@ export default class AddUser extends Component {
                     <div className="LoginContainer">
                         <form onSubmit={this.login} className="form-signin">
                             <FontAwesomeIcon icon={faUserEdit}  height="80px" class="center" />
-                            <h1 className="signIn">Edit User <b>{this.state.editUser.username}</b></h1>
+                            <h1 className="signIn">Edit User <b> <br/> {this.state.editUser.username}</b></h1>
                             <div className="row">
                                 <div className="col">
+                                    <h3 className="h3 text-left"> Change Username: </h3>
+                                    <input
+                                        type="text"
+                                        name="user_id"
+                                        onChange={this.handleFormChange}
+                                        placeholder="(unchanged)"
+                                    />
                                     <h3 className="h3 text-left"> Change Password: </h3>
                                     <input
                                         type="password"
