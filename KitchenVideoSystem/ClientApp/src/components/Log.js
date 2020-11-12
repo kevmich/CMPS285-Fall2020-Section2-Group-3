@@ -63,7 +63,6 @@ class Log extends Component {
             if (Order.name == itemName && Order.size == itemSize && Order.orderNumber == orderNumber)
                 number++;
         });
-        if (number > 1)
             return number;
     }
 
@@ -80,12 +79,7 @@ class Log extends Component {
             }
         }).map((data) => (
             logData.push(
-                [ "dateStarted", this.formatTime(data.dateStarted) ],
-                [ "dateFinished", this.formatTime(data.dateFinished) ],
-                [ "orderNumber", data.orderNumber ],
-                [ "size", data.size ],
-                [ "name", data.name ],
-                [ "quantity", this.CountSame(data.name, data.size, data.orderNumber) ]
+                { dateStarted: this.formatTime(data.dateStarted), dateFinished: this.formatTime(data.dateFinished) , orderNumber: data.orderNumber, size: data.size, name: data.name, quantity: this.CountSame(data.name, data.size, data.orderNumber) }
             )
         ))
         console.log("LOGDATA");
