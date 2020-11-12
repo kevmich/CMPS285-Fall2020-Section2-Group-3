@@ -54,7 +54,20 @@ class Log extends Component {
         return newTime;
     }
 
+    CountSame(itemName, itemSize, deleted) {
+        var number = 0;
+        this.state.LogData.forEach((Order) => {
+            if (Order.name == itemName && Order.size == itemSize && Order.isDeleted == deleted)
+                number++;
+        });
+        if (number > 1)
+            return number;
+
+    }
+
     render() {
+        let uniqueNames = new Set();
+
         return (
             <div>
                 <h1> Order Log </h1>
@@ -75,7 +88,15 @@ class Log extends Component {
                         <th>Order Item</th>
                         <th>Quantity</th>
                     </tr>
-                    {this.state.LogData.map((data) => (
+                    {this.state.LogData.filter((x) => {
+                        if (uniqueNames.has(x.name + x.size + (x.isDeleted ? 1 : 0)))
+                            return false;
+                        else {
+                            uniqueNames.add(x.name + x.size + (x.isDeleted ? 1 : 0));
+                            return true;
+                        }
+
+                    }).map((data) => (
                         <tr>
                             <th>{this.formatTime(data.dateStarted)}</th>
                             <th>{this.formatTime(data.dateFinished)}</th>
@@ -83,7 +104,7 @@ class Log extends Component {
                             <th>{data.size}</th>
                             <th>{data.name}</th>
 
-                            <th>PLACEHOLDER</th>
+                            <th>{this.CountSame(data.name, data.size, data.isDeleted)}</th>
                         </tr>
                     ))}
                 </table>

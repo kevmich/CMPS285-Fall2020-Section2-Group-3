@@ -38,7 +38,7 @@ namespace Repository
             using (var connection = new SqlConnection(_connectionString))
             {
                 var param = new { date, offset};
-                var sql = "SELECT * FROM Orders JOIN OrderItems ON Orders.OrderItemId = OrderItems.Id WHERE DateStarted > DateAdd(HOUR, @offset, @date) AND DateStarted <= DateAdd(DAY, 1, DateAdd(HOUR, @offset, @date)) ORDER BY DateStarted";
+                var sql = "SELECT * FROM Orders JOIN OrderItems ON Orders.OrderItemId = OrderItems.Id WHERE DateStarted > DateAdd(HOUR, @offset, @date) AND DateStarted <= DateAdd(DAY, 1, DateAdd(HOUR, @offset, @date)) AND (Orders.IsDeleted IS NULL OR Orders.IsDeleted = 0) ORDER BY DateStarted";
                 var orders = connection.Query<LogOrder>(sql, param).ToArray();
                 return orders;
             }

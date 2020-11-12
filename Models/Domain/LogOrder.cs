@@ -9,5 +9,7 @@ namespace Models.Domain
         public Guid OrderNumber { get; set; }
         public DateTimeOffset DateStarted { get; set; }
         public DateTimeOffset DateFinished { get; set; }
+        public int Quantity { get; set; }
+        public Boolean IsDeleted { get; set; }
     }
 }
