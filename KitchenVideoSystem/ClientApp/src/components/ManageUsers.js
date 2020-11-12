@@ -104,7 +104,10 @@ export default class Admin extends Component {
                          
                     </tr>
                 ))}
+                        <br />
+                        <br />
                     </table>
+                    
                     </div>
             </div>
         );
