@@ -77,9 +77,15 @@ namespace TokenBasedAuth.Services
                     // If this fails then the user will still be added with no permissions
                     var GetUserId = "SELECT Id FROM Users WHERE Username = @username";
                     var UserId = connection.QuerySingle<int>(GetUserId, parameter);
+                    
+
                     for (int i = 0; i < user.PermissionsArray.Length; i++)
                     {
-                        var parameter2 = new { UserId, PermissionId = user.PermissionsArray[i] };
+                        var parameterPermId = new { PermissionId = user.PermissionsArray[i] };
+                        var GetPermissionId = "SELECT Id FROM Permissions WHERE PermissionId = @PermissionId";
+                        var PermId = connection.QuerySingle<int>(GetPermissionId, parameterPermId);
+
+                        var parameter2 = new { UserId, PermissionId = PermId };
                         var sql2 = "INSERT INTO UsersPermissions (UserId, PermissionId) VALUES (@UserId, @PermissionId)";
                         connection.Execute(sql2, parameter2);
                     }
@@ -166,7 +172,13 @@ namespace TokenBasedAuth.Services
 
                 for (int i = 0; i < user.PermissionsArray.Length; i++)
                 {
-                    var parameter2 = new { UserId = user.Id, PermissionId = user.PermissionsArray[i] };
+
+                    var parameterPermId = new { PermissionId = user.PermissionsArray[i] };
+                    var GetPermissionId = "SELECT Id FROM Permissions WHERE PermissionId = @PermissionId";
+                    var PermId = connection.QuerySingle<int>(GetPermissionId, parameterPermId);
+
+
+                    var parameter2 = new { UserId = user.Id, PermissionId = PermId };
                     var sql2 = "INSERT INTO UsersPermissions (UserId, PermissionId) VALUES (@UserId, @PermissionId)";
                     connection.Execute(sql2, parameter2);
                 }

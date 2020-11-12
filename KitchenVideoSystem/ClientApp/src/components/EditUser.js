@@ -21,10 +21,10 @@ export default class AddUser extends Component {
             userFail: true,
             SameUser: false,
             permissions: [
-                { id: 1, value: "Manage Users", isChecked: false },
-                { id: 2, value: "Cashier", isChecked: false },
-                { id: 3, value: "Kitchen", isChecked: false },
-                { id: 4, value: "View Log", isChecked: false }
+                { id: 0, value: "Manage Users", isChecked: false },
+                { id: 1, value: "Cashier", isChecked: false },
+                { id: 2, value: "Kitchen", isChecked: false },
+                { id: 3, value: "View Log", isChecked: false }
             ]
         };
     }
@@ -49,10 +49,10 @@ export default class AddUser extends Component {
             .then((response) =>
                 this.setState({
                     editUser: response.data,
-                    permissions: [{ id: 1, value: "Manage Users", isChecked: response.data.permissionsArray.includes(0)},
-                        { id: 2, value: "Cashier", isChecked: response.data.permissionsArray.includes(1) },
-                        { id: 3, value: "Kitchen", isChecked: response.data.permissionsArray.includes(2) },
-                        { id: 4, value: "View Log", isChecked: response.data.permissionsArray.includes(3) }]
+                    permissions: [{ id: 0, value: "Manage Users", isChecked: response.data.permissionsArray.includes(0)},
+                        { id: 1, value: "Cashier", isChecked: response.data.permissionsArray.includes(1) },
+                        { id: 2, value: "Kitchen", isChecked: response.data.permissionsArray.includes(2) },
+                        { id: 3, value: "View Log", isChecked: response.data.permissionsArray.includes(3) }]
                 }))
         
     }
