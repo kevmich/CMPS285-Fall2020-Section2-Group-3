@@ -1,9 +1,10 @@
 ﻿import React, { Component } from "react";
-import "./Login.css";
 import { Redirect } from "react-router-dom";
 import axios from 'axios'
 import KvsIcon from '../content/KVS-Icon.png';
 import { CSVLink, CSVDownload } from "react-csv";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFileDownload } from '@fortawesome/free-solid-svg-icons'
 
 class Log extends Component {
     constructor(props) {
@@ -79,7 +80,7 @@ class Log extends Component {
             }
         }).map((data) => (
             logData.push(
-                { dateStarted: this.formatTime(data.dateStarted), dateFinished: this.formatTime(data.dateFinished) , orderNumber: data.orderNumber, size: data.size, name: data.name, quantity: this.CountSame(data.name, data.size, data.orderNumber) }
+                { TimeStarted: this.formatTime(data.dateStarted), TimeFinished: this.formatTime(data.dateFinished) , OrderNumber: data.orderNumber, Size: data.size, OrderItem: data.name, Quantity: this.CountSame(data.name, data.size, data.orderNumber) }
             )
         ))
         console.log("LOGDATA");
@@ -101,40 +102,40 @@ class Log extends Component {
                     <input type="date" id="date" name="senddate" value={this.state.date} onChange={this.handleChange}></input>
                     </label>
                     <input type="submit" value="Submit" />
-                    {this.state.csvData ? <CSVLink data={this.state.csvData}>Download</CSVLink> : null}
+                    {this.state.csvData.length ? <CSVLink data={this.state.csvData} filename={"OrderLog_" + this.state.date + ".csv"}><FontAwesomeIcon icon={faFileDownload}/>Export</CSVLink> : null}
 
                 </form>
 
-                
-                <table>
-                    <tr>
-                        <th>Time Started</th>
-                        <th>Time Finished</th>
-                        <th>Order Number</th>
-                        <th>Size</th>
-                        <th>Order Item</th>
-                        <th>Quantity</th>
-                    </tr>
-                    {this.state.LogData.filter((x) => {
-                        if (uniqueNames.has(x.name + x.size + x.orderNumber))
-                            return false;
-                        else {
-                            uniqueNames.add(x.name + x.size + x.orderNumber);
-                            return true;
-                        }
-                    }).map((data) => (
+                {this.state.date ?
+                    <table>
                         <tr>
-                            <th>{this.formatTime(data.dateStarted)}</th>
-                            <th>{this.formatTime(data.dateFinished)}</th>
-                            <th>{data.orderNumber}</th>
-                            <th>{data.size}</th>
-                            <th>{data.name}</th>
-
-                            <th>{this.CountSame(data.name, data.size, data.orderNumber)}</th>
+                            <th>Time Started</th>
+                            <th>Time Finished</th>
+                            <th>Order Number</th>
+                            <th>Size</th>
+                            <th>Order Item</th>
+                            <th>Quantity</th>
                         </tr>
-                    ))}
-                </table>
+                        {this.state.LogData.filter((x) => {
+                            if (uniqueNames.has(x.name + x.size + x.orderNumber))
+                                return false;
+                            else {
+                                uniqueNames.add(x.name + x.size + x.orderNumber);
+                                return true;
+                            }
+                        }).map((data) => (
+                            <tr>
+                                <th>{this.formatTime(data.dateStarted)}</th>
+                                <th>{this.formatTime(data.dateFinished)}</th>
+                                <th>{data.orderNumber}</th>
+                                <th>{data.size}</th>
+                                <th>{data.name}</th>
 
+                                <th>{this.CountSame(data.name, data.size, data.orderNumber)}</th>
+                            </tr>
+                        ))}
+                    </table>
+                : null}
             </div>
         );
     }
