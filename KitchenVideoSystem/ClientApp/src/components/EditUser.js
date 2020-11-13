@@ -49,17 +49,23 @@ export default class AddUser extends Component {
             .then((response) =>
                 this.setState({
                     editUser: response.data,
-                    permissions: [{ id: 0, value: "Manage Users", isChecked: response.data.permissionsArray.includes(0)},
-                        { id: 1, value: "Cashier", isChecked: response.data.permissionsArray.includes(1) },
-                        { id: 2, value: "Kitchen", isChecked: response.data.permissionsArray.includes(2) },
-                        { id: 3, value: "View Log", isChecked: response.data.permissionsArray.includes(3) }]
+                    permissions: [{ id: 0, value: "Manage Users", isChecked: response.data.permissionsArray.includes(0) },
+                    { id: 1, value: "Cashier", isChecked: response.data.permissionsArray.includes(1) },
+                    { id: 2, value: "Kitchen", isChecked: response.data.permissionsArray.includes(2) },
+                    { id: 3, value: "View Log", isChecked: response.data.permissionsArray.includes(3) }]
                 }))
-        
     }
 
     login = event => {
-        let user_id = this.state.loginParams.user_id;
+        let user_id = null;
         let user_password = null;
+
+        if (this.state.loginParams.user_id == "") {
+            user_id = null;
+        } else {
+            user_id = this.state.loginParams.user_id
+        }
+
         if (this.state.loginParams.user_password == "") {
             user_password = null;
         }
@@ -82,6 +88,7 @@ export default class AddUser extends Component {
             data: {
                 "id": this.state.editUser.id,
                 "username": this.state.editUser.username,
+                "newusername": user_id,
                 "password": user_password,
                 "permissionsarray": checkBox
             },
@@ -127,9 +134,8 @@ export default class AddUser extends Component {
         if (this.state.Submit == true) {
             return <Redirect to={{
                 pathname: "/ManageUsers",
-                search:  "?name=" + this.state.editUser.username + "&action=edited"
+                search: "?name=" + this.state.editUser.username + "&action=edited"
             }} />;
-
         } else if (this.state.userFail == false) {
             return <Redirect to={{
                 pathname: "/ManageUsers",
@@ -146,8 +152,8 @@ export default class AddUser extends Component {
                 <div className="Login">
                     <div className="LoginContainer">
                         <form onSubmit={this.login} className="form-signin">
-                            <FontAwesomeIcon icon={faUserEdit}  height="80px" class="center" />
-                            <h1 className="signIn">Edit User <b> <br/> {this.state.editUser.username}</b></h1>
+                            <FontAwesomeIcon icon={faUserEdit} height="80px" class="center" />
+                            <h1 className="signIn">Edit User <b> <br /> {this.state.editUser.username}</b></h1>
                             <div className="row">
                                 <div className="col">
                                     <h3 className="h3 text-left"> Change Username: </h3>
@@ -173,11 +179,10 @@ export default class AddUser extends Component {
                                         }
                                     </ul>
 
-
                                     <input className="createButton" type="submit" value="Apply" />
 
                                     <Link to="/ManageUsers">
-                                        <input className="cancelButton" type="Button" value="Cancel" /> 
+                                        <input className="cancelButton" type="Button" value="Cancel" />
                                     </Link>
 
                                 </div>
