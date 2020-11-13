@@ -94,7 +94,7 @@ class Login extends Component {
                                 <input
                                     type="text"
                                     name="user_id"
-                                    required pattern="[0-9a-zA-Z_.-]*"
+                                    required pattern="*"
                                     onChange={this.handleFormChange}
                                     placeholder="Enter Username"
                                 />

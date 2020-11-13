@@ -3,12 +3,9 @@ using EasyEncryption;
 using Microsoft.Extensions.Options;
 using Models.Domain;
 using Models.Entity;
-using Models.Enums;
 using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 
 namespace TokenBasedAuth.Services
 {
@@ -77,7 +74,6 @@ namespace TokenBasedAuth.Services
                     // If this fails then the user will still be added with no permissions
                     var GetUserId = "SELECT Id FROM Users WHERE Username = @username";
                     var UserId = connection.QuerySingle<int>(GetUserId, parameter);
-                    
 
                     for (int i = 0; i < user.PermissionsArray.Length; i++)
                     {
@@ -122,11 +118,10 @@ namespace TokenBasedAuth.Services
         }
 
         public class UserPermissionDto
-        { 
+        {
             public int PermissionId { get; set; }
             public bool IsChecked { get; set; }
         }
-
 
         public EditUser GetUserInfo(string username)
         {
@@ -152,7 +147,6 @@ namespace TokenBasedAuth.Services
                 //};
                 //.......
 
-
                 return returnUser;
             }
         }
@@ -161,7 +155,7 @@ namespace TokenBasedAuth.Services
         {
             if (user.Username == "")
                 return -2;
-            if (user.Username == "admin")
+            if (user.Username == "admin" || user.NewUsername == "admin")
                 return -3;
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -172,27 +166,30 @@ namespace TokenBasedAuth.Services
 
                 for (int i = 0; i < user.PermissionsArray.Length; i++)
                 {
-
                     var parameterPermId = new { PermissionId = user.PermissionsArray[i] };
                     var GetPermissionId = "SELECT Id FROM Permissions WHERE PermissionId = @PermissionId";
                     var PermId = connection.QuerySingle<int>(GetPermissionId, parameterPermId);
-
 
                     var parameter2 = new { UserId = user.Id, PermissionId = PermId };
                     var sql2 = "INSERT INTO UsersPermissions (UserId, PermissionId) VALUES (@UserId, @PermissionId)";
                     connection.Execute(sql2, parameter2);
                 }
-                if (user.Password == null) //Just update perms
-                {
-                    return 2;
-                }
-                else //Update perms and Password
+
+                if (user.Password != null) //Change password
                 {
                     user.Password = SHA.ComputeSHA256Hash(user.Password);
                     var parameter3 = new { username = user.Username, password = user.Password };
-                    var sql3 = "UPDATE Users SET Password = @Password WHERE Username = @Username";
+                    var sql3 = "UPDATE Users SET Password = @password WHERE Username = @username";
                     connection.Execute(sql3, parameter3);
                 }
+
+                if (user.NewUsername != null) //Change username
+                {
+                    var updateUsernameParam = new { username = user.Username, NewUsername = user.NewUsername };
+                    var updateUsername = "UPDATE Users SET Username = @NewUsername WHERE Username = @Username";
+                    connection.Execute(updateUsername, updateUsernameParam);
+                }
+
                 return 1;
             }
         }
