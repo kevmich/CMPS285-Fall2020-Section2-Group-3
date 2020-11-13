@@ -72,6 +72,20 @@ class Log extends Component {
             return number;
     }
 
+    SizeSwitch(size) {
+        switch (size) {
+            case 1:
+                return "S"
+            case 2:
+                return "M";
+            case 3:
+                return "L";
+            default:
+                return "-";
+        }
+    }
+
+
     PrepareCsvData() {
         let uniqueNames = new Set();
         let logData = [];
@@ -85,7 +99,7 @@ class Log extends Component {
             }
         }).map((data) => (
             logData.push(
-                { TimeStarted: this.formatTime(data.dateStarted), TimeFinished: this.formatTime(data.dateFinished) , OrderNumber: data.orderNumber, Size: data.size, OrderItem: data.name, Quantity: this.CountSame(data.name, data.size, data.orderNumber) }
+                { TimeStarted: this.formatTime(data.dateStarted), TimeFinished: this.formatTime(data.dateFinished) , OrderNumber: data.orderNumber, Size: this.SizeSwitch(data.size), OrderItem: data.name, Quantity: this.CountSame(data.name, data.size, data.orderNumber) }
             )
         ))
         console.log("LOGDATA");
@@ -134,7 +148,7 @@ class Log extends Component {
                                 <th>{this.formatTime(data.dateStarted)}</th>
                                 <th>{this.formatTime(data.dateFinished)}</th>
                                 <th>{data.orderNumber}</th>
-                                <th>{data.size}</th>
+                                <th>{this.SizeSwitch(data.size)}</th>
                                 <th>{data.name}</th>
 
                                 <th>{this.CountSame(data.name, data.size, data.orderNumber)}</th>
