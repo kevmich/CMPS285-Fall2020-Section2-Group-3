@@ -1,10 +1,11 @@
 ﻿import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import axios from 'axios'
-import KvsIcon from '../content/KVS-Icon.png';
 import { CSVLink, CSVDownload } from "react-csv";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileDownload } from '@fortawesome/free-solid-svg-icons'
+import './Log.css'
+
 
 class Log extends Component {
     constructor(props) {
@@ -41,6 +42,10 @@ class Log extends Component {
                 LogData: response.data
             });
         })
+    }
+
+    componentDidMount() {
+        document.title = "Order Log";
     }
 
     handleChange(event) {
@@ -95,14 +100,15 @@ class Log extends Component {
 
         return (
             <div>
-                <h1> Order Log </h1>
+                <h1 className = "title"> Order Log </h1>
+                {this.state.csvData.length ? <CSVLink data={this.state.csvData} filename={"OrderLog_" + this.state.date + ".csv"} className="exportButton"><FontAwesomeIcon icon={faFileDownload} />&nbsp;Export</CSVLink> : null}
+
                 <form onSubmit={this.handleSubmit}>
-                    <label>
+                    <label className= "Date">
                         Select Date:
                     <input type="date" id="date" name="senddate" value={this.state.date} onChange={this.handleChange}></input>
                     </label>
                     <input type="submit" value="Submit" />
-                    {this.state.csvData.length ? <CSVLink data={this.state.csvData} filename={"OrderLog_" + this.state.date + ".csv"}><FontAwesomeIcon icon={faFileDownload}/>Export</CSVLink> : null}
 
                 </form>
 
