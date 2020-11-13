@@ -1,10 +1,11 @@
 ﻿import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from 'axios'
 import { CSVLink, CSVDownload } from "react-csv";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileDownload } from '@fortawesome/free-solid-svg-icons'
 import './Log.css'
+import Clock from 'react-digital-clock'
 
 
 class Log extends Component {
@@ -14,7 +15,8 @@ class Log extends Component {
         this.state = {
             LogData: [],
             date: '',
-            csvData: []
+            csvData: [],
+            user: (JSON.parse(sessionStorage.getItem("user"))),
             
         };
 
@@ -114,6 +116,16 @@ class Log extends Component {
 
         return (
             <div>
+
+                <div id="Clock">
+                    <Clock />
+                    &nbsp;<p class="clockUser">&nbsp;{this.state.user.username}</p>
+                </div>
+                <Link to="./">
+                    <button class="BackButton"> Back</button>
+                </Link>
+                
+
                 <h1 className = "title"> Order Log </h1>
                 {this.state.csvData.length ? <CSVLink data={this.state.csvData} filename={"OrderLog_" + this.state.date + ".csv"} className="exportButton"><FontAwesomeIcon icon={faFileDownload} />&nbsp;Export</CSVLink> : null}
 
@@ -127,7 +139,7 @@ class Log extends Component {
                 </form>
 
                 {this.state.date ?
-                    <table>
+                    <table className= "logTable">
                         <tr>
                             <th>Time Started</th>
                             <th>Time Finished</th>
@@ -154,7 +166,12 @@ class Log extends Component {
                                 <th>{this.CountSame(data.name, data.size, data.orderNumber)}</th>
                             </tr>
                         ))}
+                        <br />
+                        <br />
+                        <br />
+                        <br />
                     </table>
+                    
                 : null}
             </div>
         );
