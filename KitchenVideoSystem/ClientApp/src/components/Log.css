@@ -1,0 +1,21 @@
+﻿.exportButton {
+    position: relative;
+    right: 2vh;
+    float: right;
+    background-color: #1D6F42;
+    color: white;
+    border-radius: 10px;
+    width: auto;
+    padding: 12px;
+    font-size: 50px;
+}
+
+    .exportButton:hover {
+        color: white;
+        text-decoration: none;
+        background-color: #1f8c50;
+    }
+
+.Date{
+
+}
