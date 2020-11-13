@@ -103,11 +103,14 @@ export default class AddUser extends Component {
         this.setState({ permissions: permissions })
     }
 
-
+    
 
     render() {
         if (this.state.userFail == false) {
-            return <Redirect to="/ManageUsers" />;
+            return <Redirect to={{
+                pathname: "/ManageUsers",
+                search: "?name=" + this.state.loginParams.user_id + "&action=added"
+            }} />;
         }
         if (!(this.state.user.permissionsArray.includes(0))) {
             return <Redirect to="/home" />;

@@ -125,9 +125,16 @@ export default class AddUser extends Component {
 
     render() {
         if (this.state.Submit == true) {
-            return <Redirect to="/ManageUsers" />;
+            return <Redirect to={{
+                pathname: "/ManageUsers",
+                search:  "?name=" + this.state.editUser.username + "&action=edited"
+            }} />;
+
         } else if (this.state.userFail == false) {
-            return <Redirect to="/ManageUsers" />;
+            return <Redirect to={{
+                pathname: "/ManageUsers",
+                search: "?name=" + this.state.editUser.username + "&action=edited"
+            }} />;
         }
 
         return (
