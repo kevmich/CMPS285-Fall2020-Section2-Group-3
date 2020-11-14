@@ -127,27 +127,33 @@ namespace TokenBasedAuth.Services
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var returnUser = new EditUser();
-                returnUser.Username = username;
-                var parameter = new { username };
-                var GetUserId = "SELECT Id FROM Users WHERE Username = @username";
-                returnUser.Id = connection.QuerySingle<int>(GetUserId, parameter);
-                var parameterId = new { UserId = returnUser.Id };
+                try
+                {
+                    var returnUser = new EditUser();
+                    returnUser.Username = username;
+                    var parameter = new { username };
+                    var GetUserId = "SELECT Id FROM Users WHERE Username = @username";
+                    returnUser.Id = connection.QuerySingle<int>(GetUserId, parameter);
+                    var parameterId = new { UserId = returnUser.Id };
 
-                var sql = "  SELECT p.PermissionId  FROM UsersPermissions up  JOIN[Permissions] p on up.PermissionId = p.Id  WHERE up.UserId = @UserId";
-                returnUser.PermissionsArray = connection.Query<int>(sql, parameterId).ToArray();
-                //......
-                //var permissionIds = connection.Query<int>(sql, parameterId).ToArray();
+                    var sql = "  SELECT p.PermissionId  FROM UsersPermissions up  JOIN[Permissions] p on up.PermissionId = p.Id  WHERE up.UserId = @UserId";
+                    returnUser.PermissionsArray = connection.Query<int>(sql, parameterId).ToArray();
+                    //......
+                    //var permissionIds = connection.Query<int>(sql, parameterId).ToArray();
 
-                //var dtos = new List<UserPermissionDto>
-                //{
-                //    new UserPermissionDto { PermissionId = (int)PermissionEnum.Admin, IsChecked = permissionIds.Contains((int)PermissionEnum.Admin) },
-                //    new UserPermissionDto { PermissionId = (int)PermissionEnum.CanViewCashier, IsChecked = permissionIds.Contains((int)PermissionEnum.CanViewCashier) },
-                //    new UserPermissionDto { PermissionId = (int)PermissionEnum.CanViewKitchen, IsChecked = permissionIds.Contains((int)PermissionEnum.CanViewKitchen) }
-                //};
-                //.......
-
-                return returnUser;
+                    //var dtos = new List<UserPermissionDto>
+                    //{
+                    //    new UserPermissionDto { PermissionId = (int)PermissionEnum.Admin, IsChecked = permissionIds.Contains((int)PermissionEnum.Admin) },
+                    //    new UserPermissionDto { PermissionId = (int)PermissionEnum.CanViewCashier, IsChecked = permissionIds.Contains((int)PermissionEnum.CanViewCashier) },
+                    //    new UserPermissionDto { PermissionId = (int)PermissionEnum.CanViewKitchen, IsChecked = permissionIds.Contains((int)PermissionEnum.CanViewKitchen) }
+                    //};
+                    //.......
+                    return returnUser;
+                }
+                catch
+                {
+                    return new EditUser(); ;
+                }
             }
         }
 

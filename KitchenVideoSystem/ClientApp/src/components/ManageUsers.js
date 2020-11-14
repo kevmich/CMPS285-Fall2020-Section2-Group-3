@@ -113,9 +113,11 @@ export default class Admin extends Component {
 
                             <Link to={{
                                 pathname: "./ManageUsers/edituser",
-                                state: {
-                                    editUser: [{user}]
-                                    }
+                                //state: {
+                                //    editUser: [{user}]
+                                //},
+                                search: "?name=" + user
+
                                 }}>
                             <button class="editButton"> <FontAwesomeIcon icon={faUserEdit} /> </button>
                             </Link>

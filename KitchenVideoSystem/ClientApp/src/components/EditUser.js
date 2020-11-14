@@ -10,6 +10,9 @@ import Clock from 'react-digital-clock'
 export default class AddUser extends Component {
     constructor(props) {
         super(props);
+        const queryString = require('query-string');
+        let params = queryString.parse(this.props.location.search)
+
         this.login = this.login.bind(this);
         this.state = {
             loginParams: {
@@ -17,9 +20,10 @@ export default class AddUser extends Component {
                 user_password: ""
             },
             user: (JSON.parse(sessionStorage.getItem("user"))),
-            editUser: [this.getUserInfo(this.props.location.state.editUser[0].user)],
+            editUser: [this.getUserInfo(params.name)],
             userFail: true,
             SameUser: false,
+            noUser: false,
             permissions: [
                 { id: 0, value: "Manage Users", isChecked: false },
                 { id: 1, value: "Cashier", isChecked: false },
@@ -46,14 +50,20 @@ export default class AddUser extends Component {
 
     getUserInfo(username) {
         axios.get('/api/user/getuserinfo/' + username)
-            .then((response) =>
-                this.setState({
-                    editUser: response.data,
-                    permissions: [{ id: 0, value: "Manage Users", isChecked: response.data.permissionsArray.includes(0) },
-                    { id: 1, value: "Cashier", isChecked: response.data.permissionsArray.includes(1) },
-                    { id: 2, value: "Kitchen", isChecked: response.data.permissionsArray.includes(2) },
-                    { id: 3, value: "View Log", isChecked: response.data.permissionsArray.includes(3) }]
-                }))
+            .then((response) => {
+                if (!(response.data.username == null)) {
+                    this.setState({
+                        editUser: response.data,
+                        permissions: [{ id: 0, value: "Manage Users", isChecked: response.data.permissionsArray.includes(0) },
+                        { id: 1, value: "Cashier", isChecked: response.data.permissionsArray.includes(1) },
+                        { id: 2, value: "Kitchen", isChecked: response.data.permissionsArray.includes(2) },
+                        { id: 3, value: "View Log", isChecked: response.data.permissionsArray.includes(3) }]
+                    })
+                } else {
+                    this.setState({ noUser: true })
+                }
+            }
+            )
     }
 
     login = event => {
@@ -131,6 +141,15 @@ export default class AddUser extends Component {
     }
 
     render() {
+        const queryString = require('query-string');
+        let params = queryString.parse(this.props.location.search)
+        console.log("USER");
+        console.log(this.state.noUser);
+
+        if (params.name == undefined || params.name == '' || this.state.noUser) {
+            return <Redirect to="/ManageUsers" />;
+        }
+
         if (this.state.Submit == true) {
             return <Redirect to={{
                 pathname: "/ManageUsers",
