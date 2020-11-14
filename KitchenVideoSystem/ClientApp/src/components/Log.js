@@ -12,11 +12,17 @@ class Log extends Component {
     constructor(props) {
         super(props);
 
+        var today = new Date(),
+
+            currentDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
+
         this.state = {
             LogData: [],
-            date: '',
+            date: currentDate,
             csvData: [],
             user: (JSON.parse(sessionStorage.getItem("user"))),
+            currentDate: currentDate
             
         };
 
@@ -43,21 +49,25 @@ class Log extends Component {
             this.setState({
                 LogData: response.data
             });
+            this.PrepareCsvData();
         })
     }
 
     componentDidMount() {
         document.title = "Order Log";
+        this.GetLog();
+        this.PrepareCsvData();
     }
 
     handleChange(event) {
-        this.setState({ date: event.target.value });
+        this.setState({ date: event.target.value }, this.handleSubmit);
+        
     }
 
     handleSubmit(event) {
         this.GetLog();
         this.PrepareCsvData();
-        event.preventDefault();
+        //event.preventDefault();
     }
 
     formatTime(time) {
@@ -108,8 +118,13 @@ class Log extends Component {
 
         
         this.setState({ csvData: logData })
+        this.setState((csvData) => {
+            return {csvData: logData}
+        })
         console.log(this.state.LogData);
     }
+
+    //<input type="submit" value="Submit" />
 
     render() {
         let uniqueNames = new Set();
@@ -127,14 +142,14 @@ class Log extends Component {
                 
 
                 <h1 className = "title"> Order Log </h1>
-                {this.state.csvData.length ? <CSVLink data={this.state.csvData} filename={"OrderLog_" + this.state.date + ".csv"} className="exportButton"><FontAwesomeIcon icon={faFileDownload} />&nbsp;Export</CSVLink> : null}
+                <CSVLink data={this.state.csvData} filename={"OrderLog_" + this.state.date + ".csv"} className="exportButton"><FontAwesomeIcon icon={faFileDownload} />&nbsp;Export</CSVLink>
 
                 <form onSubmit={this.handleSubmit}>
                     <label className= "Date">
                         Select Date:
-                    <input type="date" id="date" name="senddate" value={this.state.date} onChange={this.handleChange}></input>
+                    <input type="date" id="date" name="senddate" defaultValue={this.state.currentDate} onChange={this.handleChange}></input>
                     </label>
-                    <input type="submit" value="Submit" />
+                    
 
                 </form>
 
