@@ -182,15 +182,21 @@ namespace TokenBasedAuth.Services
                     var sql3 = "UPDATE Users SET Password = @password WHERE Username = @username";
                     connection.Execute(sql3, parameter3);
                 }
-
-                if (user.NewUsername != null) //Change username
+                try
                 {
-                    var updateUsernameParam = new { username = user.Username, NewUsername = user.NewUsername };
-                    var updateUsername = "UPDATE Users SET Username = @NewUsername WHERE Username = @Username";
-                    connection.Execute(updateUsername, updateUsernameParam);
+                    if (user.NewUsername != null) //Change username
+                    {
+                        var updateUsernameParam = new { username = user.Username, NewUsername = user.NewUsername };
+                        var updateUsername = "UPDATE Users SET Username = @NewUsername WHERE Username = @Username";
+                        connection.Execute(updateUsername, updateUsernameParam);
+                    }
+                    return 1;
                 }
-
-                return 1;
+                catch
+                {
+                    return -1;
+                }
+                
             }
         }
     }
