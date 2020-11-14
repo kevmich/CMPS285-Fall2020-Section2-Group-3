@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace KitchenVideoSystem.Controllers
 {
-    //[Authorize(Policy = "CanViewLog")]
+    [Authorize(Policy = "Log")]
     [Route("api/log")]
     [ApiController]
     public class LogController : ControllerBase
