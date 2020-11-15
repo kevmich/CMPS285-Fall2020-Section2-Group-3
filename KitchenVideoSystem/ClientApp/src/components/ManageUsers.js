@@ -7,6 +7,11 @@ import { faUserTimes, faUserPlus, faUserEdit } from '@fortawesome/free-solid-svg
 import Clock from 'react-digital-clock'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Modal from 'react-modal';
+import AddUser from './AddUser';
+import EditUser from './EditUser';
+import { add } from 'lodash';
+
 
 export default class Admin extends Component {
 
@@ -17,7 +22,11 @@ export default class Admin extends Component {
             Users: [],
             user: (JSON.parse(sessionStorage.getItem("user"))),
             notify: true,
+            showModal: false
         };
+
+        this.handleOpenModal = this.handleOpenModal.bind(this);
+        this.handleCloseModal = this.handleCloseModal.bind(this);
     }
 
     GetAllUsers() {
@@ -62,7 +71,16 @@ export default class Admin extends Component {
         })
 
     };
-   
+
+
+    handleOpenModal() {
+        this.setState({ showModal: true });
+    }
+
+    handleCloseModal() {
+        this.setState({ showModal: false });
+        this.GetAllUsers();
+    }
 
     render() {
         const queryString = require('query-string');
@@ -73,6 +91,12 @@ export default class Admin extends Component {
 
         return (
             <div>
+
+
+                
+
+                
+
                 <div>
 
                     {this.state.notify ? this.notify(params) : null}
@@ -80,9 +104,13 @@ export default class Admin extends Component {
                 </div>
                 <div className="title">
                     <b style={{ fontSize: "60px" }}> Manage Users</b> <br/>
-                <Link to="./ManageUsers/adduser">
-                    <button class="addButton"> <FontAwesomeIcon icon={faUserPlus} />&nbsp;Add User</button>
-                </Link>
+                    <button class="addButton" onClick={this.handleOpenModal}> <FontAwesomeIcon icon={faUserPlus} />&nbsp;Add User</button>
+                    <Modal
+                        isOpen={this.state.showModal}
+                        contentLabel="Minimal Modal Example"
+                    >
+                        <AddUser closeModal={this.handleCloseModal}/>
+                    </Modal>
                 </div>
 
                 <Link to="./">

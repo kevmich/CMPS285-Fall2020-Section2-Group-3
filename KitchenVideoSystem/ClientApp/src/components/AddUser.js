@@ -75,6 +75,7 @@ export default class AddUser extends Component {
                     userFail: false
                 });
                 this.notify()
+                this.props.closeModal()
                 
             }
             if (response.data == -1) {
@@ -129,16 +130,6 @@ export default class AddUser extends Component {
             <div>
                     <ToastContainer />
 
-
-                <div id="Clock">
-                    <Clock />
-                     &nbsp;<p class="clockUser">&nbsp;{this.state.user.username}</p>
-                </div>
-
-                <Link to="/ManageUsers">
-                    <button class="BackButton"> Back</button>
-                </Link>
-
             <div className="Login">
                 <div className="LoginContainer">
                         <form onSubmit={this.login} className="form-signin">
@@ -170,7 +161,8 @@ export default class AddUser extends Component {
                                     })
                                 }
                                 </ul>
-                              
+                                    <input className="cancelButton" type="Button" value="Cancel" onClick={this.props.closeModal} /> 
+
                                 <input className="createButton" type="submit" value="Create"/>
                             </div>
                         </div>

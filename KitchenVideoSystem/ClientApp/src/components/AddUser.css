@@ -53,3 +53,8 @@
 .permlabel {
     width: 140px;
 }
+
+.createButton {
+    float: right;
+    width: 47%;
+}
