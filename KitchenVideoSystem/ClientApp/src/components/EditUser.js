@@ -6,6 +6,8 @@ import CheckBox from './CheckBox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserEdit } from '@fortawesome/free-solid-svg-icons'
 import Clock from 'react-digital-clock'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default class AddUser extends Component {
     constructor(props) {
@@ -113,6 +115,7 @@ export default class AddUser extends Component {
                 this.setState({
                     userFail: false
                 });
+                this.notify()
             }
             if (response.data == -1) {
                 this.setState({
@@ -140,30 +143,34 @@ export default class AddUser extends Component {
         this.setState({ permissions: permissions })
     }
 
+
+    notify = () => {
+        toast.success("User has been edited!", {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
+        this.setState({
+            notify: false
+        })
+
+    };
+
     render() {
         const queryString = require('query-string');
         let params = queryString.parse(this.props.location.search)
         console.log("USER");
         console.log(this.state.noUser);
 
-        if (params.name == undefined || params.name == '' || this.state.noUser) {
+        if (params.name == undefined || params.name == '' || params.name == 'admin' || this.state.noUser) {
             return <Redirect to="/ManageUsers" />;
         }
 
-        if (this.state.Submit == true) {
-            return <Redirect to={{
-                pathname: "/ManageUsers",
-                search: "?name=" + this.state.editUser.username + "&action=edited"
-            }} />;
-        } else if (this.state.userFail == false) {
-            return <Redirect to={{
-                pathname: "/ManageUsers",
-                search: "?name=" + this.state.editUser.username + "&action=edited"
-            }} />;
-        }
 
         return (
             <div>
+                <ToastContainer />
+                <Link to="/ManageUsers">
+                    <button class="BackButton"> Back</button>
+                </Link>
                 <div id="Clock">
                     <Clock />
                      &nbsp;<p class="clockUser">&nbsp;{this.state.user.username}</p>
@@ -200,9 +207,6 @@ export default class AddUser extends Component {
 
                                     <input className="createButton" type="submit" value="Apply" />
 
-                                    <Link to="/ManageUsers">
-                                        <input className="cancelButton" type="Button" value="Cancel" />
-                                    </Link>
 
                                 </div>
                             </div>

@@ -26,10 +26,7 @@
     color: white;
 }
 
-.createButton {
-    float: right; 
-    width: 47%;
-}
+
 
 .checkBox {
     column-count: 2;
