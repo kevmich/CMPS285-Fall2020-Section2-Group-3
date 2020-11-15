@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import "./ManageUsers.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserTimes, faUserPlus, faUserEdit, faUnderline } from '@fortawesome/free-solid-svg-icons'
+import { faUserTimes, faUserPlus, faUserEdit } from '@fortawesome/free-solid-svg-icons'
 import Clock from 'react-digital-clock'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

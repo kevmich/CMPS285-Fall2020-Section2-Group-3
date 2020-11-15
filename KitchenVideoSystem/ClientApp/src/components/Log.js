@@ -141,8 +141,8 @@ class Log extends Component {
                 </Link>
                 
 
-                <h1 className = "title"> Order Log </h1>
-                <CSVLink data={this.state.csvData} filename={"OrderLog_" + this.state.date + ".csv"} className="exportButton"><FontAwesomeIcon icon={faFileDownload} />&nbsp;Export</CSVLink>
+                <h1 className="title" style={{ fontSize: "60px", fontWeight: 600}}> Order Log </h1>
+                {this.state.LogData.length ? <CSVLink data={this.state.csvData} filename={"OrderLog_" + this.state.date + ".csv"} className="exportButton"><FontAwesomeIcon icon={faFileDownload} />&nbsp;Export</CSVLink> : null}
 
                 <form onSubmit={this.handleSubmit}>
                     <label className= "Date">
@@ -153,7 +153,7 @@ class Log extends Component {
 
                 </form>
 
-                {this.state.date ?
+                {this.state.LogData.length ?
                     <table className= "logTable">
                         <tr>
                             <th>Time Started</th>
@@ -172,13 +172,12 @@ class Log extends Component {
                             }
                         }).map((data) => (
                             <tr>
-                                <th>{this.formatTime(data.dateStarted)}</th>
-                                <th>{this.formatTime(data.dateFinished)}</th>
-                                <th>{data.orderNumber}</th>
-                                <th>{this.SizeSwitch(data.size)}</th>
-                                <th>{data.name}</th>
-
-                                <th>{this.CountSame(data.name, data.size, data.orderNumber)}</th>
+                                <td>{this.formatTime(data.dateStarted)}</td>
+                                <td>{this.formatTime(data.dateFinished)}</td>
+                                <td>{data.orderNumber}</td>
+                                <td>{this.SizeSwitch(data.size)}</td>
+                                <td>{data.name}</td>
+                                <td>{this.CountSame(data.name, data.size, data.orderNumber)}</td>
                             </tr>
                         ))}
                         <br />
@@ -187,7 +186,7 @@ class Log extends Component {
                         <br />
                     </table>
                     
-                : null}
+                : <h2 className="noData">No data for this date.</h2>}
             </div>
         );
     }
