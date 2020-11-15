@@ -129,9 +129,11 @@ namespace TokenBasedAuth.Services
             {
                 try
                 {
-                    var returnUser = new EditUser();
-                    returnUser.Username = username;
                     var parameter = new { username };
+
+                    var returnUser = new EditUser();
+                    var GetUsername = "SELECT Username FROM Users WHERE Username = @username";
+                    returnUser.Username = connection.QuerySingle<string>(GetUsername, parameter);
                     var GetUserId = "SELECT Id FROM Users WHERE Username = @username";
                     returnUser.Id = connection.QuerySingle<int>(GetUserId, parameter);
                     var parameterId = new { UserId = returnUser.Id };
