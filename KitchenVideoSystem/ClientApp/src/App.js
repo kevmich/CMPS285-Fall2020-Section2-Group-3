@@ -20,8 +20,6 @@ export default class App extends Component {
         <div>
             <Switch>
                 <Route exact path='/ManageUsers' component={Admin} />
-                <Route exact path='/ManageUsers/AddUser' component={AddUser} />
-                <Route exact path='/ManageUsers/EditUser' component={EditUser} />
                 <Route exact path='/log' component={Log} />
             <ProtectedRoute path='/home'>
                 <Route exact path='/home' component={Home} />

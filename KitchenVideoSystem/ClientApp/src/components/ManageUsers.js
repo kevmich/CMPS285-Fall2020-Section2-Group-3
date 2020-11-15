@@ -13,6 +13,18 @@ import EditUser from './EditUser';
 import { add } from 'lodash';
 
 
+//const customStyles = {
+//    content: {
+//        top: '50%',
+//        left: '50%',
+//        right: '0%',
+//        bottom: '0%',
+//        marginRight: '-50%',
+//        transform: 'translate(-50%, -50%)'
+//    }
+//};
+
+
 export default class Admin extends Component {
 
     constructor(props) {
@@ -22,11 +34,17 @@ export default class Admin extends Component {
             Users: [],
             user: (JSON.parse(sessionStorage.getItem("user"))),
             notify: true,
-            showModal: false
+            showModal: false,
+            showEditModal: false,
+            certainUser: ''
         };
 
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
+
+        this.handleOpenModalEdit = this.handleOpenModalEdit.bind(this);
+        this.handleCloseModalEdit = this.handleCloseModalEdit.bind(this);
+
     }
 
     GetAllUsers() {
@@ -82,6 +100,22 @@ export default class Admin extends Component {
         this.GetAllUsers();
     }
 
+    handleOpenModalEdit(user) {
+        if (this.state.showEditModal == false) {
+            this.setState({ showEditModal: true, certainUser: user });
+        }
+    }
+
+    handleCloseModalEdit() {
+        this.setState({ showEditModal: false });
+        this.GetAllUsers();
+    }
+
+    editModal() {
+        return 
+    }
+
+
     render() {
         const queryString = require('query-string');
         let params = queryString.parse(this.props.location.search)
@@ -94,7 +128,15 @@ export default class Admin extends Component {
 
 
                 
+                <Modal
+                    isOpen={this.state.showEditModal}
+                    contentLabel="Minimal Modal Example"
+                    onRequestClose={this.handleCloseModalEdit}
+                //style={customStyles}
 
+                >
+                    <EditUser closeModalEdit={this.handleCloseModalEdit} usernameEdit={this.state.certainUser} />
+                </Modal>
                 
 
                 <div>
@@ -108,6 +150,9 @@ export default class Admin extends Component {
                     <Modal
                         isOpen={this.state.showModal}
                         contentLabel="Minimal Modal Example"
+                        onRequestClose={this.handleCloseModal}
+                        //style={customStyles}
+
                     >
                         <AddUser closeModal={this.handleCloseModal}/>
                     </Modal>
@@ -138,17 +183,8 @@ export default class Admin extends Component {
                             {user}
                         </td>
                         <td>
-
-                            <Link to={{
-                                pathname: "./ManageUsers/edituser",
-                                //state: {
-                                //    editUser: [{user}]
-                                //},
-                                search: "?name=" + user
-
-                                }}>
-                            <button class="editButton"> <FontAwesomeIcon icon={faUserEdit} /> </button>
-                            </Link>
+                            <button class="editButton" onClick={() => this.handleOpenModalEdit(user)} > <FontAwesomeIcon icon={faUserEdit} /> </button>
+                                
                         </td>
                          <td>
                             <button className='delete' onClick={e =>
