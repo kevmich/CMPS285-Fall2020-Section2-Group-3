@@ -270,6 +270,7 @@ export default class KitchenScreen extends Component {
                         <p>RECALL </p> <p class = "RecallSec">{this.GetSecondsFrom(this.state.RecallTime)} </p>
                     </div></div> : <div></div>}
                 <button class="Recall" onClick={() => {
+                    this.state.RecallGuid = this.state.RecallGuidArray[this.state.RecallGuidArray.length - 1];
                     axios.get('api/kitchen/getorder/' + this.state.RecallGuid, {
                         headers: {
                             'Authorization': 'Bearer ' + sessionStorage.getItem('token')
