@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import CheckBox from './CheckBox';
 import Clock from 'react-digital-clock'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default class AddUser extends Component {
     constructor(props) {
@@ -72,6 +74,7 @@ export default class AddUser extends Component {
                 this.setState({
                     userFail: false
                 });
+                this.notify()
                 
             }
             if (response.data == -1) {
@@ -90,6 +93,18 @@ export default class AddUser extends Component {
         event.preventDefault();
     };
 
+
+    notify = () => {
+        toast.success("User has been added!", {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
+        this.setState({
+            notify: false
+        })
+
+    };
+
+
     componentDidMount() {
         document.title = "Add User";
     }
@@ -106,22 +121,24 @@ export default class AddUser extends Component {
     
 
     render() {
-        if (this.state.userFail == false) {
-            return <Redirect to={{
-                pathname: "/ManageUsers",
-                search: "?name=" + this.state.loginParams.user_id + "&action=added"
-            }} />;
-        }
         if (!(this.state.user.permissionsArray.includes(0))) {
             return <Redirect to="/home" />;
         }
 
         return (
             <div>
+                    <ToastContainer />
+
+
                 <div id="Clock">
                     <Clock />
                      &nbsp;<p class="clockUser">&nbsp;{this.state.user.username}</p>
                 </div>
+
+                <Link to="/ManageUsers">
+                    <button class="BackButton"> Back</button>
+                </Link>
+
             <div className="Login">
                 <div className="LoginContainer">
                         <form onSubmit={this.login} className="form-signin">
@@ -153,12 +170,8 @@ export default class AddUser extends Component {
                                     })
                                 }
                                 </ul>
-
-                                 <Link to="/ManageUsers">
-                                        <input className="cancelButton" type="Button" value ="Cancel"/> 
-                                </Link>
-
-                                <input className="createButton" type="submit" value="Create" />
+                              
+                                <input className="createButton" type="submit" value="Create"/>
                             </div>
                         </div>
                         {this.state.SameUser ? <p className="alert"> User already exists. </p> : null}
