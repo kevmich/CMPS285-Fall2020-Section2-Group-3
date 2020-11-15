@@ -30,3 +30,14 @@
 .logTable tr th {
     padding: 10px;
 }
+
+
+.logTable tr td {
+    padding: 10px;
+}
+
+.noData {
+    font-size: 42px;
+    text-align: center;
+    color: rgba(0,0,0,0.5);
+}
