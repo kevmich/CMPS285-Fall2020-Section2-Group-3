@@ -11,7 +11,7 @@
 }
 
 .cancelButton {
-    float: left;
+    float: right;
     width: 47%;
     padding: 12px;
     border: none;
@@ -55,6 +55,6 @@
 }
 
 .createButton {
-    float: right;
+    float: left;
     width: 47%;
 }
