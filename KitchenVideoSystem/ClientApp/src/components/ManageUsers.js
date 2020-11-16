@@ -14,14 +14,14 @@ import { add } from 'lodash';
 
 
 //const customStyles = {
-//    content: {
-//        top: '50%',
-//        left: '50%',
-//        right: '0%',
-//        bottom: '0%',
-//        marginRight: '-50%',
-//        transform: 'translate(-50%, -50%)'
-//    }
+ //   content: {
+    //   top: '50%',
+    //   left: '0%',
+    //     right: '60%',
+    //    bottom: '0%',
+    //    marginRight: '20%',
+    //   transform: 'translate(-50%, -50%)'
+  //}
 //};
 
 
@@ -127,12 +127,12 @@ export default class Admin extends Component {
             <div>
 
 
-                
-                <Modal
+
+                <Modal className = "Modal"
                     isOpen={this.state.showEditModal}
                     contentLabel="Minimal Modal Example"
                     onRequestClose={this.handleCloseModalEdit}
-                //style={customStyles}
+                   // style={customStyles}
 
                 >
                     <EditUser closeModalEdit={this.handleCloseModalEdit} usernameEdit={this.state.certainUser} />
@@ -147,7 +147,7 @@ export default class Admin extends Component {
                 <div className="title">
                     <b style={{ fontSize: "60px" }}> Manage Users</b> <br/>
                     <button class="addButton" onClick={this.handleOpenModal}> <FontAwesomeIcon icon={faUserPlus} />&nbsp;Add User</button>
-                    <Modal
+                    <Modal className = "Modal"
                         isOpen={this.state.showModal}
                         contentLabel="Minimal Modal Example"
                         onRequestClose={this.handleCloseModal}
