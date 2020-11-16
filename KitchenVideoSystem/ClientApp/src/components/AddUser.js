@@ -188,8 +188,8 @@ export default class AddUser extends Component {
                                 <input className="createButton" type="submit" value="Add User"/>
                             </div>
                         </div>
-                        {this.state.SameUser ? <p className="alert"> User already exists. </p> : null}
-                        {this.state.adminFail ? <p className="alert"> User already exists. </p> : null}
+                        {this.state.SameUser ? <p className="alert"> Username already exists. </p> : null}
+                        {this.state.adminFail ? <p className="alert"> Username already exists. </p> : null}
 
                     </form>
 

@@ -236,7 +236,7 @@ export default class AddUser extends Component {
                             </div>
                             {console.log("AHH")}
                             {console.log(this.state.editUser)}
-                            {this.state.SameUser ? <p className="alert"> User already exists. </p> : null}
+                            {this.state.SameUser ? <p className="alert"> Username already exists. </p> : null}
                         </form>
 
                     </div>

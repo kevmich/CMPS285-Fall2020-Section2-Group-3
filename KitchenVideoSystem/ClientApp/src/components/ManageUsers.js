@@ -34,6 +34,7 @@ export default class Admin extends Component {
             Users: [],
             user: (JSON.parse(sessionStorage.getItem("user"))),
             notify: true,
+            notifyError: true,
             showModal: false,
             showEditModal: false,
             certainUser: ''
@@ -69,6 +70,7 @@ export default class Admin extends Component {
         })
             .then((response) => {
                 this.GetAllUsers();
+                this.notifyDelete();
             })
     }
 
@@ -77,19 +79,15 @@ export default class Admin extends Component {
         document.title = "Manage Users"
     }
 
-
-    notify = (user) => {
-        if (user.name == undefined)
-            return;
-        toast.success(user.name + " has been " + user.action + "!", {
+    notifyDelete = () => {
+        toast.success("User has been deleted!", {
             position: toast.POSITION.BOTTOM_RIGHT
         });
         this.setState({
-            notify: false
+            notifyError: false
         })
 
     };
-
 
     handleOpenModal() {
         this.setState({ showModal: true });
