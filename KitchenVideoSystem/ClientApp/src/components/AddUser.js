@@ -123,7 +123,7 @@ export default class AddUser extends Component {
 
     render() {
         if (!(this.state.user.permissionsArray.includes(0))) {
-            return <Redirect to="/home" />;
+            return <Redirect to="/Home" />;
         }
 
         return (

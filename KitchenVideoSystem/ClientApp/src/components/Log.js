@@ -128,7 +128,7 @@ class Log extends Component {
 
     render() {
         if (!(this.state.user.permissionsArray.includes(3))) {
-            return <Redirect to="/home" />;
+            return <Redirect to="/Home" />;
         }
         let uniqueNames = new Set();
 

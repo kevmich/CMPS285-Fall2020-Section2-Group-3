@@ -191,7 +191,7 @@ export default class KitchenScreen extends Component {
         let uniqueRecall = new Set();
 
         if (!(this.state.user.permissionsArray.includes(2))) {
-            return <Redirect to="/home" />;
+            return <Redirect to="/Home" />;
         }
 
         return (

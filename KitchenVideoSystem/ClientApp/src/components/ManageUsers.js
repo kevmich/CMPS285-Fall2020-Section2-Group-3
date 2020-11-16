@@ -120,7 +120,7 @@ export default class Admin extends Component {
         const queryString = require('query-string');
         let params = queryString.parse(this.props.location.search)
         if (!(this.state.user.permissionsArray.includes(0))) {
-            return <Redirect to="/home" />;
+            return <Redirect to="/Home" />;
         }
 
         return (

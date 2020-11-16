@@ -76,7 +76,7 @@ class Login extends Component {
 
     render() {
         if (sessionStorage.getItem("token")) {
-            return <Redirect to="/home" />;
+            return <Redirect to="/Home" />;
         }
         return (
             <div>
@@ -87,7 +87,7 @@ class Login extends Component {
                 <div className="LoginContainer">
                     <form onSubmit={this.login} className="form-signin">
                         <img src={KvsIcon} height="80px" class="center" />
-                        <h1 className="signIn">Please sign in to KVS </h1>
+                        <h1 className="signIn">Please Login to KVS </h1>
                         <div className="row">
                             <div className="col">
                                 <h3 className="h3 text-left"> Username: </h3>
