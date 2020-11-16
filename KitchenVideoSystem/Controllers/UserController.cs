@@ -40,7 +40,7 @@ namespace KitchenVideoSystem.Controllers
         }
 
         [HttpGet, Route("GetAllUsers")]
-        public string[] GetAllUsers()
+        public UserInfo[] GetAllUsers()
         {
             return _userService.GetAllUsers();
         }

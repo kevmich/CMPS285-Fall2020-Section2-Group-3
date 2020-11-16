@@ -42,7 +42,8 @@ export class Home extends Component {
                 </div>
                 <div className="ButtonList">
                     <img src={KvsIcon} height="120px" class="center" />
-                    <h1 className="HomeTitle">Welcome to KVS, {this.state.user.username}!</h1>
+                    {this.state.user.username == "admin" ?
+                        <h1 className="HomeTitle">Welcome to KVS, {this.state.user.firstName}!</h1> : <h1 className="HomeTitle">Welcome to KVS, {this.state.user.firstName}  {this.state.user.lastName}!</h1>}
                     <table>
                         <tr>
                             {this.state.user.permissionsArray.includes(1) && this.state.user.permissionsArray.includes(2) ? <td>

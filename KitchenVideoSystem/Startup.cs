@@ -34,7 +34,7 @@ namespace KitchenVideoSystem
             services.AddTransient<IOrderRepository, OrderRepository>();
             services.AddTransient<IPermissionRepository, PermissionRepository>();
             services.AddTransient<ILogRepository, LogRepository>();
-            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IUserService, UserRepository>();
             services.Configure<AuthOptions>(Configuration.GetSection("AuthOptions"));
 
             var authOptions = Configuration.GetSection("AuthOptions").Get<AuthOptions>();

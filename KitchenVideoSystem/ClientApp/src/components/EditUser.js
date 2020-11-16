@@ -17,7 +17,9 @@ export default class AddUser extends Component {
         this.state = {
             loginParams: {
                 user_id: "",
-                user_password: ""
+                user_password: "",
+                user_firstname: "",
+                user_lastname: ""
             },
             user: (JSON.parse(sessionStorage.getItem("user"))),
             editUser: [this.getUserInfo(this.props.usernameEdit)],
@@ -69,6 +71,8 @@ export default class AddUser extends Component {
     login = event => {
         let user_id = null;
         let user_password = null;
+        let user_firstname = null;
+        let user_lastname = null;
 
         if (this.state.loginParams.user_id == "") {
             user_id = null;
@@ -81,6 +85,20 @@ export default class AddUser extends Component {
         }
         else {
             user_password = this.state.loginParams.user_password
+        }
+
+        if (this.state.loginParams.user_firstname == "") {
+            user_firstname = null;
+        }
+        else {
+            user_firstname = this.state.loginParams.user_firstname
+        }
+
+        if (this.state.loginParams.user_lastname == "") {
+            user_lastname = null;
+        }
+        else {
+            user_lastname = this.state.loginParams.user_lastname
         }
 
         var checkBox = [];
@@ -100,6 +118,8 @@ export default class AddUser extends Component {
                 "username": this.state.editUser.username,
                 "newusername": user_id,
                 "password": user_password,
+                "firstname": user_firstname,
+                "lastname": user_lastname,
                 "permissionsarray": checkBox
             },
             headers: {
@@ -176,6 +196,20 @@ export default class AddUser extends Component {
                                     <input
                                         type="text"
                                         name="user_id"
+                                        onChange={this.handleFormChange}
+                                        placeholder="(unchanged)"
+                                    />
+                                    <h3 className="h3 text-left"> Change First Name: </h3>
+                                    <input
+                                        type="text"
+                                        name="user_firstname"
+                                        onChange={this.handleFormChange}
+                                        placeholder="(unchanged)"
+                                    />
+                                    <h3 className="h3 text-left"> Change Last Name: </h3>
+                                    <input
+                                        type="text"
+                                        name="user_lastname"
                                         onChange={this.handleFormChange}
                                         placeholder="(unchanged)"
                                     />

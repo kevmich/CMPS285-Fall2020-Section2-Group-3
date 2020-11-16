@@ -16,7 +16,9 @@ export default class AddUser extends Component {
         this.state = {
             loginParams: {
                 user_id: "",
-                user_password: ""
+                user_password: "",
+                user_firstname: "",
+                user_lastname: ""
             },
             user: (JSON.parse(sessionStorage.getItem("user"))),
             userFail: true,
@@ -45,6 +47,8 @@ export default class AddUser extends Component {
     login = event => {
         let user_id = this.state.loginParams.user_id;
         let user_password = this.state.loginParams.user_password;
+        let user_firstname = this.state.loginParams.user_firstname;
+        let user_lastname = this.state.loginParams.user_lastname;
 
         var checkBox = [];
         var perms = this.state.permissions
@@ -61,6 +65,8 @@ export default class AddUser extends Component {
             data: {
                 "username": user_id,
                 "password": user_password,
+                "firstname": user_firstname,
+                "lastname": user_lastname,
                 "permissionsarray": checkBox
             },
             headers: {
@@ -144,7 +150,23 @@ export default class AddUser extends Component {
                                     required pattern="[0-9a-zA-Z_.-]*"
                                     onChange={this.handleFormChange}
                                     placeholder="Create Username"
-                                />
+                                    />
+                                    <h3 className="h3 text-left"> First Name: </h3>
+                                    <input
+                                        type="text"
+                                        name="user_firstname"
+                                        required pattern="*"
+                                        onChange={this.handleFormChange}
+                                        placeholder="First Name"
+                                    />
+                                    <h3 className="h3 text-left"> Last Name: </h3>
+                                    <input
+                                        type="text"
+                                        name="user_lastname"
+                                        required pattern="*"
+                                        onChange={this.handleFormChange}
+                                        placeholder="Last Name"
+                                    />
                                 <h3 className="h3 text-left"> Password: </h3>
                                 <input
                                     type="password"
@@ -163,7 +185,7 @@ export default class AddUser extends Component {
                                 </ul>
                                     <input className="cancelButton" type="Button" value="Cancel" onClick={this.props.closeModal} /> 
 
-                                <input className="createButton" type="submit" value="Create"/>
+                                <input className="createButton" type="submit" value="Add User"/>
                             </div>
                         </div>
                         {this.state.SameUser ? <p className="alert"> User already exists. </p> : null}

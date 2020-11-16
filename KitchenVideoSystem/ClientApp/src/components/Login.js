@@ -63,6 +63,8 @@ class Login extends Component {
                 'Authorization': 'Bearer ' + sessionStorage.getItem('token')
             }
         }).then((response) => {
+            console.log("OAIWEFHJOL");
+            console.log(response.data);
             sessionStorage.setItem("user", JSON.stringify(response.data));
             this.setState({
                 islogged: true

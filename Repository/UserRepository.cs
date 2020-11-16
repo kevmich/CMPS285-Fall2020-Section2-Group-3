@@ -18,19 +18,19 @@ namespace TokenBasedAuth.Services
 
         public void DeleteUser(string username);
 
-        public string[] GetAllUsers();
+        public UserInfo[] GetAllUsers();
 
         public int EditUser(EditUser user);
 
         public EditUser GetUserInfo(string username);
     }
 
-    public class UserService : IUserService
+    public class UserRepository : IUserService
     {
         private string _connectionString = "";
         private const string _adminUsername = "admin";
 
-        public UserService(IOptions<ConnectionStringsOptions> connectionStringsOptions)
+        public UserRepository(IOptions<ConnectionStringsOptions> connectionStringsOptions)
         {
             //inject appsettings
             _connectionString = connectionStringsOptions.Value.KitchenVideoSystemDb;
@@ -69,8 +69,8 @@ namespace TokenBasedAuth.Services
                 try
                 {
                     user.Password = SHA.ComputeSHA256Hash(user.Password);
-                    var parameter = new { username = user.Username, password = user.Password };
-                    var sql = "INSERT INTO Users (username, password) VALUES (@username, @password)";
+                    var parameter = new { username = user.Username, password = user.Password, firstname = user.FirstName, lastname = user.LastName };
+                    var sql = "INSERT INTO Users (username, password, firstname, lastname) VALUES (@username, @password, @firstname, @lastname)";
                     connection.Execute(sql, parameter);
 
                     // If this fails then the user will still be added with no permissions
@@ -110,12 +110,12 @@ namespace TokenBasedAuth.Services
             }
         }
 
-        public string[] GetAllUsers()
+        public UserInfo[] GetAllUsers()
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                var sql = "SELECT Username FROM Users WHERE NOT Username = 'admin'";
-                return connection.Query<string>(sql).ToArray();
+                var sql = "SELECT * FROM Users WHERE NOT Username = 'admin' ORDER BY Username";
+                return connection.Query<UserInfo>(sql).ToArray();
             }
         }
 
@@ -134,13 +134,18 @@ namespace TokenBasedAuth.Services
                     var parameter = new { username };
 
                     var returnUser = new EditUser();
+                    // Combine this
                     var GetUsername = "SELECT Username FROM Users WHERE Username = @username";
                     returnUser.Username = connection.QuerySingle<string>(GetUsername, parameter);
                     var GetUserId = "SELECT Id FROM Users WHERE Username = @username";
                     returnUser.Id = connection.QuerySingle<int>(GetUserId, parameter);
+                    var sql = "SELECT FirstName FROM Users WHERE Username = @username";
+                    returnUser.FirstName = connection.QuerySingle<string>(sql, parameter);
+                    sql = "SELECT LastName FROM Users WHERE Username = @username";
+                    returnUser.LastName = connection.QuerySingle<string>(sql, parameter);
                     var parameterId = new { UserId = returnUser.Id };
 
-                    var sql = "  SELECT p.PermissionId  FROM UsersPermissions up  JOIN[Permissions] p on up.PermissionId = p.Id  WHERE up.UserId = @UserId";
+                    sql = "  SELECT p.PermissionId  FROM UsersPermissions up  JOIN[Permissions] p on up.PermissionId = p.Id  WHERE up.UserId = @UserId";
                     returnUser.PermissionsArray = connection.Query<int>(sql, parameterId).ToArray();
                     //......
                     //var permissionIds = connection.Query<int>(sql, parameterId).ToArray();
@@ -194,12 +199,25 @@ namespace TokenBasedAuth.Services
                 }
                 try
                 {
+                    var updateNamesParam = new { username = user.Username, firstname = user.FirstName, lastname = user.LastName };
+                    if (user.FirstName != null)
+                    {
+                        var updateFirstname = "UPDATE Users SET FirstName = @firstname WHERE Username = @Username";
+                        connection.Execute(updateFirstname, updateNamesParam);
+                    }
+                    if (user.LastName != null)
+                    {
+                        var updateLastname = "UPDATE Users SET LastName = @lastname WHERE Username = @Username";
+                        connection.Execute(updateLastname, updateNamesParam);
+                    }
                     if (user.NewUsername != null) //Change username
                     {
                         var updateUsernameParam = new { username = user.Username, NewUsername = user.NewUsername };
                         var updateUsername = "UPDATE Users SET Username = @NewUsername WHERE Username = @Username";
                         connection.Execute(updateUsername, updateUsernameParam);
                     }
+                    
+                    
                     return 1;
                 }
                 catch

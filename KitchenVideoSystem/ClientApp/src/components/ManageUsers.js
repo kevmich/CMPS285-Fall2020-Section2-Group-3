@@ -61,8 +61,8 @@ export default class Admin extends Component {
     }
 
     DeleteUser(e) {
-        console.log(e.user);
-        axios.get('api/user/DeleteUser/' + e.user, {
+        console.log(e);
+        axios.get('api/user/DeleteUser/' + e, {
             headers: {
                 'Authorization': 'Bearer ' + sessionStorage.getItem('token')
             }
@@ -117,8 +117,6 @@ export default class Admin extends Component {
 
 
     render() {
-        const queryString = require('query-string');
-        let params = queryString.parse(this.props.location.search)
         if (!(this.state.user.permissionsArray.includes(0))) {
             return <Redirect to="/Home" />;
         }
@@ -141,7 +139,6 @@ export default class Admin extends Component {
 
                 <div>
 
-                    {this.state.notify ? this.notify(params) : null}
                     <ToastContainer />
                 </div>
                 <div className="title">
@@ -172,7 +169,9 @@ export default class Admin extends Component {
                     <table className="adminTable">
 
                     <tr>
-                        <th>Username </th>
+                            <th>Username</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -180,16 +179,22 @@ export default class Admin extends Component {
                     <tr>
                         
                         <td>
-                            {user}
+                            {user.username}
+                            {console.log(user)}
                         </td>
                         <td>
-                            <button class="editButton" onClick={() => this.handleOpenModalEdit(user)} > <FontAwesomeIcon icon={faUserEdit} /> </button>
+                            {user.firstName}
+                        </td>
+                        <td>
+                            {user.lastName}
+                        </td>
+                        <td>
+                            <button class="editButton" onClick={() => this.handleOpenModalEdit(user.username)} > <FontAwesomeIcon icon={faUserEdit} /> </button>
                                 
                         </td>
                          <td>
                             <button className='delete' onClick={e =>
-                                window.confirm("Are you sure you want to delete the user '" + user  +"'?") && 
-                                this.DeleteUser({ user }) 
+                                window.confirm("Are you sure you want to delete the user '" + user.username  +"'?") && this.DeleteUser(user.username) 
                             }> <FontAwesomeIcon icon={faUserTimes} /> </button>
                         </td>            
                          
