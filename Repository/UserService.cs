@@ -4,6 +4,7 @@ using Microsoft.Extensions.Options;
 using Models.Domain;
 using Models.Entity;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 
@@ -27,6 +28,7 @@ namespace TokenBasedAuth.Services
     public class UserService : IUserService
     {
         private string _connectionString = "";
+        private const string _adminUsername = "admin";
 
         public UserService(IOptions<ConnectionStringsOptions> connectionStringsOptions)
         {
@@ -59,7 +61,7 @@ namespace TokenBasedAuth.Services
         {
             if (user.Username == "")
                 return -2;
-            if (user.Username == "admin")
+            if (user.Username == _adminUsername)
                 return -3;
 
             using (var connection = new SqlConnection(_connectionString))
@@ -98,7 +100,7 @@ namespace TokenBasedAuth.Services
         {
             if (username == "")
                 return;
-            if (username == "admin")
+            if (username == _adminUsername)
                 return;
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -163,7 +165,7 @@ namespace TokenBasedAuth.Services
         {
             if (user.Username == "")
                 return -2;
-            if (user.Username == "admin" || user.NewUsername == "admin")
+            if (user.Username == _adminUsername || user.NewUsername == _adminUsername)
                 return -3;
             using (var connection = new SqlConnection(_connectionString))
             {

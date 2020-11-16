@@ -12,8 +12,6 @@ import 'react-toastify/dist/ReactToastify.css';
 export default class AddUser extends Component {
     constructor(props) {
         super(props);
-        const queryString = require('query-string');
-        let params = queryString.parse(this.props.location.search)
 
         this.login = this.login.bind(this);
         this.state = {
@@ -22,7 +20,7 @@ export default class AddUser extends Component {
                 user_password: ""
             },
             user: (JSON.parse(sessionStorage.getItem("user"))),
-            editUser: [this.getUserInfo(params.name)],
+            editUser: [this.getUserInfo(this.props.usernameEdit)],
             userFail: true,
             SameUser: false,
             noUser: false,
@@ -155,26 +153,18 @@ export default class AddUser extends Component {
     };
 
     render() {
-        const queryString = require('query-string');
-        let params = queryString.parse(this.props.location.search)
+        let params = this.props.usernameEdit;
         console.log("USER");
-        console.log(this.state.noUser);
+        console.log(this.props.usernameEdit);
 
-        if (params.name == undefined || params.name == '' || params.name == 'admin' || this.state.noUser) {
-            return <Redirect to="/ManageUsers" />;
-        }
+        //if (params.name == undefined || params.name == '' || params.name == 'admin' || this.state.noUser) {
+        //    return <Redirect to="/ManageUsers" />;
+        //}
 
 
         return (
             <div>
                 <ToastContainer />
-                <Link to="/ManageUsers">
-                    <button class="BackButton"> Back</button>
-                </Link>
-                <div id="Clock">
-                    <Clock />
-                     &nbsp;<p class="clockUser">&nbsp;{this.state.user.username}</p>
-                </div>
                 <div className="Login">
                     <div className="LoginContainer">
                         <form onSubmit={this.login} className="form-signin">
@@ -204,7 +194,7 @@ export default class AddUser extends Component {
                                             })
                                         }
                                     </ul>
-
+                                    <input className="cancelButton" type="Button" value="Cancel" onClick={this.props.closeModalEdit} /> 
                                     <input className="createButton" type="submit" value="Apply" />
 
 

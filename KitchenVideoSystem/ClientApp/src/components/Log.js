@@ -1,5 +1,5 @@
 ﻿import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios'
 import { CSVLink, CSVDownload } from "react-csv";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -127,6 +127,9 @@ class Log extends Component {
     //<input type="submit" value="Submit" />
 
     render() {
+        if (!(this.state.user.permissionsArray.includes(3))) {
+            return <Redirect to="/Home" />;
+        }
         let uniqueNames = new Set();
 
         return (

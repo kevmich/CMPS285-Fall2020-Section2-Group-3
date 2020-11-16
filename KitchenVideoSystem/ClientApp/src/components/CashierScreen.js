@@ -173,7 +173,7 @@ export default class CashierScreen extends Component {
         let uniqueNames = new Set();
 
         if (!(this.state.user.permissionsArray.includes(1))) {
-            return <Redirect to="/home" />;
+            return <Redirect to="/Home" />;
         }
        
             return (

@@ -19,12 +19,14 @@ export default class App extends Component {
     return (
         <div>
             <Switch>
-                <Route exact path='/ManageUsers' component={Admin} />
-                <Route exact path='/ManageUsers/AddUser' component={AddUser} />
-                <Route exact path='/ManageUsers/EditUser' component={EditUser} />
-                <Route exact path='/log' component={Log} />
-            <ProtectedRoute path='/home'>
-                <Route exact path='/home' component={Home} />
+            <ProtectedRoute path='/ManageUsers'>
+                    <Route exact path='/ManageUsers' component={Admin} />
+                </ProtectedRoute>
+                <ProtectedRoute path='/OrderLog'>
+                <Route exact path='/OrderLog' component={Log} />
+                </ProtectedRoute>
+            <ProtectedRoute path='/Home'>
+                <Route exact path='/Home' component={Home} />
             </ProtectedRoute>
 
             <Route exact path='/' component={Login} />
