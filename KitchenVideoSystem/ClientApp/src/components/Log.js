@@ -111,7 +111,7 @@ class Log extends Component {
             }
         }).map((data) => (
             logData.push(
-                { TimeStarted: this.formatTime(data.dateStarted), TimeFinished: this.formatTime(data.dateFinished) , OrderNumber: data.orderNumber, Size: this.SizeSwitch(data.size), OrderItem: data.name, Quantity: this.CountSame(data.name, data.size, data.orderNumber) }
+                { TimeStarted: this.formatTime(data.dateStarted), TimeFinished: (data.dateFinished == "0001-01-01T00:00:00+00:00") ? "-" : this.formatTime(data.dateFinished)  , OrderNumber: data.orderNumber, Size: this.SizeSwitch(data.size), OrderItem: data.name, Quantity: this.CountSame(data.name, data.size, data.orderNumber) }
             )
         ))
         console.log("LOGDATA");
@@ -176,7 +176,7 @@ class Log extends Component {
                         }).map((data) => (
                             <tr>
                                 <td>{this.formatTime(data.dateStarted)}</td>
-                                <td>{this.formatTime(data.dateFinished)}</td>
+                                <td>{(data.dateFinished == "0001-01-01T00:00:00+00:00") ? "-" : this.formatTime(data.dateFinished)}</td>
                                 <td>{data.orderNumber}</td>
                                 <td>{this.SizeSwitch(data.size)}</td>
                                 <td>{data.name}</td>
